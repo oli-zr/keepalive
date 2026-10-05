@@ -10,7 +10,10 @@ enum IconLocator {
     }
 
     static func cachedIcon(for app: ManagedApp) -> NSImage? {
-        NSImage(contentsOf: cachedIconURL(for: app))
+        #if DEBUG
+        if DebugPreview.isActive { return DebugPreview.sampleIcon(for: app) }
+        #endif
+        return NSImage(contentsOf: cachedIconURL(for: app))
     }
 
     static func cacheIcon(for app: ManagedApp, builtApp: URL? = nil) {

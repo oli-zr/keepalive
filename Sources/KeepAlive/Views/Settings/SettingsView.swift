@@ -61,7 +61,7 @@ struct SettingsView: View {
                 SettingsDetail(navigation: navigation)
             }
         }
-        .frame(minWidth: 680, minHeight: 460)
+        .frame(minWidth: 680, minHeight: 360)
     }
 }
 

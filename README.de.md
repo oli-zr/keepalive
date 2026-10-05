@@ -9,7 +9,9 @@
   <a href="README.md">English</a>
 </p>
 
----
+<p align="center">
+  <img src="Design/screenshots/keepalive.png" alt="KeepAlive-Einstellungsfenster mit dem Menü aus der Menüleiste">
+</p>
 
 Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben
 Tagen nicht mehr öffnen. KeepAlive ist eine kleine Menüleisten-App für deinen Mac, die

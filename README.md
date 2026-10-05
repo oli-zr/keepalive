@@ -9,7 +9,9 @@
   <a href="README.de.md">Deutsch</a>
 </p>
 
----
+<p align="center">
+  <img src="Design/screenshots/keepalive.png" alt="KeepAlive settings window with its menu bar menu">
+</p>
 
 Apps signed with a free Apple Account stop opening after seven days. KeepAlive is a
 small menu bar app for your Mac that rebuilds and reinstalls them before that happens,

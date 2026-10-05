@@ -7,7 +7,7 @@ import SwiftUI
 enum DebugPreview {
     private static var window: NSWindow?
 
-    private static var target: String? { ProcessInfo.processInfo.environment["KEEPALIVE_PREVIEW"] }
+    nonisolated private static var target: String? { ProcessInfo.processInfo.environment["KEEPALIVE_PREVIEW"] }
 
     /// KEEPALIVE_PREVIEW=window opens the real settings window with sample data.
     static var wantsWindow: Bool { target == "window" }
@@ -48,27 +48,66 @@ enum DebugPreview {
         return true
     }
 
+    /// Makes the settings window active, so controls show their accent color, and sizes it
+    /// from KEEPALIVE_WINDOW_SIZE, for example "720x400".
+    static func prepareWindowForScreenshot() {
+        NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            guard let window = NSApp.windows.first(where: { $0.title.isEmpty == false && $0.isVisible && $0.level == .normal }) else { return }
+            if let size = ProcessInfo.processInfo.environment["KEEPALIVE_WINDOW_SIZE"]?.split(separator: "x"),
+               size.count == 2, let width = Double(size[0]), let height = Double(size[1]) {
+                window.setContentSize(NSSize(width: width, height: height))
+            }
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+
+    /// True while a preview runs; previews never talk to real devices.
+    nonisolated static var isActive: Bool { target != nil }
+
+    /// KEEPALIVE_SAMPLE_ICONS points at a folder with `<App Name>.png` files for the sample apps.
+    nonisolated static func sampleIcon(for app: ManagedApp) -> NSImage? {
+        guard let folder = ProcessInfo.processInfo.environment["KEEPALIVE_SAMPLE_ICONS"] else { return nil }
+        return NSImage(contentsOfFile: "\(folder)/\(app.name).png")
+    }
+
     private static func fillSampleData(_ store: AppStore) {
-        let home = FileManager.default.homeDirectoryForCurrentUser.path
-        var hitster = ManagedApp(name: "Hitster", projectPath: home + "/Desktop/HITST/Hitster/Hitster.xcodeproj",
-                                 scheme: "Hitster", bundleIdentifier: "com.example.Hitster", productName: "Hitster.app")
-        hitster.lastInstall = .now.addingTimeInterval(-2 * 86_400)
-        hitster.expirationDate = .now.addingTimeInterval(5 * 86_400)
-        var pulse = ManagedApp(name: "Pulse", projectPath: home + "/Desktop/spotube-master/Pulse/Pulse.xcodeproj",
-                               scheme: "Pulse", bundleIdentifier: "com.example.Pulse", productName: "Pulse.app")
-        pulse.lastInstall = .now.addingTimeInterval(-6 * 86_400)
-        pulse.expirationDate = .now.addingTimeInterval(16 * 3600)
-        var widget = ManagedApp(name: "Weather Widget", projectPath: "/tmp/Weather.xcodeproj",
-                                scheme: "Weather", bundleIdentifier: "com.example.Weather", productName: "Weather.app")
-        widget.isEnabled = false
-        store.apps = [hitster, pulse, widget]
-        store.activity[hitster.id] = .building
-        store.devices = [Device(id: "1", udid: "1", name: "iPhone", model: "iPhone 16", transport: .network, isReachable: true)]
+        func sample(_ name: String, installed days: Double?, at hour: Double = 10) -> ManagedApp {
+            let id = name.replacingOccurrences(of: " ", with: "")
+            var app = ManagedApp(name: name, projectPath: "/Projects/\(id)/\(id).xcodeproj", scheme: id,
+                                 bundleIdentifier: "com.example.\(id)", productName: "\(id).app")
+            if let days {
+                let midnight = Calendar.current.startOfDay(for: .now)
+                app.lastInstall = midnight.addingTimeInterval(-days.rounded(.down) * 86_400 + hour * 3600)
+                app.expirationDate = app.lastInstall?.addingTimeInterval(7 * 86_400)
+            }
+            return app
+        }
+        let trail = sample("Trail Log", installed: 1, at: 9.25)
+        let synth = sample("Pocket Synth", installed: 3, at: 19.7)
+        let notes = sample("Field Notes", installed: 2, at: 8.1)
+        store.apps = [trail, synth, notes]
+        // KEEPALIVE_SAMPLE_IDLE shows every app at rest, for the menu screenshot.
+        if ProcessInfo.processInfo.environment["KEEPALIVE_SAMPLE_IDLE"] == nil {
+            store.activity[synth.id] = .building
+        }
+        store.devices = [Device(id: "1", udid: "1", name: "iPhone", model: "iPhone 17 Pro", transport: .network, isReachable: true)]
         store.preferences.deviceIdentifier = "1"
         store.preferences.deviceName = "iPhone"
-        store.record("Building for iPhone…", app: "Hitster")
-        store.record("Installed. Valid until 12 Oct 2026 at 21:34.", app: "Pulse")
-        store.record("iPhone is not reachable. KeepAlive will try again later.", app: "Weather Widget", isError: true)
+        // A believable history: each app was renewed a few days apart.
+        func entry(_ app: ManagedApp, _ message: String, minutesAfterInstall: Double = 0) -> LogEntry {
+            let date = (app.lastInstall ?? .now).addingTimeInterval(minutesAfterInstall * 60 - 60)
+            return LogEntry(date: date, app: app.name, message: message, isError: false)
+        }
+        func installed(_ app: ManagedApp) -> String {
+            let until = app.expirationDate?.formatted(date: .abbreviated, time: .shortened) ?? ""
+            return "Installed. Valid until \(until)."
+        }
+        store.log = [synth, notes, trail].flatMap { app in
+            [entry(app, "Building for iPhone…"), entry(app, installed(app), minutesAfterInstall: 1)]
+        }
     }
 }
 #endif

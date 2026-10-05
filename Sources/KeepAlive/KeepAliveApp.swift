@@ -51,7 +51,11 @@ private struct MenuBarIcon: View {
               : "arrow.triangle.2.circlepath")
             .accessibilityLabel("KeepAlive")
             #if DEBUG
-            .task { if DebugPreview.wantsWindow { openWindow(id: SettingsView.windowID) } }
+            .task {
+                guard DebugPreview.wantsWindow else { return }
+                openWindow(id: SettingsView.windowID)
+                DebugPreview.prepareWindowForScreenshot()
+            }
             #endif
     }
 }

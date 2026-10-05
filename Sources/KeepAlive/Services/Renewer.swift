@@ -72,6 +72,9 @@ final class Renewer {
     }
 
     func refreshDevices() async {
+        #if DEBUG
+        if DebugPreview.isActive { return }
+        #endif
         guard let toolchain = try? Toolchain.resolve(override: store.preferences.xcodePath) else { return }
         do {
             store.devices = try await DeviceService(toolchain: toolchain).devices()

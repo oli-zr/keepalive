@@ -44,10 +44,14 @@ private struct LogRow: View {
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text(entry.date, format: .dateTime.day().month(.abbreviated).hour().minute())
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .frame(width: 96, alignment: .leading)
+            // Date and time on two lines, matching the app name and message beside them.
+            VStack(alignment: .leading, spacing: 1) {
+                Text(entry.date, format: .dateTime.month(.abbreviated).day())
+                Text(entry.date, format: .dateTime.hour().minute())
+            }
+            .monospacedDigit()
+            .foregroundStyle(.secondary)
+            .frame(width: 76, alignment: .leading)
             VStack(alignment: .leading, spacing: 1) {
                 if let app = entry.app {
                     Text(app).fontWeight(.medium)

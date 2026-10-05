@@ -3,7 +3,15 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @Environment(AppStore.self) private var store
-    @State private var opensAtLogin = SMAppService.mainApp.status == .enabled
+    @State private var opensAtLogin = SMAppService.mainApp.status == .enabled || Self.isPreview
+
+    private static var isPreview: Bool {
+        #if DEBUG
+        return DebugPreview.isActive
+        #else
+        return false
+        #endif
+    }
     @State private var loginItemError: String?
 
     var body: some View {

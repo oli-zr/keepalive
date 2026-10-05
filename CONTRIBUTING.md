@@ -10,7 +10,7 @@ scripts/build_app.sh        # create build/KeepAlive.app
 open build/KeepAlive.app
 ```
 
-Xcode 15 or later is required. You can also open `Package.swift` in Xcode, but the
+Building requires Xcode 26 or later. You can also open `Package.swift` in Xcode, but the
 menu bar app needs a real bundle for notifications and the login item, so test
 those with `scripts/build_app.sh`.
 
@@ -29,3 +29,13 @@ those with `scripts/build_app.sh`.
 
 Please include your macOS and Xcode versions and the relevant part of
 `~/Library/Logs/KeepAlive/`. Remove anything personal, such as your team ID.
+
+## Releases
+
+Push a version tag to publish a release. GitHub Actions builds a universal app,
+sets its version from the tag and attaches `KeepAlive.zip` to the release:
+
+```sh
+git tag v1.0
+git push origin v1.0
+```

@@ -41,7 +41,7 @@ bestätige. Alternativ geht es im Terminal:
 xattr -dr com.apple.quarantine /Applications/KeepAlive.app
 ```
 
-Selbst bauen:
+Selbst bauen (dafür ist Xcode 26 oder neuer nötig):
 
 ```sh
 git clone https://github.com/oli-zr/keepalive.git

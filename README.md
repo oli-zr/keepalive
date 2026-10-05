@@ -41,7 +41,7 @@ time you open it, Control-click the app, choose **Open**, and confirm. You can a
 xattr -dr com.apple.quarantine /Applications/KeepAlive.app
 ```
 
-To build it yourself:
+To build it yourself (requires Xcode 26 or later):
 
 ```sh
 git clone https://github.com/oli-zr/keepalive.git

@@ -3,6 +3,18 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.0.2] - 2026-10-06
+
+### Fixed
+
+- The activity log shows date and time on two lines, so the date column no longer
+  wraps unevenly in English.
+- The settings window can be made a little shorter.
+
+### Documentation
+
+- The README now shows a screenshot of KeepAlive.
+
 ## [1.0.1] - 2026-10-06
 
 ### Fixed

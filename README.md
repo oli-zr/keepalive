@@ -20,7 +20,9 @@ whenever your iPhone is on the same Wi‑Fi network.
 - Installs over Wi‑Fi or a cable using Apple’s own tools (`xcodebuild` and `devicectl`).
 - Uses little energy. macOS schedules the checks, and builds wait for a power adapter
   unless an app expires within a day.
-- Works with Swift, Objective‑C, Flutter and React Native projects.
+- Works with any Xcode project or workspace. Projects made with Flutter or other
+  cross-platform tools can run a command before each build.
+- Leaves no build files behind once an app is installed.
 - Available in English and German.
 
 ## Requirements
@@ -34,8 +36,9 @@ whenever your iPhone is on the same Wi‑Fi network.
 Download `KeepAlive.zip` from the [latest release](../../releases/latest), unzip it, and
 move KeepAlive to your Applications folder.
 
-KeepAlive is not notarized, because that requires a paid developer account. The first
-time you open it, Control-click the app, choose **Open**, and confirm. You can also run:
+KeepAlive is not notarized, because that requires a paid developer account, so macOS
+blocks it the first time you open it. Open System Settings → Privacy & Security, scroll
+down, and click **Open Anyway** next to the message about KeepAlive. You can also run:
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/KeepAlive.app
@@ -59,11 +62,15 @@ You only need to do this once.
    Devices and Simulators, select your iPhone, and turn on **Connect via network**.
 3. **Prepare each project.** Open it in Xcode once. Under Signing & Capabilities, select
    **Automatically manage signing** and your Personal Team, then run it on your iPhone.
+   The first time, your iPhone asks you to trust your developer certificate in
+   Settings → General → VPN & Device Management.
 4. **Add it to KeepAlive.** Click the KeepAlive icon in the menu bar and choose
-   Settings → Apps → Add App…
+   Settings… → Apps → Add App…
+5. **Keep KeepAlive running.** Turn on **Open at Login** under General. If more than one
+   device is paired, choose your iPhone under Device.
 
 For Flutter projects, enter `flutter build ios --release --config-only` under
-**Before Build**.
+**Before Build**, so the iOS project is up to date before each build.
 
 ## How it works
 
@@ -75,9 +82,10 @@ KeepAlive checks whether an app is due. For each app that is due, it:
    that is valid for seven days.
 3. Builds the Release configuration with `xcodebuild -allowProvisioningUpdates`.
 4. Installs the app with `devicectl device install app`. Your data in the app is kept.
+5. Deletes the build files. Nothing is added to your project folder.
 
 Settings are stored in `~/Library/Application Support/KeepAlive`, and logs in
-`~/Library/Logs/KeepAlive`.
+`~/Library/Logs/KeepAlive`. Together they take up less than a megabyte.
 
 ## Limitations
 

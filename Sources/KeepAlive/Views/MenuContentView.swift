@@ -3,7 +3,7 @@ import SwiftUI
 struct MenuContentView: View {
     @Environment(AppStore.self) private var store
     @Environment(Renewer.self) private var renewer
-    @Environment(\.openSettings) private var openSettings
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -24,18 +24,18 @@ struct MenuContentView: View {
 
             VStack(spacing: 0) {
                 if store.isBusy {
-                    MenuButton("Stop Renewing") { renewer.cancelAll() }
+                    MenuButton("Stop Renewing", systemImage: "stop.circle") { renewer.cancelAll() }
                 } else {
-                    MenuButton("Renew All Now") { renewer.renewAll() }
+                    MenuButton("Renew All Now", systemImage: "arrow.clockwise") { renewer.renewAll() }
                         .disabled(!store.apps.contains(where: \.isEnabled))
                 }
-                MenuButton("Settings…") { showSettings() }
+                MenuButton("Settings…", systemImage: "gearshape") { showSettings() }
             }
             .padding(.horizontal, 5)
 
             MenuDivider()
 
-            MenuButton("Quit KeepAlive") { NSApp.terminate(nil) }
+            MenuButton("Quit KeepAlive", systemImage: "power") { NSApp.terminate(nil) }
                 .padding(.horizontal, 5)
         }
         .padding(.bottom, 5)
@@ -82,8 +82,8 @@ struct MenuContentView: View {
     }
 
     private func showSettings() {
+        openWindow(id: SettingsView.windowID)
         NSApp.activate(ignoringOtherApps: true)
-        openSettings()
     }
 }
 
@@ -129,37 +129,49 @@ struct AppRowView: View {
         .padding(.horizontal, 9)
         .padding(.vertical, 5)
         .background(
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
+            RoundedRectangle(cornerRadius: MenuMetrics.highlightRadius, style: .continuous)
                 .fill(isHovering ? AnyShapeStyle(.quaternary) : AnyShapeStyle(.clear))
         )
         .onHover { isHovering = $0 }
     }
 }
 
+enum MenuMetrics {
+    /// Matches the rounder selection shape of menus since macOS 26.
+    static let highlightRadius: CGFloat = 9
+}
+
 /// A full-width menu item with the hover highlight used in system menu bar extras.
 struct MenuButton: View {
     let title: LocalizedStringKey
+    let systemImage: String
     let action: () -> Void
     @State private var isHovering = false
     @Environment(\.isEnabled) private var isEnabled
 
-    init(_ title: LocalizedStringKey, action: @escaping () -> Void) {
+    init(_ title: LocalizedStringKey, systemImage: String, action: @escaping () -> Void) {
         self.title = title
+        self.systemImage = systemImage
         self.action = action
     }
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 9)
-                .padding(.vertical, 4)
-                .contentShape(Rectangle())
+            HStack(spacing: 8) {
+                Image(systemName: systemImage)
+                    .frame(width: 18)
+                    .foregroundStyle(.secondary)
+                Text(title)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 9)
+            .padding(.vertical, 5)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .foregroundStyle(isEnabled ? AnyShapeStyle(.primary) : AnyShapeStyle(.tertiary))
         .background(
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
+            RoundedRectangle(cornerRadius: MenuMetrics.highlightRadius, style: .continuous)
                 .fill(isHovering && isEnabled ? AnyShapeStyle(.quaternary) : AnyShapeStyle(.clear))
         )
         .onHover { isHovering = $0 }

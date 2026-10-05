@@ -4,7 +4,7 @@ struct LogView: View {
     @Environment(AppStore.self) private var store
 
     var body: some View {
-        VStack(spacing: 0) {
+        Group {
             if store.log.isEmpty {
                 ContentUnavailableView(
                     "No Activity",
@@ -21,9 +21,9 @@ struct LogView: View {
                     .onChange(of: store.log.count) { proxy.scrollTo(store.log.last?.id, anchor: .bottom) }
                 }
             }
-
-            Divider()
-
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack {
                 Button("Show Logs in Finder") {
                     try? FileManager.default.createDirectory(at: AppStore.logDirectory, withIntermediateDirectories: true)
@@ -33,9 +33,9 @@ struct LogView: View {
                 Button("Clear") { store.log.removeAll() }
                     .disabled(store.log.isEmpty)
             }
-            .padding(12)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 14)
         }
-        .frame(height: 380)
     }
 }
 

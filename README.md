@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Design/icon-1024.png" width="128" alt="">
+  <img src="Design/icon.png" width="128" alt="">
 </p>
 
 <h1 align="center">KeepAlive</h1>
@@ -44,8 +44,8 @@ xattr -dr com.apple.quarantine /Applications/KeepAlive.app
 To build it yourself:
 
 ```sh
-git clone https://github.com/oli-zr/KeepAlive.git
-cd KeepAlive
+git clone https://github.com/oli-zr/keepalive.git
+cd keepalive
 scripts/build_app.sh
 open build/KeepAlive.app
 ```

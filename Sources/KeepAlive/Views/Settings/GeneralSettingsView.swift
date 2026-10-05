@@ -34,24 +34,22 @@ struct GeneralSettingsView: View {
 
             Section {
                 LabeledContent("Xcode") {
-                    Text(xcodeDescription)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                }
-                HStack {
-                    Spacer()
-                    if store.preferences.xcodePath != nil {
-                        Button("Use Default") { store.preferences.xcodePath = nil }
+                    HStack(spacing: 8) {
+                        Text(xcodeDescription)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                        if store.preferences.xcodePath != nil {
+                            Button("Use Default") { store.preferences.xcodePath = nil }
+                        }
+                        Button("Choose…", action: chooseXcode)
                     }
-                    Button("Choose…", action: chooseXcode)
                 }
             } header: {
                 Text("Developer Tools")
             }
         }
         .formStyle(.grouped)
-        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var xcodeDescription: String {
@@ -94,6 +92,8 @@ extension View {
     func settingsFooter() -> some View {
         font(.callout)
             .foregroundStyle(.secondary)
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
     }
 }

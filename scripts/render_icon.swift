@@ -1,184 +1,170 @@
 #!/usr/bin/env swift
-// Renders the app icon. Writes Design/icon.svg and Resources/AppIcon.icns.
+// Generates the app icon as an Icon Composer document (Resources/AppIcon.icon), which macOS 26
+// and later render with Liquid Glass. The build script compiles it with actool, which also
+// produces a classic .icns for older systems.
+//
 // Usage: swift scripts/render_icon.swift
+// Afterwards the document can be refined in Icon Composer (Xcode → Open Developer Tool).
 
-import AppKit
-import CoreGraphics
+import Foundation
 
 let root = URL(fileURLWithPath: CommandLine.arguments[0]).deletingLastPathComponent().deletingLastPathComponent()
 
-// Geometry on the 1024 pt macOS icon grid.
-let canvas: CGFloat = 1024
-let body = CGRect(x: 100, y: 100, width: 824, height: 824)
-let center = CGPoint(x: 512, y: 512)
-let ringRadius: CGFloat = 220
-let ringWidth: CGFloat = 62
-let startAngle: CGFloat = 100      // degrees, measured counterclockwise from 3 o'clock
-let sweep: CGFloat = 300           // drawn clockwise
-let headLength: CGFloat = 118
-let headWidth: CGFloat = 92        // half the base of the arrowhead
-let headCorner: CGFloat = 22       // rounds the arrowhead's corners
-let dotRadius: CGFloat = 58
+// Geometry on the full 1024 pt icon canvas; the system applies the icon shape.
+let canvas = 1024.0
+let center = (x: 512.0, y: 512.0)
+let ringRadius = 240.0
+let ringWidth = 76.0
+let startAngle = 100.0     // degrees, counterclockwise from 3 o'clock, y pointing up
+let sweep = 294.0          // drawn clockwise
+let headLength = 138.0
+let headHalfWidth = 108.0
+let headCorner = 26.0
+let dotRadius = 66.0
 
-let topColor = (r: 0.33, g: 0.80, b: 0.74)
-let bottomColor = (r: 0.05, g: 0.56, b: 0.60)
+let topColor = "srgb:0.33333,0.81176,0.74510,1.00000"
+let bottomColor = "srgb:0.03922,0.54902,0.59608,1.00000"
 
-func radians(_ degrees: CGFloat) -> CGFloat { degrees * .pi / 180 }
+typealias Point = (x: Double, y: Double)
 
-/// Apple's icon shape is close to a superellipse; 4.2 matches the macOS corner curvature.
-func squirclePath(in rect: CGRect) -> CGPath {
-    let path = CGMutablePath()
-    let n: CGFloat = 4.2
-    let a = rect.width / 2, b = rect.height / 2
-    let steps = 720
-    for i in 0...steps {
-        let t = CGFloat(i) / CGFloat(steps) * 2 * .pi
-        let c = cos(t), s = sin(t)
-        let x = rect.midX + a * (c < 0 ? -1 : 1) * pow(abs(c), 2 / n)
-        let y = rect.midY + b * (s < 0 ? -1 : 1) * pow(abs(s), 2 / n)
-        i == 0 ? path.move(to: CGPoint(x: x, y: y)) : path.addLine(to: CGPoint(x: x, y: y))
-    }
-    path.closeSubpath()
-    return path
+func rad(_ degrees: Double) -> Double { degrees * .pi / 180 }
+
+/// Point on a circle around the center, converted to SVG's top-left origin.
+func polar(_ angle: Double, _ radius: Double) -> Point {
+    (center.x + radius * cos(rad(angle)), canvas - (center.y + radius * sin(rad(angle))))
 }
 
-var endAngle: CGFloat { startAngle - sweep }
+func f(_ p: Point) -> String { String(format: "%.1f %.1f", p.x, p.y) }
 
-func point(at angle: CGFloat, radius: CGFloat) -> CGPoint {
-    CGPoint(x: center.x + radius * cos(radians(angle)), y: center.y + radius * sin(radians(angle)))
+/// The ring as a filled shape: outer arc clockwise, inner arc back, round cap at the start.
+func ringPath() -> String {
+    let end = startAngle - sweep
+    let outer = ringRadius + ringWidth / 2
+    let inner = ringRadius - ringWidth / 2
+    let large = sweep > 180 ? 1 : 0
+    // In SVG coordinates (y down) a clockwise turn on screen uses sweep-flag 1.
+    return "M\(f(polar(startAngle, outer))) "
+        + "A\(outer) \(outer) 0 \(large) 1 \(f(polar(end, outer))) "
+        + "L\(f(polar(end, inner))) "
+        + "A\(inner) \(inner) 0 \(large) 0 \(f(polar(startAngle, inner))) "
+        + "A\(ringWidth / 2) \(ringWidth / 2) 0 0 1 \(f(polar(startAngle, outer))) Z"
 }
 
-func arrowheadPoints() -> [CGPoint] {
-    let angle = radians(endAngle)
-    let base = point(at: endAngle, radius: ringRadius)
-    let tangent = CGPoint(x: sin(angle), y: -cos(angle))   // clockwise direction
-    let normal = CGPoint(x: cos(angle), y: sin(angle))
-    let length = headLength - headCorner * 2
-    let width = headWidth - headCorner * 1.4
-    let back = headCorner * 0.6
-    return [
-        CGPoint(x: base.x + tangent.x * length, y: base.y + tangent.y * length),
-        CGPoint(x: base.x + normal.x * width - tangent.x * back, y: base.y + normal.y * width - tangent.y * back),
-        CGPoint(x: base.x - normal.x * width - tangent.x * back, y: base.y - normal.y * width - tangent.y * back),
+/// A triangle with rounded corners, pointing along the ring in the clockwise direction.
+func arrowheadPath() -> String {
+    let end = startAngle - sweep
+    let base = polar(end, ringRadius)
+    let a = rad(end)
+    // Clockwise tangent and outward normal, in SVG coordinates.
+    let tangent: Point = (sin(a), cos(a))
+    let normal: Point = (cos(a), -sin(a))
+    let back = 6.0
+    let corners: [Point] = [
+        (base.x + tangent.x * headLength, base.y + tangent.y * headLength),
+        (base.x + normal.x * headHalfWidth - tangent.x * back, base.y + normal.y * headHalfWidth - tangent.y * back),
+        (base.x - normal.x * headHalfWidth - tangent.x * back, base.y - normal.y * headHalfWidth - tangent.y * back),
     ]
-}
-
-func drawIcon(in context: CGContext, size: CGFloat) {
-    let scale = size / canvas
-    context.scaleBy(x: scale, y: scale)
-
-    // Body with the standard macOS icon shadow.
-    let shape = squirclePath(in: body)
-    context.saveGState()
-    context.setShadow(offset: CGSize(width: 0, height: -10), blur: 24, color: CGColor(gray: 0, alpha: 0.3))
-    context.addPath(shape)
-    context.setFillColor(CGColor(red: bottomColor.r, green: bottomColor.g, blue: bottomColor.b, alpha: 1))
-    context.fillPath()
-    context.restoreGState()
-
-    context.saveGState()
-    context.addPath(shape)
-    context.clip()
-    let gradient = CGGradient(
-        colorsSpace: CGColorSpace(name: CGColorSpace.sRGB),
-        colors: [
-            CGColor(red: topColor.r, green: topColor.g, blue: topColor.b, alpha: 1),
-            CGColor(red: bottomColor.r, green: bottomColor.g, blue: bottomColor.b, alpha: 1),
-        ] as CFArray,
-        locations: [0, 1]
-    )!
-    context.drawLinearGradient(gradient, start: CGPoint(x: 0, y: body.maxY), end: CGPoint(x: 0, y: body.minY), options: [])
-
-    // Glyph: an open ring that closes on itself with an arrowhead, around a dot.
-    context.setShadow(offset: CGSize(width: 0, height: -6), blur: 14, color: CGColor(gray: 0, alpha: 0.18))
-    context.beginTransparencyLayer(auxiliaryInfo: nil)
-    context.setFillColor(.white)
-    context.setStrokeColor(.white)
-
-    context.setLineWidth(ringWidth)
-    context.setLineCap(.round)
-    let start = point(at: startAngle, radius: ringRadius)
-    context.move(to: start)
-    context.addArc(center: center, radius: ringRadius, startAngle: radians(startAngle), endAngle: radians(endAngle + 6), clockwise: true)
-    context.strokePath()
-
-    let head = arrowheadPoints()
-    context.setLineWidth(headCorner * 2)
-    context.setLineJoin(.round)
-    context.move(to: head[0])
-    context.addLine(to: head[1])
-    context.addLine(to: head[2])
-    context.closePath()
-    context.drawPath(using: .fillStroke)
-
-    context.fillEllipse(in: CGRect(x: center.x - dotRadius, y: center.y - dotRadius, width: dotRadius * 2, height: dotRadius * 2))
-    context.endTransparencyLayer()
-    context.restoreGState()
-}
-
-func png(size: Int) -> Data {
-    let context = CGContext(
-        data: nil, width: size, height: size, bitsPerComponent: 8, bytesPerRow: 0,
-        space: CGColorSpace(name: CGColorSpace.sRGB)!,
-        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-    )!
-    drawIcon(in: context, size: CGFloat(size))
-    let rep = NSBitmapImageRep(cgImage: context.makeImage()!)
-    return rep.representation(using: .png, properties: [:])!
-}
-
-func svg() -> String {
-    // SVG has a top-left origin, so flip y.
-    func f(_ p: CGPoint) -> String { String(format: "%.1f %.1f", p.x, canvas - p.y) }
-    let start = point(at: startAngle, radius: ringRadius)
-    let end = point(at: endAngle + 6, radius: ringRadius)
-    let head = arrowheadPoints()
-    let largeArc = sweep > 180 ? 1 : 0
-    func hex(_ c: (r: Double, g: Double, b: Double)) -> String {
-        String(format: "#%02X%02X%02X", Int(c.r * 255), Int(c.g * 255), Int(c.b * 255))
+    func toward(_ from: Point, _ to: Point, _ distance: Double) -> Point {
+        let dx = to.x - from.x, dy = to.y - from.y
+        let length = (dx * dx + dy * dy).squareRoot()
+        return (from.x + dx / length * distance, from.y + dy / length * distance)
     }
-    var squircle = ""
-    let path = squirclePath(in: body)
-    path.applyWithBlock { element in
-        let p = element.pointee.points[0]
-        squircle += (squircle.isEmpty ? "M" : "L") + f(p) + " "
+    var path = ""
+    for i in 0..<3 {
+        let corner = corners[i]
+        let previous = corners[(i + 2) % 3]
+        let next = corners[(i + 1) % 3]
+        let entry = toward(corner, previous, headCorner)
+        let exit = toward(corner, next, headCorner)
+        path += (i == 0 ? "M" : "L") + f(entry) + " Q" + f(corner) + " " + f(exit) + " "
     }
-    return """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-      <defs>
-        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="\(hex(topColor))"/>
-          <stop offset="1" stop-color="\(hex(bottomColor))"/>
-        </linearGradient>
-      </defs>
-      <path d="\(squircle)Z" fill="url(#body)"/>
-      <g fill="#FFFFFF" stroke="#FFFFFF">
-        <path d="M\(f(start)) A\(ringRadius) \(ringRadius) 0 \(largeArc) 1 \(f(end))" fill="none" stroke-width="\(ringWidth)" stroke-linecap="round"/>
-        <path d="M\(f(head[0])) L\(f(head[1])) L\(f(head[2])) Z" stroke-width="\(headCorner * 2)" stroke-linejoin="round"/>
-        <circle cx="\(center.x)" cy="\(canvas - center.y)" r="\(dotRadius)" stroke="none"/>
-      </g>
-    </svg>
+    return path + "Z"
+}
+
+func svg(_ body: String) -> String {
+    """
+    <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">\(body)</svg>
 
     """
 }
 
-let fileManager = FileManager.default
-let iconset = fileManager.temporaryDirectory.appendingPathComponent("AppIcon.iconset")
-try? fileManager.removeItem(at: iconset)
-try fileManager.createDirectory(at: iconset, withIntermediateDirectories: true)
+let arrow = svg("<path d=\"\(ringPath())\" fill=\"#FFFFFF\"/><path d=\"\(arrowheadPath())\" fill=\"#FFFFFF\"/>")
+let dot = svg("<circle cx=\"\(center.x)\" cy=\"\(center.y)\" r=\"\(dotRadius)\" fill=\"#FFFFFF\"/>")
 
-for base in [16, 32, 128, 256, 512] {
-    try png(size: base).write(to: iconset.appendingPathComponent("icon_\(base)x\(base).png"))
-    try png(size: base * 2).write(to: iconset.appendingPathComponent("icon_\(base)x\(base)@2x.png"))
+let iconJSON = """
+{
+  "fill" : {
+    "linear-gradient" : [
+      "\(topColor)",
+      "\(bottomColor)"
+    ]
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : true,
+          "image-name" : "dot.svg",
+          "name" : "dot"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.3
+      }
+    },
+    {
+      "layers" : [
+        {
+          "glass" : true,
+          "image-name" : "arrow.svg",
+          "name" : "arrow"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.4
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "macOS"
+    ]
+  }
 }
 
-try fileManager.createDirectory(at: root.appendingPathComponent("Design"), withIntermediateDirectories: true)
-try svg().write(to: root.appendingPathComponent("Design/icon.svg"), atomically: true, encoding: .utf8)
-try png(size: 1024).write(to: root.appendingPathComponent("Design/icon-1024.png"))
+"""
 
-let iconutil = Process()
-iconutil.executableURL = URL(fileURLWithPath: "/usr/bin/iconutil")
-iconutil.arguments = ["-c", "icns", iconset.path, "-o", root.appendingPathComponent("Resources/AppIcon.icns").path]
-try iconutil.run()
-iconutil.waitUntilExit()
-print(iconutil.terminationStatus == 0 ? "Wrote Resources/AppIcon.icns and Design/icon.svg" : "iconutil failed")
+let fileManager = FileManager.default
+let document = root.appendingPathComponent("Resources/AppIcon.icon")
+let assets = document.appendingPathComponent("Assets")
+try? fileManager.removeItem(at: document)
+try fileManager.createDirectory(at: assets, withIntermediateDirectories: true)
+try iconJSON.write(to: document.appendingPathComponent("icon.json"), atomically: true, encoding: .utf8)
+try arrow.write(to: assets.appendingPathComponent("arrow.svg"), atomically: true, encoding: .utf8)
+try dot.write(to: assets.appendingPathComponent("dot.svg"), atomically: true, encoding: .utf8)
+
+// Preview for the README, rendered by Icon Composer's own tool.
+let ictool = "/Applications/Xcode.app/Contents/Applications/Icon Composer.app/Contents/Executables/ictool"
+if fileManager.isExecutableFile(atPath: ictool) {
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: ictool)
+    process.arguments = [
+        document.path, "--export-image",
+        "--output-file", root.appendingPathComponent("Design/icon.png").path,
+        "--platform", "macOS", "--rendition", "Default",
+        "--width", "512", "--height", "512", "--scale", "2",
+    ]
+    try process.run()
+    process.waitUntilExit()
+}
+print("Wrote Resources/AppIcon.icon and Design/icon.png")

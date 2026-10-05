@@ -26,9 +26,10 @@ struct DeviceSettingsView: View {
                     if isRefreshing {
                         ProgressView().controlSize(.small)
                     } else {
-                        Button("Refresh") { Task { await refresh() } }
-                            .buttonStyle(.link)
-                            .font(.callout)
+                        Button("Refresh", systemImage: "arrow.clockwise") { Task { await refresh() } }
+                            .labelStyle(.iconOnly)
+                            .buttonStyle(.borderless)
+                            .help("Refresh")
                     }
                 }
             } footer: {
@@ -37,7 +38,6 @@ struct DeviceSettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .fixedSize(horizontal: false, vertical: true)
         .task { await refresh() }
     }
 

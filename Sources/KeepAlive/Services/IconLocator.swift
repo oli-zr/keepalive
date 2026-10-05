@@ -20,6 +20,9 @@ enum IconLocator {
         let destination = cachedIconURL(for: app)
         try? FileManager.default.removeItem(at: destination)
         try? FileManager.default.copyItem(at: source, to: destination)
+        if source.path.hasPrefix(FileManager.default.temporaryDirectory.path) {
+            try? FileManager.default.removeItem(at: source)
+        }
     }
 
     static func removeIcon(for app: ManagedApp) {
@@ -46,6 +49,10 @@ enum IconLocator {
                 enumerator.skipDescendants()
                 continue
             }
+            // Icon Composer documents, used by projects made for iOS 26 and later.
+            if url.pathExtension == "icon", let rendered = renderIconDocument(url) {
+                return rendered
+            }
             guard url.pathExtension == "appiconset" else { continue }
             let images = (try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? []
             if let largest = images.filter({ $0.pathExtension == "png" }).max(by: { fileSize($0) < fileSize($1) }) {
@@ -53,6 +60,29 @@ enum IconLocator {
             }
         }
         return nil
+    }
+
+    /// Renders an `.icon` document with Icon Composer's command line tool, which ships with Xcode.
+    private static func renderIconDocument(_ document: URL) -> URL? {
+        guard FileManager.default.fileExists(atPath: document.appendingPathComponent("icon.json").path),
+              let toolchain = try? Toolchain.resolve(override: nil)
+        else { return nil }
+        let ictool = toolchain.xcodeAppPath + "/Contents/Applications/Icon Composer.app/Contents/Executables/ictool"
+        guard FileManager.default.isExecutableFile(atPath: ictool) else { return nil }
+
+        let output = FileManager.default.temporaryDirectory.appendingPathComponent("KeepAlive-\(UUID().uuidString).png")
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: ictool)
+        process.arguments = [
+            document.path, "--export-image", "--output-file", output.path,
+            "--platform", "iOS", "--rendition", "Default",
+            "--width", "128", "--height", "128", "--scale", "2",
+        ]
+        process.standardOutput = FileHandle.nullDevice
+        process.standardError = FileHandle.nullDevice
+        guard (try? process.run()) != nil else { return nil }
+        process.waitUntilExit()
+        return process.terminationStatus == 0 ? output : nil
     }
 
     private static func fileSize(_ url: URL) -> Int {

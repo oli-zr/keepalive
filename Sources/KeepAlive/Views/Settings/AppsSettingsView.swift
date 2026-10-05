@@ -39,20 +39,16 @@ struct AppsSettingsView: View {
                         .help("Details")
                     }
                 }
-            } header: {
-                Text("Apps")
-            } footer: {
-                HStack(alignment: .top) {
-                    Text("A free Apple Account can have up to three of your own apps installed on a device at the same time.")
-                        .settingsFooter()
+                HStack {
                     Spacer()
                     Button("Add App…", action: chooseProject)
                 }
+            } footer: {
+                Text("A free Apple Account can have up to three of your own apps installed on a device at the same time.")
+                    .settingsFooter()
             }
         }
         .formStyle(.grouped)
-        .frame(minHeight: 260)
-        .fixedSize(horizontal: false, vertical: true)
         .sheet(item: $editor) { target in
             AppEditorView(target: target)
         }

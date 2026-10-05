@@ -10,6 +10,8 @@
 	<string>KeepAlive</string>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.github.oli-zr.KeepAlive</string>
 	<key>CFBundleInfoDictionaryVersion</key>

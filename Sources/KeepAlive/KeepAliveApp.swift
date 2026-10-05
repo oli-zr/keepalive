@@ -14,32 +14,44 @@ struct KeepAliveApp: App {
         }
         .menuBarExtraStyle(.window)
 
-        Settings {
+        Window("KeepAlive", id: SettingsView.windowID) {
             SettingsView()
                 .environment(delegate.store)
                 .environment(delegate.renewer)
         }
-        .windowResizability(.contentSize)
+        .defaultSize(width: 720, height: 520)
+        .windowResizability(.contentMinSize)
     }
 }
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    #if DEBUG
+    let store = DebugPreview.wantsWindow ? DebugPreview.sampleStore() : AppStore()
+    #else
     let store = AppStore()
+    #endif
     lazy var renewer = Renewer(store: store)
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        #if DEBUG
+        if DebugPreview.showIfRequested() { return }
+        #endif
         renewer.start()
     }
 }
 
 private struct MenuBarIcon: View {
     let store: AppStore
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         Image(systemName: store.hasProblem
               ? "exclamationmark.arrow.triangle.2.circlepath"
               : "arrow.triangle.2.circlepath")
             .accessibilityLabel("KeepAlive")
+            #if DEBUG
+            .task { if DebugPreview.wantsWindow { openWindow(id: SettingsView.windowID) } }
+            #endif
     }
 }

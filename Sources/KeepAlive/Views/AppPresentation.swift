@@ -33,7 +33,9 @@ struct AppStatus {
         } else if !app.isEnabled {
             self.init(String(localized: "Paused"))
         } else if let expiration {
-            let relative = expiration.formatted(.relative(presentation: .named))
+            // Match the language of the interface, not the region's format settings alone.
+            let language = Bundle.main.preferredLocalizations.first ?? "en"
+            let relative = expiration.formatted(.relative(presentation: .named).locale(Locale(identifier: language)))
             let soon = expiration.timeIntervalSince(now) < Renewer.urgentInterval
             self.init(String(localized: "Expires \(relative)"), tone: soon ? .warning : .normal)
         } else {

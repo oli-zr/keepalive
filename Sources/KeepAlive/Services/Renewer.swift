@@ -77,6 +77,8 @@ final class Renewer {
             store.devices = try await DeviceService(toolchain: toolchain).devices()
             store.lastDeviceRefresh = .now
             selectOnlyDeviceIfNeeded()
+        } catch is CancellationError {
+            // The view that asked for the refresh went away.
         } catch {
             store.record(error.localizedDescription, isError: true)
         }

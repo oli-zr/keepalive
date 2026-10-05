@@ -40,9 +40,12 @@ final class AppStore {
     static let logDirectory = FileManager.default.homeDirectoryForCurrentUser
         .appendingPathComponent("Library/Logs/KeepAlive", isDirectory: true)
     private var isLoading = false
+    /// Debug previews use sample data that must never be written to disk.
+    private let isEphemeral: Bool
 
-    init() {
-        load()
+    init(ephemeral: Bool = false) {
+        isEphemeral = ephemeral
+        if !ephemeral { load() }
     }
 
     func activity(for app: ManagedApp) -> Activity {
@@ -73,7 +76,7 @@ final class AppStore {
         let entry = LogEntry(date: .now, app: app, message: message, isError: isError)
         log.append(entry)
         if log.count > 500 { log.removeFirst(log.count - 500) }
-        appendToLogFile(entry)
+        if !isEphemeral { appendToLogFile(entry) }
     }
 
     var logFileURL: URL { Self.logDirectory.appendingPathComponent("KeepAlive.log") }
@@ -115,7 +118,7 @@ final class AppStore {
     }
 
     private func save() {
-        guard !isLoading else { return }
+        guard !isLoading, !isEphemeral else { return }
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601

@@ -31,8 +31,12 @@ struct BuildService: Sendable {
         return base.appendingPathComponent("KeepAlive", isDirectory: true)
     }()
 
-    func derivedDataURL(for app: ManagedApp) -> URL {
-        Self.supportDirectory.appendingPathComponent("DerivedData/\(app.id.uuidString)", isDirectory: true)
+    static func derivedDataURL(for app: ManagedApp) -> URL {
+        supportDirectory.appendingPathComponent("DerivedData/\(app.id.uuidString)", isDirectory: true)
+    }
+
+    static func removeBuildFiles(for app: ManagedApp) {
+        try? FileManager.default.removeItem(at: derivedDataURL(for: app))
     }
 
     /// Builds the Release configuration with a freshly requested provisioning profile
@@ -47,7 +51,7 @@ struct BuildService: Sendable {
         let removed = ProfileInspector.removeCachedProfiles(for: app.bundleIdentifier)
         if removed > 0 { onLine("Removed \(removed) cached provisioning profile(s) for \(app.bundleIdentifier)") }
 
-        let derivedData = derivedDataURL(for: app)
+        let derivedData = Self.derivedDataURL(for: app)
         let result = try await Shell.run(
             Toolchain.xcrun,
             ["xcodebuild"] + projectArguments(for: app.projectURL) + [

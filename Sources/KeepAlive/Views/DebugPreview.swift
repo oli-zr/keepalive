@@ -62,7 +62,6 @@ enum DebugPreview {
                                 scheme: "Weather", bundleIdentifier: "com.example.Weather", productName: "Weather.app")
         widget.isEnabled = false
         store.apps = [hitster, pulse, widget]
-        store.apps.forEach { IconLocator.cacheIcon(for: $0) }
         store.activity[hitster.id] = .building
         store.devices = [Device(id: "1", udid: "1", name: "iPhone", model: "iPhone 16", transport: .network, isReachable: true)]
         store.preferences.deviceIdentifier = "1"

@@ -45,7 +45,10 @@ final class AppStore {
 
     init(ephemeral: Bool = false) {
         isEphemeral = ephemeral
-        if !ephemeral { load() }
+        if !ephemeral {
+            load()
+            removeOrphanedFiles()
+        }
     }
 
     func activity(for app: ManagedApp) -> Activity {
@@ -64,10 +67,33 @@ final class AppStore {
     func remove(_ id: ManagedApp.ID) {
         if let app = app(id) {
             IconLocator.removeIcon(for: app)
-            try? FileManager.default.removeItem(at: BuildService.supportDirectory
-                .appendingPathComponent("DerivedData/\(app.id.uuidString)"))
+            BuildService.removeBuildFiles(for: app)
+            try? FileManager.default.removeItem(at: Self.buildLogURL(for: app))
         }
         apps.removeAll { $0.id == id }
+    }
+
+    /// Deletes icons, build logs and build folders that belong to no app, for example
+    /// after a crash or a rename.
+    private func removeOrphanedFiles() {
+        let fileManager = FileManager.default
+        let ids = Set(apps.map(\.id.uuidString))
+        let currentLogs = Set(apps.map { Self.buildLogURL(for: $0).lastPathComponent })
+
+        func contents(_ url: URL) -> [URL] {
+            (try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? []
+        }
+        for icon in contents(IconLocator.directory) where !ids.contains(icon.deletingPathExtension().lastPathComponent) {
+            try? fileManager.removeItem(at: icon)
+        }
+        for folder in contents(BuildService.supportDirectory.appendingPathComponent("DerivedData")) {
+            // A build folder is only kept while a renewal runs, so any leftover can go.
+            try? fileManager.removeItem(at: folder)
+        }
+        for log in contents(Self.logDirectory)
+        where log.lastPathComponent != logFileURL.lastPathComponent && !currentLogs.contains(log.lastPathComponent) {
+            try? fileManager.removeItem(at: log)
+        }
     }
 
     // MARK: - Log
@@ -91,12 +117,23 @@ final class AppStore {
         let line = "\(formatter.string(from: entry.date)) \(entry.isError ? "ERROR " : "")\(prefix)\(entry.message)\n"
         try? FileManager.default.createDirectory(at: Self.logDirectory, withIntermediateDirectories: true)
         if let handle = try? FileHandle(forWritingTo: logFileURL) {
-            handle.seekToEndOfFile()
+            let size = handle.seekToEndOfFile()
             handle.write(Data(line.utf8))
             try? handle.close()
+            if size > Self.logSizeLimit { trimLogFile() }
         } else {
             try? Data(line.utf8).write(to: logFileURL)
         }
+    }
+
+    private static let logSizeLimit: UInt64 = 256 * 1024
+
+    /// Keeps the newest half of the log so it never grows beyond a few hundred KB.
+    private func trimLogFile() {
+        guard let data = try? Data(contentsOf: logFileURL) else { return }
+        var tail = data.suffix(Int(Self.logSizeLimit / 2))
+        if let newline = tail.firstIndex(of: 0x0A) { tail = tail[tail.index(after: newline)...] }
+        try? Data(tail).write(to: logFileURL, options: .atomic)
     }
 
     // MARK: - Persistence

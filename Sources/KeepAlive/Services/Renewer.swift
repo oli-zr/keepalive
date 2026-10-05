@@ -134,7 +134,12 @@ final class Renewer {
 
     private func renewOne(_ id: ManagedApp.ID) async {
         guard let app = store.app(id) else { return }
-        defer { store.activity[id] = .idle }
+        defer {
+            // Builds are only needed until the app is on the iPhone. Keeping them would
+            // duplicate Xcode's own build folder, a few hundred MB per app.
+            BuildService.removeBuildFiles(for: app)
+            store.activity[id] = .idle
+        }
         store.activity[id] = .preparing
 
         do {

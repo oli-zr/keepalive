@@ -16,6 +16,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Release notes fall back to the commits since the previous tag.
+          fetch-depth: 0
 
       - name: Build KeepAlive.app
         run: scripts/build_app.sh --universal
@@ -25,6 +28,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          scripts/release_notes.sh "$GITHUB_REF_NAME" build/KeepAlive.zip > release-notes.md
           gh release create "$GITHUB_REF_NAME" build/KeepAlive.zip \
             --title "KeepAlive ${GITHUB_REF_NAME#v}" \
-            --generate-notes
+            --notes-file release-notes.md

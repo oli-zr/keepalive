@@ -32,10 +32,17 @@ Please include your macOS and Xcode versions and the relevant part of
 
 ## Releases
 
-Push a version tag to publish a release. GitHub Actions builds a universal app,
-sets its version from the tag and attaches `KeepAlive.zip` to the release:
+1. Add a section for the new version at the top of `CHANGELOG.md`, for example
+   `## [1.1] - 2026-11-02`, with `### Features` and `### Fixed` written for people who
+   use the app. It becomes the release description.
+2. Commit, then push a version tag:
 
-```sh
-git tag v1.0
-git push origin v1.0
-```
+   ```sh
+   git tag v1.1
+   git push origin main v1.1
+   ```
+
+GitHub Actions builds a universal app, sets its version from the tag and publishes a
+release with `KeepAlive.zip`, the changelog section, installation steps and a checksum.
+Without a changelog section, the release lists the commit messages since the previous
+tag instead. Preview the description with `scripts/release_notes.sh v1.1`.

@@ -52,6 +52,8 @@ struct SettingsView: View {
                 .tag(pane)
             }
             .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 240)
+            // Like System Settings, the sidebar is always visible.
+            .toolbar(removing: .sidebarToggle)
         } detail: {
             // The stack makes the column swap its content when the pane changes;
             // without it macOS 27 keeps showing the first pane's form.

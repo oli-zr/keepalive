@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build KeepAlive.app
+        run: scripts/build_app.sh --universal
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KeepAlive
+          path: build/KeepAlive.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" build/KeepAlive.zip --title "KeepAlive ${GITHUB_REF_NAME#v}" --generate-notes

@@ -1,0 +1,979 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ could not be renewed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%@“ konnte nicht erneuert werden"
+          }
+        }
+      }
+    },
+    "%@ expires soon": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%@“ läuft bald ab"
+          }
+        }
+      }
+    },
+    "%@ is not reachable. KeepAlive will try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ist nicht erreichbar. KeepAlive versucht es später erneut."
+          }
+        }
+      }
+    },
+    "%@ took too long and was stopped.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ hat zu lange gedauert und wurde abgebrochen."
+          }
+        }
+      }
+    },
+    "%@ · Not reachable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Nicht erreichbar"
+          }
+        }
+      }
+    },
+    "A free Apple Account can have up to three of your own apps installed on a device at the same time.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem kostenlosen Apple Account können bis zu drei eigene Apps gleichzeitig auf einem Gerät installiert sein."
+          }
+        }
+      }
+    },
+    "Activity": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzufügen"
+          }
+        }
+      }
+    },
+    "Add an Xcode project to keep it installed on your iPhone.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Füge ein Xcode-Projekt hinzu, damit es auf deinem iPhone installiert bleibt."
+          }
+        }
+      }
+    },
+    "Add App…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App hinzufügen …"
+          }
+        }
+      }
+    },
+    "Added.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt."
+          }
+        }
+      }
+    },
+    "Apple’s limit for free accounts was reached. Remove an app from your iPhone or wait a few days.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Limit für kostenlose Accounts ist erreicht. Entferne eine App von deinem iPhone oder warte ein paar Tage."
+          }
+        }
+      }
+    },
+    "Apps": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps"
+          }
+        }
+      }
+    },
+    "Apps signed with a free Apple Account stop opening after seven days. KeepAlive renews them early, whenever your iPhone is on the same network. Apps that expire within a day are renewed on battery power too.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben Tagen nicht mehr öffnen. KeepAlive erneuert sie frühzeitig, sobald dein iPhone im selben Netzwerk ist. Apps, die innerhalb eines Tages ablaufen, werden auch im Batteriebetrieb erneuert."
+          }
+        }
+      }
+    },
+    "Before Build": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor dem Build"
+          }
+        }
+      }
+    },
+    "Build failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Building for %@…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build für %@ …"
+          }
+        }
+      }
+    },
+    "Building…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build läuft …"
+          }
+        }
+      }
+    },
+    "Builds and installations will appear here.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Builds und Installationen erscheinen hier."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbrechen"
+          }
+        }
+      }
+    },
+    "Cancelled.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abgebrochen."
+          }
+        }
+      }
+    },
+    "Choose": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auswählen"
+          }
+        }
+      }
+    },
+    "Choose an Xcode project, a workspace or the folder that contains it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle ein Xcode-Projekt, einen Workspace oder den Ordner, der ihn enthält."
+          }
+        }
+      }
+    },
+    "Choose…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auswählen …"
+          }
+        }
+      }
+    },
+    "Clear": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen"
+          }
+        }
+      }
+    },
+    "Configuration": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konfiguration"
+          }
+        }
+      }
+    },
+    "Connect your iPhone to the same Wi‑Fi as this Mac so KeepAlive can renew it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde dein iPhone mit demselben WLAN wie diesen Mac, damit KeepAlive die App erneuern kann."
+          }
+        }
+      }
+    },
+    "Connected via cable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über Kabel verbunden"
+          }
+        }
+      }
+    },
+    "Connected via Wi‑Fi": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über WLAN verbunden"
+          }
+        }
+      }
+    },
+    "Could not list devices: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geräte konnten nicht abgefragt werden: %@"
+          }
+        }
+      }
+    },
+    "Could not run %@.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ konnte nicht ausgeführt werden."
+          }
+        }
+      }
+    },
+    "Details": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details"
+          }
+        }
+      }
+    },
+    "Developer Tools": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entwicklerwerkzeuge"
+          }
+        }
+      }
+    },
+    "Device": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerät"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
+          }
+        }
+      }
+    },
+    "Expired": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abgelaufen"
+          }
+        }
+      }
+    },
+    "Expires %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läuft %@ ab"
+          }
+        }
+      }
+    },
+    "General": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allgemein"
+          }
+        }
+      }
+    },
+    "Installation failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Installed. Valid until %@.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installiert. Gültig bis %@."
+          }
+        }
+      }
+    },
+    "Installing…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird installiert …"
+          }
+        }
+      }
+    },
+    "iPhone": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone"
+          }
+        }
+      }
+    },
+    "KeepAlive": {
+      "shouldTranslate": false
+    },
+    "Last Renewed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuletzt erneuert"
+          }
+        }
+      }
+    },
+    "Looking for iPhone…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone wird gesucht …"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "No Activity": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Aktivität"
+          }
+        }
+      }
+    },
+    "No Apps": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Apps"
+          }
+        }
+      }
+    },
+    "No apps yet.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Apps."
+          }
+        }
+      }
+    },
+    "No iPhone selected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein iPhone ausgewählt"
+          }
+        }
+      }
+    },
+    "No iPhone selected. Choose one in Settings → Device.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein iPhone ausgewählt. Wähle eines unter Einstellungen → Gerät."
+          }
+        }
+      }
+    },
+    "No paired iPhone found.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein gekoppeltes iPhone gefunden."
+          }
+        }
+      }
+    },
+    "No provisioning profile could be created. Open the project in Xcode once and select your Personal Team under Signing & Capabilities.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es konnte kein Provisioning-Profil erstellt werden. Öffne das Projekt einmal in Xcode und wähle unter „Signing & Capabilities“ dein Personal Team."
+          }
+        }
+      }
+    },
+    "No Xcode Project Found": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Xcode-Projekt gefunden"
+          }
+        }
+      }
+    },
+    "Not Found": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht gefunden"
+          }
+        }
+      }
+    },
+    "Not installed yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht installiert"
+          }
+        }
+      }
+    },
+    "Not reachable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht erreichbar"
+          }
+        }
+      }
+    },
+    "Only Build While Connected to Power": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur am Stromnetz bauen"
+          }
+        }
+      }
+    },
+    "Open at Login": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim Anmelden öffnen"
+          }
+        }
+      }
+    },
+    "Optional. Runs in the project folder before each build, for example to prepare a Flutter project.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional. Wird vor jedem Build im Projektordner ausgeführt, zum Beispiel um ein Flutter-Projekt vorzubereiten."
+          }
+        }
+      }
+    },
+    "Paused": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausiert"
+          }
+        }
+      }
+    },
+    "Project": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projekt"
+          }
+        }
+      }
+    },
+    "Quit KeepAlive": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive beenden"
+          }
+        }
+      }
+    },
+    "Reading project…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projekt wird gelesen …"
+          }
+        }
+      }
+    },
+    "Refresh": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisieren"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entfernen"
+          }
+        }
+      }
+    },
+    "Remove %@?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%@“ entfernen?"
+          }
+        }
+      }
+    },
+    "Remove App…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App entfernen …"
+          }
+        }
+      }
+    },
+    "Renew after %lld days": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renew after %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renew after %lld days"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Nach %lld Tag erneuern"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Nach %lld Tagen erneuern"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Renew All Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle jetzt erneuern"
+          }
+        }
+      }
+    },
+    "Renew Automatically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch erneuern"
+          }
+        }
+      }
+    },
+    "Renew Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt erneuern"
+          }
+        }
+      }
+    },
+    "Renewal": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erneuerung"
+          }
+        }
+      }
+    },
+    "Scheme": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schema"
+          }
+        }
+      }
+    },
+    "Searching…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche läuft …"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen …"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Finder zeigen"
+          }
+        }
+      }
+    },
+    "Show Logs in Finder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protokolle im Finder zeigen"
+          }
+        }
+      }
+    },
+    "Sign in to your Apple Account in Xcode → Settings → Accounts.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melde dich in Xcode unter Settings → Accounts mit deinem Apple Account an."
+          }
+        }
+      }
+    },
+    "Status": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "Stop Renewing": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erneuern stoppen"
+          }
+        }
+      }
+    },
+    "The app stays on your iPhone, but KeepAlive will stop renewing it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die App bleibt auf deinem iPhone, wird aber nicht mehr von KeepAlive erneuert."
+          }
+        }
+      }
+    },
+    "The build finished, but %@ was not found.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Build ist fertig, aber %@ wurde nicht gefunden."
+          }
+        }
+      }
+    },
+    "The pre-build command failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Befehl vor dem Build ist fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "The project could not be read: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Projekt konnte nicht gelesen werden: %@"
+          }
+        }
+      }
+    },
+    "The selected folder does not contain an .xcodeproj or .xcworkspace.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der ausgewählte Ordner enthält kein .xcodeproj oder .xcworkspace."
+          }
+        }
+      }
+    },
+    "This scheme does not build an iOS app.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Schema erstellt keine iOS-App."
+          }
+        }
+      }
+    },
+    "To renew over Wi‑Fi, connect your iPhone to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone einmal per Kabel mit diesem Mac. Öffne dann Xcode, wähle Window → Devices and Simulators und aktiviere „Connect via network“."
+          }
+        }
+      }
+    },
+    "Turn on Developer Mode on your iPhone in Settings → Privacy & Security.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiviere den Entwicklermodus auf deinem iPhone unter Einstellungen → Datenschutz & Sicherheit."
+          }
+        }
+      }
+    },
+    "Unlock your iPhone and try again.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entsperre dein iPhone und versuche es erneut."
+          }
+        }
+      }
+    },
+    "Use Default": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard verwenden"
+          }
+        }
+      }
+    },
+    "Waiting…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wartet …"
+          }
+        }
+      }
+    },
+    "Xcode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        }
+      }
+    },
+    "Xcode was not found. Install Xcode or choose its location in Settings.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode wurde nicht gefunden. Installiere Xcode oder wähle den Speicherort in den Einstellungen."
+          }
+        }
+      }
+    },
+    "Your iPhone could not be reached. Make sure it is on the same Wi‑Fi network as this Mac.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein iPhone ist nicht erreichbar. Stelle sicher, dass es im selben WLAN wie dieser Mac ist."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

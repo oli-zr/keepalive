@@ -56,6 +56,17 @@ scripts/build_app.sh
 open build/KeepAlive.app
 ```
 
+### Download überprüfen
+
+Jedes Release wird von GitHub Actions aus dem getaggten Quellcode gebaut, und GitHub
+signiert einen Nachweis über diesen Build. Mit der [GitHub CLI](https://cli.github.com)
+kannst du prüfen, dass ein Download aus diesem Repository stammt und danach nicht verändert
+wurde:
+
+```sh
+gh attestation verify KeepAlive.zip --repo oli-zr/keepalive
+```
+
 ## Einrichtung
 
 Das ist nur einmal nötig.

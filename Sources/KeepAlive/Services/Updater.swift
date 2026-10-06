@@ -17,7 +17,7 @@ struct AppVersion: Comparable, CustomStringConvertible, Sendable {
 
     init?(_ string: String) {
         let trimmed = string.hasPrefix("v") ? String(string.dropFirst()) : string
-        let parts = trimmed.split(separator: ".").map { Int($0) }
+        let parts = trimmed.split(separator: ".", omittingEmptySubsequences: false).map { Int($0) }
         guard !parts.isEmpty, !parts.contains(nil) else { return nil }
         components = parts.compactMap { $0 }
         description = trimmed
@@ -170,7 +170,12 @@ final class Updater {
         else { throw UpdateError.unavailable }
         if http.statusCode == 404 { return nil }
         guard http.statusCode == 200 else { throw UpdateError.unavailable }
+        return try Self.release(from: data)
+    }
 
+    /// The release described by GitHub's `releases/latest` response, or `nil` for drafts,
+    /// prereleases and tags that are not version numbers.
+    nonisolated static func release(from data: Data) throws -> UpdateRelease? {
         let payload = try JSONDecoder().decode(GitHubRelease.self, from: data)
         guard !payload.draft, !payload.prerelease, let version = AppVersion(payload.tag_name) else { return nil }
         guard let archive = payload.assets.first(where: { $0.name == "KeepAlive.zip" }),

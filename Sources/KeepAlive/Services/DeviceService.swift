@@ -46,8 +46,12 @@ struct DeviceService: Sendable {
         guard let data = try? Data(contentsOf: output) else {
             throw DeviceError.listFailed(result.output.lastMeaningfulLine)
         }
-        let response = try JSONDecoder().decode(ListResponse.self, from: data)
-        return response.result.devices.compactMap(\.device)
+        return try Self.parseDevices(data)
+    }
+
+    /// Paired physical iPhones and iPads from `devicectl list devices --json-output`.
+    static func parseDevices(_ data: Data) throws -> [Device] {
+        try JSONDecoder().decode(ListResponse.self, from: data).result.devices.compactMap(\.device)
     }
 
     func install(appAt appURL: URL, on device: Device, onLine: (@Sendable (String) -> Void)? = nil) async throws {

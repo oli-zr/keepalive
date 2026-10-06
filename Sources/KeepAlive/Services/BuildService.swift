@@ -163,7 +163,7 @@ struct BuildService: Sendable {
 
     /// `xcodebuild` sometimes prints log lines before the JSON document, and those can
     /// contain brackets themselves. The document starts on a line beginning with `{` or `[`.
-    private static func jsonPayload(in output: String) -> Data {
+    static func jsonPayload(in output: String) -> Data {
         for line in output.split(separator: "\n") where line.hasPrefix("{") || line.hasPrefix("[") {
             let candidate = Data(output[line.startIndex...].utf8)
             if (try? JSONSerialization.jsonObject(with: candidate)) != nil { return candidate }

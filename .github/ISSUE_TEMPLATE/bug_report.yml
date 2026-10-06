@@ -1,0 +1,68 @@
+name: Bug report
+description: Something in KeepAlive does not work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Please check the [setup guide](https://github.com/oli-zr/keepalive#setup) first; most problems come from a missed step there.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: keepalive
+    attributes:
+      label: KeepAlive version
+      description: Settings → General → Updates.
+      placeholder: "1.1.1"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "macOS 27.0"
+    validations:
+      required: true
+  - type: input
+    id: xcode
+    attributes:
+      label: Xcode version
+      placeholder: "Xcode 27.0"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: iPhone or iPad and iOS version
+      placeholder: "iPhone 16, iOS 27.0"
+  - type: dropdown
+    id: connection
+    attributes:
+      label: Connection
+      options:
+        - Wi‑Fi
+        - Cable
+        - Both
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project type
+      options:
+        - Swift or Objective‑C (Xcode project)
+        - Xcode workspace (for example CocoaPods)
+        - Flutter
+        - React Native
+        - Other
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: |
+        The relevant part of `~/Library/Logs/KeepAlive/` (Settings → Activity → Show Logs in Finder).
+        Please remove personal details such as your team ID or device names.
+      render: text

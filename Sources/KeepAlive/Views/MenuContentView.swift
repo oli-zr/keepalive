@@ -89,7 +89,13 @@ struct MenuContentView: View {
 
     private func showSettings() {
         openWindow(id: SettingsView.windowID)
-        NSApp.activate(ignoringOtherApps: true)
+        // A menu bar app is not active by itself, so the window would open behind others.
+        NSApp.activate()
+        DispatchQueue.main.async {
+            NSApp.windows
+                .first { $0.identifier?.rawValue.hasPrefix(SettingsView.windowID) == true }?
+                .makeKeyAndOrderFront(nil)
+        }
     }
 }
 

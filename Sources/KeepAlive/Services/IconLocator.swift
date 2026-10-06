@@ -74,18 +74,12 @@ enum IconLocator {
         guard FileManager.default.isExecutableFile(atPath: ictool) else { return nil }
 
         let output = FileManager.default.temporaryDirectory.appendingPathComponent("KeepAlive-\(UUID().uuidString).png")
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: ictool)
-        process.arguments = [
+        let status = Shell.runBlocking(ictool, [
             document.path, "--export-image", "--output-file", output.path,
             "--platform", "iOS", "--rendition", "Default",
             "--width", "128", "--height", "128", "--scale", "2",
-        ]
-        process.standardOutput = FileHandle.nullDevice
-        process.standardError = FileHandle.nullDevice
-        guard (try? process.run()) != nil else { return nil }
-        process.waitUntilExit()
-        return process.terminationStatus == 0 ? output : nil
+        ])
+        return status == 0 ? output : nil
     }
 
     private static func fileSize(_ url: URL) -> Int {

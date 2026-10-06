@@ -3,6 +3,13 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.1.1] - 2026-10-06
+
+### Fixed
+
+- KeepAlive could quit unexpectedly when the General settings were shown.
+- The settings window now opens in front of other windows.
+
 ## [1.1] - 2026-10-06
 
 ### Features

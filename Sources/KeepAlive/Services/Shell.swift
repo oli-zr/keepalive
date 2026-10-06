@@ -83,6 +83,22 @@ enum Shell {
         return ShellResult(status: status, output: collector.text)
     }
 
+    /// Runs a short command and waits for it without spinning the run loop. `waitUntilExit`
+    /// processes run loop events while it waits, which can re-enter SwiftUI and crash.
+    @discardableResult
+    static func runBlocking(_ executable: String, _ arguments: [String]) -> Int32? {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: executable)
+        process.arguments = arguments
+        process.standardOutput = FileHandle.nullDevice
+        process.standardError = FileHandle.nullDevice
+        let finished = DispatchSemaphore(value: 0)
+        process.terminationHandler = { _ in finished.signal() }
+        guard (try? process.run()) != nil else { return nil }
+        finished.wait()
+        return process.terminationStatus
+    }
+
     /// Runs a user supplied command through a login shell, so tools like `flutter`
     /// installed via Homebrew or version managers are on the PATH.
     static func runScript(

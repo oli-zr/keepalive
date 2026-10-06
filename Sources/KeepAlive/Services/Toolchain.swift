@@ -54,17 +54,9 @@ struct Toolchain: Sendable {
             .map { "\(applications)/\($0)" }
     }
 
+    /// What `xcode-select -p` prints. It only reads this link, so we read it directly instead
+    /// of starting a process, which is unsafe while SwiftUI is drawing.
     private static func selectedDeveloperDirectory() -> String? {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/xcode-select")
-        process.arguments = ["-p"]
-        let pipe = Pipe()
-        process.standardOutput = pipe
-        process.standardError = FileHandle.nullDevice
-        guard (try? process.run()) != nil else { return nil }
-        process.waitUntilExit()
-        let output = String(decoding: pipe.fileHandleForReading.readDataToEndOfFile(), as: UTF8.self)
-        let path = output.trimmingCharacters(in: .whitespacesAndNewlines)
-        return path.isEmpty ? nil : path
+        try? FileManager.default.destinationOfSymbolicLink(atPath: "/var/db/xcode_select_link")
     }
 }

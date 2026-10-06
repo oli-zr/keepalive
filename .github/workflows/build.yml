@@ -17,7 +17,7 @@ jobs:
       id-token: write      # sign the build provenance
       attestations: write  # store the build provenance
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Release notes fall back to the commits since the previous tag.
           fetch-depth: 0
@@ -38,7 +38,7 @@ jobs:
 
       - name: Attest build provenance
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: build/KeepAlive.zip
 

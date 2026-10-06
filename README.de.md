@@ -91,6 +91,14 @@ des Macs prüft KeepAlive, ob eine App fällig ist. Für jede fällige App passi
 Die Einstellungen liegen in `~/Library/Application Support/KeepAlive`, die Protokolle in
 `~/Library/Logs/KeepAlive`. Zusammen brauchen sie weniger als ein Megabyte.
 
+## Updates
+
+KeepAlive prüft einmal am Tag auf GitHub, ob es eine neue Version gibt, installiert sie
+selbst, während keine App gebaut wird, und startet neu. Der Download wird dabei mit der
+Prüfsumme abgeglichen, die mit jedem Release veröffentlicht wird. Unter Allgemein →
+Updates lässt sich das abschalten oder von Hand prüfen. Versionen vor 1.1 können sich
+noch nicht selbst aktualisieren; ersetze sie einmalig von Hand.
+
 ## Grenzen
 
 Diese Grenzen setzt Apple für kostenlose Accounts, nicht KeepAlive.

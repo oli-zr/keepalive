@@ -9,6 +9,7 @@ struct KeepAliveApp: App {
             MenuContentView()
                 .environment(delegate.store)
                 .environment(delegate.renewer)
+                .environment(delegate.updater)
         } label: {
             MenuBarIcon(store: delegate.store)
         }
@@ -18,6 +19,7 @@ struct KeepAliveApp: App {
             SettingsView()
                 .environment(delegate.store)
                 .environment(delegate.renewer)
+                .environment(delegate.updater)
         }
         .defaultSize(width: 720, height: 520)
         .windowResizability(.contentMinSize)
@@ -32,12 +34,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let store = AppStore()
     #endif
     lazy var renewer = Renewer(store: store)
+    lazy var updater = Updater(store: store)
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         #if DEBUG
         if DebugPreview.showIfRequested() { return }
         #endif
         renewer.start()
+        updater.start()
     }
 }
 

@@ -34,6 +34,9 @@ struct Preferences: Codable, Sendable {
     var onlyOnPower = true
     /// Path to a specific Xcode.app; `nil` picks one automatically.
     var xcodePath: String?
+    var checksForUpdates = true
+    var installsUpdates = true
+    var lastUpdateCheck: Date?
 }
 
 /// Live state of a single app. Not persisted.
@@ -75,5 +78,8 @@ extension Preferences {
         renewAfterDays = try c.decodeIfPresent(Int.self, forKey: .renewAfterDays) ?? 3
         onlyOnPower = try c.decodeIfPresent(Bool.self, forKey: .onlyOnPower) ?? true
         xcodePath = try c.decodeIfPresent(String.self, forKey: .xcodePath)
+        checksForUpdates = try c.decodeIfPresent(Bool.self, forKey: .checksForUpdates) ?? true
+        installsUpdates = try c.decodeIfPresent(Bool.self, forKey: .installsUpdates) ?? true
+        lastUpdateCheck = try c.decodeIfPresent(Date.self, forKey: .lastUpdateCheck)
     }
 }

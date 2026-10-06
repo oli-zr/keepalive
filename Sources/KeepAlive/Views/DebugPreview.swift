@@ -37,7 +37,8 @@ enum DebugPreview {
         let host = NSHostingController(rootView: content
             .frame(width: target == "menu" ? 300 : 720, height: target == "menu" ? nil : 520)
             .environment(store)
-            .environment(renewer))
+            .environment(renewer)
+            .environment(Updater(store: store)))
         let window = NSWindow(contentViewController: host)
         window.title = target
         window.setFrameTopLeftPoint(NSPoint(x: 80, y: (NSScreen.main?.frame.maxY ?? 900) - 80))

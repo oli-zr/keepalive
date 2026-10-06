@@ -211,6 +211,36 @@
         }
       }
     },
+    "Check for Updates Automatically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch nach Updates suchen"
+          }
+        }
+      }
+    },
+    "Check Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt suchen"
+          }
+        }
+      }
+    },
+    "Checking…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche läuft …"
+          }
+        }
+      }
+    },
     "Choose": {
       "localizations": {
         "de": {
@@ -301,6 +331,16 @@
         }
       }
     },
+    "Could not reach GitHub to check for updates.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub ist nicht erreichbar, daher konnte nicht nach Updates gesucht werden."
+          }
+        }
+      }
+    },
     "Could not run %@.": {
       "localizations": {
         "de": {
@@ -351,6 +391,26 @@
         }
       }
     },
+    "Download %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ laden"
+          }
+        }
+      }
+    },
+    "Downloading…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird geladen …"
+          }
+        }
+      }
+    },
     "Expired": {
       "localizations": {
         "de": {
@@ -377,6 +437,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allgemein"
+          }
+        }
+      }
+    },
+    "Install %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ installieren"
+          }
+        }
+      }
+    },
+    "Install KeepAlive %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@ installieren"
+          }
+        }
+      }
+    },
+    "Install Updates Automatically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates automatisch installieren"
           }
         }
       }
@@ -423,6 +513,46 @@
     },
     "KeepAlive": {
       "shouldTranslate": false
+    },
+    "KeepAlive %@ is available.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@ ist verfügbar."
+          }
+        }
+      }
+    },
+    "KeepAlive is up to date.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive ist aktuell."
+          }
+        }
+      }
+    },
+    "KeepAlive was updated to %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive wurde auf %@ aktualisiert"
+          }
+        }
+      }
+    },
+    "Last checked %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuletzt gesucht %@"
+          }
+        }
+      }
     },
     "Last Renewed": {
       "localizations": {
@@ -530,6 +660,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kein Xcode-Projekt gefunden"
+          }
+        }
+      }
+    },
+    "Not checked yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht gesucht"
           }
         }
       }
@@ -854,6 +994,26 @@
         }
       }
     },
+    "The downloaded update is damaged and was discarded.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das geladene Update ist beschädigt und wurde verworfen."
+          }
+        }
+      }
+    },
+    "The downloaded update is not a valid version of KeepAlive and was discarded.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das geladene Update ist keine gültige Version von KeepAlive und wurde verworfen."
+          }
+        }
+      }
+    },
     "The pre-build command failed: %@": {
       "localizations": {
         "de": {
@@ -874,12 +1034,32 @@
         }
       }
     },
+    "The release does not contain KeepAlive.zip.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Release enthält keine KeepAlive.zip."
+          }
+        }
+      }
+    },
     "The selected folder does not contain an .xcodeproj or .xcworkspace.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Der ausgewählte Ordner enthält kein .xcodeproj oder .xcworkspace."
+          }
+        }
+      }
+    },
+    "The update was not downloaded from GitHub and was discarded.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Update stammt nicht von GitHub und wurde verworfen."
           }
         }
       }
@@ -924,12 +1104,68 @@
         }
       }
     },
+    "Updated from %@ to %@.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von %1$@ auf %2$@ aktualisiert."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updated from %1$@ to %2$@."
+          }
+        }
+      }
+    },
+    "Updates": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates"
+          }
+        }
+      }
+    },
+    "Updates are installed while no app is being built. Your apps and settings are kept.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates werden installiert, während keine App gebaut wird. Deine Apps und Einstellungen bleiben erhalten."
+          }
+        }
+      }
+    },
     "Use Default": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Standard verwenden"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
+          }
+        }
+      }
+    },
+    "Version %@ is available.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@ ist verfügbar."
           }
         }
       }
@@ -960,6 +1196,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Xcode wurde nicht gefunden. Installiere Xcode oder wähle den Speicherort in den Einstellungen."
+          }
+        }
+      }
+    },
+    "Your apps and settings are unchanged.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Apps und Einstellungen bleiben unverändert."
           }
         }
       }

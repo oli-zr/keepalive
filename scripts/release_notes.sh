@@ -41,7 +41,8 @@ cat <<EOF
    System Settings → Privacy & Security and click **Open Anyway**.
 3. Follow the [setup guide](https://github.com/$REPO#setup) to add your apps.
 
-Updating from an earlier version: quit KeepAlive and replace the app. Your settings are kept.
+KeepAlive 1.1 and later install updates by themselves. Coming from an older version, quit
+KeepAlive and replace the app once. Your settings are kept.
 
 **Requirements:** macOS 14 or later, Xcode 15 or later, an iPhone or iPad with Developer Mode.
 EOF

@@ -3,7 +3,9 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @Environment(AppStore.self) private var store
+    @Environment(Updater.self) private var updater
     @State private var opensAtLogin = SMAppService.mainApp.status == .enabled || Self.isPreview
+    @State private var loginItemError: String?
 
     private static var isPreview: Bool {
         #if DEBUG
@@ -12,7 +14,6 @@ struct GeneralSettingsView: View {
         return false
         #endif
     }
-    @State private var loginItemError: String?
 
     var body: some View {
         @Bindable var store = store
@@ -41,6 +42,41 @@ struct GeneralSettingsView: View {
             }
 
             Section {
+                Toggle("Check for Updates Automatically", isOn: $store.preferences.checksForUpdates)
+                Toggle("Install Updates Automatically", isOn: $store.preferences.installsUpdates)
+                    .disabled(!store.preferences.checksForUpdates)
+                LabeledContent {
+                    HStack(spacing: 8) {
+                        if updater.state == .checking {
+                            ProgressView().controlSize(.small)
+                        }
+                        if let release = updater.availableRelease {
+                            let version = release.version.description
+                            Button {
+                                updater.install(release)
+                            } label: {
+                                Text(updater.canInstallInPlace
+                                     ? LocalizedStringKey("Install \(version)")
+                                     : LocalizedStringKey("Download \(version)"))
+                            }
+                            .disabled(updater.state != .available(release))
+                        } else {
+                            Button("Check Now") { Task { await updater.checkNow() } }
+                                .disabled(updater.state == .checking)
+                        }
+                    }
+                } label: {
+                    Text("Version \(AppVersion.current.description)")
+                    Text(updateStatus)
+                }
+            } header: {
+                Text("Updates")
+            } footer: {
+                Text("Updates are installed while no app is being built. Your apps and settings are kept.")
+                    .settingsFooter()
+            }
+
+            Section {
                 LabeledContent("Xcode") {
                     HStack(spacing: 8) {
                         Text(xcodeDescription)
@@ -58,6 +94,20 @@ struct GeneralSettingsView: View {
             }
         }
         .formStyle(.grouped)
+    }
+
+    private var updateStatus: String {
+        switch updater.state {
+        case .idle:
+            guard let date = store.preferences.lastUpdateCheck else { return String(localized: "Not checked yet") }
+            return String(localized: "Last checked \(date.formatted(.relative(presentation: .named)))")
+        case .checking: return String(localized: "Checking…")
+        case .upToDate: return String(localized: "KeepAlive is up to date.")
+        case .available(let release): return String(localized: "Version \(release.version.description) is available.")
+        case .downloading: return String(localized: "Downloading…")
+        case .installing: return String(localized: "Installing…")
+        case .failed(let message): return message
+        }
     }
 
     private var xcodeDescription: String {

@@ -3,6 +3,7 @@ import SwiftUI
 struct MenuContentView: View {
     @Environment(AppStore.self) private var store
     @Environment(Renewer.self) private var renewer
+    @Environment(Updater.self) private var updater
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
@@ -28,6 +29,11 @@ struct MenuContentView: View {
                 } else {
                     MenuButton("Renew All Now", systemImage: "arrow.clockwise") { renewer.renewAll() }
                         .disabled(!store.apps.contains(where: \.isEnabled))
+                }
+                if let release = updater.availableRelease, updater.state == .available(release) {
+                    MenuButton("Install KeepAlive \(release.version.description)", systemImage: "arrow.down.circle") {
+                        updater.install(release)
+                    }
                 }
                 MenuButton("Settings…", systemImage: "gearshape") { showSettings() }
             }

@@ -3,6 +3,21 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.1] - 2026-10-06
+
+### Features
+
+- KeepAlive updates itself. It checks GitHub once a day, downloads a new version in the
+  background and installs it while no app is being built. You can turn this off or check
+  manually under General → Updates.
+- When an update is available but cannot be installed automatically, the menu offers to
+  install it.
+
+### Note
+
+- Versions before 1.1 cannot update themselves. Replace KeepAlive by hand once; from then
+  on it stays up to date.
+
 ## [1.0.2] - 2026-10-06
 
 ### Fixed

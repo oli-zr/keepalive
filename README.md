@@ -89,6 +89,13 @@ KeepAlive checks whether an app is due. For each app that is due, it:
 Settings are stored in `~/Library/Application Support/KeepAlive`, and logs in
 `~/Library/Logs/KeepAlive`. Together they take up less than a megabyte.
 
+## Updates
+
+KeepAlive checks GitHub once a day and installs new versions by itself while no app is
+being built, then restarts. The download is checked against the checksum published with
+each release. You can turn this off under General → Updates, or check manually there.
+Versions before 1.1 cannot update themselves; replace them once by hand.
+
 ## Limitations
 
 These are limits Apple sets for free accounts, not limits of KeepAlive.

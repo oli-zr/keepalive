@@ -29,6 +29,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           scripts/release_notes.sh "$GITHUB_REF_NAME" build/KeepAlive.zip > release-notes.md
-          gh release create "$GITHUB_REF_NAME" build/KeepAlive.zip \
+          # The in-app updater verifies the download against this checksum.
+          shasum -a 256 build/KeepAlive.zip | cut -d ' ' -f 1 > build/KeepAlive.zip.sha256
+          gh release create "$GITHUB_REF_NAME" build/KeepAlive.zip build/KeepAlive.zip.sha256 \
             --title "KeepAlive ${GITHUB_REF_NAME#v}" \
             --notes-file release-notes.md

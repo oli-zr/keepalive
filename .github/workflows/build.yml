@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     # The Liquid Glass icon and the current design need the macOS 26 SDK or later.
-    runs-on: macos-26
+    runs-on: xcode-27
     permissions:
       contents: write      # create releases
       id-token: write      # sign the build provenance

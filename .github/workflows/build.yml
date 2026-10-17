@@ -2,11 +2,13 @@ name: Build
 
 # Pushes and pull requests check the workflow and scripts, run the tests and build KeepAlive.app.
 # Pushing a version tag (for example v1.2) also publishes a release with KeepAlive.zip.
+# The Update tools workflow starts it by hand for its own pull requests.
 on:
   push:
     branches: [main]
     tags: ["v*"]
   pull_request:
+  workflow_dispatch:
 
 # Everything runs read-only. Only the release job gets write access, and only for tags.
 permissions:
@@ -19,6 +21,22 @@ concurrency:
   cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 jobs:
+  # Reads .github/ci.env. Workflows cannot edit workflow files, so the versions that the
+  # Update tools workflow maintains live there.
+  config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      xcode-runner: ${{ steps.read.outputs.XCODE_RUNNER }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: .github/ci.env
+          sparse-checkout-cone-mode: false
+
+      - id: read
+        run: grep '^[A-Z_]*=' .github/ci.env >> "$GITHUB_OUTPUT"
+
   lint:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -33,18 +51,29 @@ jobs:
             exit 1
           }
 
-      - name: Check the workflow
+      - name: Install actionlint and shellcheck
         run: |
-          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
-          ./actionlint -color
+          grep '^[A-Z_]*=' .github/ci.env >> "$GITHUB_ENV"
+          . .github/ci.env
+          mkdir -p "$RUNNER_TEMP/bin"
+          cd "$RUNNER_TEMP/bin"
+          curl -sSfL "https://github.com/koalaman/shellcheck/releases/download/v$SHELLCHECK_VERSION/shellcheck-v$SHELLCHECK_VERSION.linux.x86_64.tar.xz" \
+            | tar -xJ --strip-components=1 "shellcheck-v$SHELLCHECK_VERSION/shellcheck"
+          bash <(curl -sSfL "https://raw.githubusercontent.com/rhysd/actionlint/v$ACTIONLINT_VERSION/scripts/download-actionlint.bash") "$ACTIONLINT_VERSION"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+
+      # actionlint also checks the run steps with the shellcheck installed above.
+      - name: Check the workflows
+        run: actionlint -color
 
       - name: Check the shell scripts
         run: shellcheck scripts/*.sh
 
   # The ruleset for main requires this job by its name, so keep it called "build".
   build:
+    needs: config
     # The Liquid Glass icon and the current design need the macOS 26 SDK or later.
-    runs-on: xcode-27
+    runs-on: ${{ needs.config.outputs.xcode-runner }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

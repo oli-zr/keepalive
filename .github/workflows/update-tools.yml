@@ -1,0 +1,64 @@
+name: Update tools
+
+# Every Monday, looks for a newer Xcode runner image, actionlint and shellcheck and opens a
+# pull request that updates .github/ci.env. Dependabot keeps the actions themselves up to date.
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write       # push the update branch
+      pull-requests: write  # open the pull request
+      actions: write        # start the Build workflow on it
+    env:
+      BRANCH: automation/update-tools
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Look for updates
+        run: scripts/update_tools.sh > "$RUNNER_TEMP/changes.md"
+
+      - name: Open or update the pull request
+        run: |
+          if [ ! -s "$RUNNER_TEMP/changes.md" ]; then
+            echo "Everything is up to date."
+            exit 0
+          fi
+          cat "$RUNNER_TEMP/changes.md"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git commit -q -a -m "Update CI tools" -m "$(cat "$RUNNER_TEMP/changes.md")"
+          if git fetch -q origin "$BRANCH" 2>/dev/null && git diff --quiet FETCH_HEAD HEAD; then
+            echo "The pull request is already up to date."
+            exit 0
+          fi
+          git push -q --force origin "$BRANCH"
+
+          {
+            cat "$RUNNER_TEMP/changes.md"
+            echo
+            echo "Opened by the Update tools workflow. Merge it once the checks pass."
+            echo "A new Xcode image can still be in public preview; the checks show whether it works."
+          } > "$RUNNER_TEMP/body.md"
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --head "$BRANCH" --title "Update CI tools" --body-file "$RUNNER_TEMP/body.md"
+          fi
+
+          # Pull requests opened with the workflow token start no workflows by themselves.
+          gh workflow run build.yml --ref "$BRANCH"

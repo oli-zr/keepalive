@@ -1,4 +1,0 @@
-# GitHub-hosted labels that actionlint does not know yet. Remove one once it does.
-self-hosted-runner:
-  labels:
-    - xcode-27

@@ -1,5 +1,6 @@
-# Keeps the GitHub Actions used by the workflow up to date. KeepAlive has no other
-# dependencies, so this is the only thing to watch.
+# Keeps the GitHub Actions used by the workflows up to date. KeepAlive has no other
+# dependencies. The Xcode runner image and the lint tools are in .github/ci.env, which the
+# Update tools workflow maintains.
 version: 2
 updates:
   - package-ecosystem: github-actions

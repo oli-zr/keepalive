@@ -55,8 +55,9 @@ esac
 xcrun actool "$ROOT/Resources/AppIcon.icon" --compile "$APP/Contents/Resources" \
     --platform macosx --minimum-deployment-target "$MIN_OS" --app-icon AppIcon \
     --output-partial-info-plist "$ROOT/build/AppIcon-partial.plist" >/dev/null
-[ -f "$APP/Contents/Resources/Assets.car" ] && [ -f "$APP/Contents/Resources/AppIcon.icns" ] \
-    || fail "The app icon was not compiled."
+if [ ! -f "$APP/Contents/Resources/Assets.car" ] || [ ! -f "$APP/Contents/Resources/AppIcon.icns" ]; then
+    fail "The app icon was not compiled."
+fi
 
 xcrun xcstringstool compile "$ROOT/Resources/Localizable.xcstrings" --output-directory "$APP/Contents/Resources"
 

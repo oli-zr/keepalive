@@ -21,6 +21,8 @@ those with `scripts/build_app.sh`.
   them for every push and pull request, and a pull request can only be merged when they pass.
   It also checks the workflow with actionlint and the scripts with shellcheck, and attaches
   the built `KeepAlive.zip` to the run so you can try a pull request without building it.
+- Tooling updates arrive as pull requests: Dependabot for the actions, and the Update tools
+  workflow every Monday for the Xcode runner image and the lint tools in `.github/ci.env`.
 - Keep the interface native: system fonts, system colors, standard controls. Follow
   the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/).
 - Every user-facing string goes through `Resources/Localizable.xcstrings`, with a German

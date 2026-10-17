@@ -88,8 +88,8 @@ eintragen, damit das iOS-Projekt vor jedem Build aktuell ist.
 
 ## So funktioniert’s
 
-Alle 30 Minuten, zu einem Zeitpunkt, den macOS für günstig hält, und nach dem Aufwachen
-des Macs prüft KeepAlive, ob eine App fällig ist. Für jede fällige App passiert Folgendes:
+Alle 30 Minuten, zu einem Zeitpunkt, den macOS für günstig hält, und wenn der Mac aufwacht
+oder sich mit einem Netzwerk verbindet, prüft KeepAlive, ob eine App fällig ist. Für jede fällige App passiert Folgendes:
 
 1. KeepAlive sucht dein iPhone mit `devicectl`.
 2. Das zwischengespeicherte Provisioning-Profil der App wird gelöscht, damit Apple ein

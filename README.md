@@ -86,8 +86,8 @@ For Flutter projects, enter `flutter build ios --release --config-only` under
 
 ## How it works
 
-Every 30 minutes, at a time macOS considers convenient, and after your Mac wakes,
-KeepAlive checks whether an app is due. For each app that is due, it:
+Every 30 minutes, at a time macOS considers convenient, and after your Mac wakes or
+joins a network, KeepAlive checks whether an app is due. For each app that is due, it:
 
 1. Looks for your iPhone with `devicectl`.
 2. Removes Xcode’s cached provisioning profile for that app, so Apple issues a new one

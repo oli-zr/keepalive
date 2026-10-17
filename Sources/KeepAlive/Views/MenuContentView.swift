@@ -4,7 +4,7 @@ struct MenuContentView: View {
     @Environment(AppStore.self) private var store
     @Environment(Renewer.self) private var renewer
     @Environment(Updater.self) private var updater
-    @Environment(\.openWindow) private var openWindow
+    @Environment(SettingsWindow.self) private var settingsWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -35,7 +35,7 @@ struct MenuContentView: View {
                         updater.install(release)
                     }
                 }
-                MenuButton("Settings…", systemImage: "gearshape") { showSettings() }
+                MenuButton("Settings…", systemImage: "gearshape") { settingsWindow.show() }
             }
             .padding(.horizontal, 5)
 
@@ -85,17 +85,6 @@ struct MenuContentView: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 6)
-    }
-
-    private func showSettings() {
-        openWindow(id: SettingsView.windowID)
-        // A menu bar app is not active by itself, so the window would open behind others.
-        NSApp.activate()
-        DispatchQueue.main.async {
-            NSApp.windows
-                .first { $0.identifier?.rawValue.hasPrefix(SettingsView.windowID) == true }?
-                .makeKeyAndOrderFront(nil)
-        }
     }
 }
 

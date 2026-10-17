@@ -59,6 +59,81 @@ struct SchedulingTests {
         failed.lastAttempt = now.addingTimeInterval(-61 * 60)
         #expect(renewer.isDue(failed, now: now))
     }
+
+    @Test("Looks for an iPhone that was away without waiting an hour")
+    func unreachableRetry() {
+        var away = app(installedDaysAgo: 5)
+        away.lastError = "iPhone is not reachable."
+        away.lastAttempt = now.addingTimeInterval(-10 * 60)
+        away.isWaitingForDevice = true
+        #expect(renewer.isDue(away, now: now))
+    }
+}
+
+@MainActor
+@Suite("Renewal queue")
+struct QueueTests {
+    let store = AppStore(ephemeral: true)
+
+    func addApps(_ count: Int) -> [ManagedApp.ID] {
+        (0..<count).map { index in
+            let app = ManagedApp(name: "App \(index)", projectPath: "/tmp/App\(index).xcodeproj", scheme: "App",
+                                 bundleIdentifier: "com.example.App\(index)", productName: "App.app")
+            store.apps.append(app)
+            return app.id
+        }
+    }
+
+    /// A renewer whose first renewal works like a long build that stops when cancelled.
+    func renewer(recording started: Started, slow: ManagedApp.ID) -> Renewer {
+        let renewer = Renewer(store: store)
+        renewer.renewal = { id in
+            started.ids.append(id)
+            if id == slow { try? await Task.sleep(for: .seconds(60)) }
+        }
+        return renewer
+    }
+
+    @MainActor
+    final class Started {
+        var ids: [ManagedApp.ID] = []
+
+        func waitForFirst() async {
+            while ids.isEmpty { await Task.yield() }
+        }
+    }
+
+    @Test("Stopping resets the apps that were still waiting")
+    func cancelResetsWaitingApps() async {
+        let ids = addApps(3)
+        let started = Started()
+        let renewer = renewer(recording: started, slow: ids[0])
+
+        renewer.renew(ids)
+        await started.waitForFirst()
+        #expect(store.activity[ids[1]] == .waiting)
+
+        renewer.cancelAll()
+        await renewer.waitUntilFinished()
+        #expect(started.ids == [ids[0]])
+        #expect(!store.isBusy)
+    }
+
+    @Test("Apps requested right after stopping are still renewed")
+    func renewAfterCancel() async {
+        let ids = addApps(3)
+        let started = Started()
+        let renewer = renewer(recording: started, slow: ids[0])
+
+        renewer.renew([ids[0], ids[1]])
+        await started.waitForFirst()
+        renewer.cancelAll()
+        renewer.renew([ids[2]])
+
+        await renewer.waitUntilFinished()
+        #expect(started.ids == [ids[0], ids[2]])
+        #expect(!store.isBusy)
+    }
 }
 
 @MainActor
@@ -132,6 +207,7 @@ struct SettingsDecodingTests {
         #expect(app.isEnabled)
         #expect(app.preBuildCommand.isEmpty)
         #expect(app.lastInstall == nil)
+        #expect(!app.isWaitingForDevice)
     }
 
     @Test("Apps survive a round trip")

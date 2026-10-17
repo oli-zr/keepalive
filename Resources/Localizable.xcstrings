@@ -934,6 +934,16 @@
         }
       }
     },
+    "Show Activity": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität zeigen"
+          }
+        }
+      }
+    },
     "Show Logs in Finder": {
       "localizations": {
         "de": {

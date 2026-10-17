@@ -19,6 +19,8 @@ struct ManagedApp: Identifiable, Codable, Hashable, Sendable {
     var expirationDate: Date?
     var lastAttempt: Date?
     var lastError: String?
+    /// The last attempt failed only because the iPhone could not be found.
+    var isWaitingForDevice = false
     /// Expiration date we already sent a warning for, so we warn once per profile.
     var warnedExpiration: Date?
 
@@ -66,6 +68,7 @@ extension ManagedApp {
         expirationDate = try c.decodeIfPresent(Date.self, forKey: .expirationDate)
         lastAttempt = try c.decodeIfPresent(Date.self, forKey: .lastAttempt)
         lastError = try c.decodeIfPresent(String.self, forKey: .lastError)
+        isWaitingForDevice = try c.decodeIfPresent(Bool.self, forKey: .isWaitingForDevice) ?? false
         warnedExpiration = try c.decodeIfPresent(Date.self, forKey: .warnedExpiration)
     }
 }

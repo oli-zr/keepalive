@@ -37,10 +37,10 @@ enum SettingsPane: String, CaseIterable, Identifiable {
 struct SettingsView: View {
     static let windowID = "settings"
 
-    @State private var navigation = SettingsNavigation()
+    @Environment(SettingsWindow.self) private var window
 
     var body: some View {
-        @Bindable var navigation = navigation
+        @Bindable var navigation = window.navigation
 
         NavigationSplitView {
             List(SettingsPane.allCases, selection: $navigation.pane) { pane in
@@ -62,6 +62,28 @@ struct SettingsView: View {
             }
         }
         .frame(minWidth: 680, minHeight: 360)
+    }
+}
+
+/// Opens the settings window in front, optionally on a given pane. Notification actions
+/// use it too, and they have no SwiftUI environment to open a window with.
+@MainActor
+@Observable
+final class SettingsWindow {
+    let navigation = SettingsNavigation()
+    /// Set by the menu bar icon, which exists for as long as KeepAlive runs.
+    @ObservationIgnored var openWindow: OpenWindowAction?
+
+    func show(_ pane: SettingsPane? = nil) {
+        if let pane { navigation.pane = pane }
+        openWindow?(id: SettingsView.windowID)
+        // A menu bar app is not active by itself, so the window would open behind others.
+        NSApp.activate()
+        DispatchQueue.main.async {
+            NSApp.windows
+                .first { $0.identifier?.rawValue.hasPrefix(SettingsView.windowID) == true }?
+                .makeKeyAndOrderFront(nil)
+        }
     }
 }
 

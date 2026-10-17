@@ -3,6 +3,20 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [Unreleased]
+
+### Features
+
+- Notifications have buttons: **Renew Now**, and **Show Activity** when a renewal failed.
+  Clicking a notification opens the activity log.
+- When your Mac joins a network, for example when you get home, KeepAlive looks for your
+  iPhone right away. If the iPhone was away, it no longer waits an hour before trying again.
+
+### Fixed
+
+- After **Stop Renewing**, apps that were still waiting stayed on “Waiting…” and were not
+  renewed again until KeepAlive was restarted.
+
 ## [1.1.1] - 2026-10-06
 
 ### Fixed

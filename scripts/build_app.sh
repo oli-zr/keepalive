@@ -26,6 +26,7 @@ fi
 
 # shellcheck disable=SC2086
 swift build -c release $ARCH_FLAGS
+# shellcheck disable=SC2086
 BIN_DIR="$(swift build -c release $ARCH_FLAGS --show-bin-path)"
 
 APP="$ROOT/build/KeepAlive.app"

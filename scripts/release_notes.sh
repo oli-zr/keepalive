@@ -48,5 +48,7 @@ KeepAlive and replace the app once. Your settings are kept.
 EOF
 
 if [ -n "$ZIP" ] && [ -f "$ZIP" ]; then
+    # The backticks are Markdown, not a command substitution.
+    # shellcheck disable=SC2016
     printf '\nSHA-256 of KeepAlive.zip: `%s`\n' "$(shasum -a 256 "$ZIP" | cut -d ' ' -f 1)"
 fi

@@ -1,6 +1,6 @@
 name: Build
 
-# Pushes and pull requests run the tests and check that KeepAlive builds.
+# Pushes and pull requests check the workflow and scripts, run the tests and build KeepAlive.app.
 # Pushing a version tag (for example v1.2) also publishes a release with KeepAlive.zip.
 on:
   push:
@@ -8,19 +8,22 @@ on:
     tags: ["v*"]
   pull_request:
 
+# Everything runs read-only. Only the release job gets write access, and only for tags.
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request replaces a run that is still going.
+# Release runs always finish.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
 jobs:
-  build:
-    # The Liquid Glass icon and the current design need the macOS 26 SDK or later.
-    runs-on: xcode-27
-    permissions:
-      contents: write      # create releases
-      id-token: write      # sign the build provenance
-      attestations: write  # store the build provenance
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7
-        with:
-          # Release notes fall back to the commits since the previous tag.
-          fetch-depth: 0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Check the changelog
         if: startsWith(github.ref, 'refs/tags/v')
@@ -30,20 +33,64 @@ jobs:
             exit 1
           }
 
+      - name: Check the workflow
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
+
+      - name: Check the shell scripts
+        run: shellcheck scripts/*.sh
+
+  # The ruleset for main requires this job by its name, so keep it called "build".
+  build:
+    # The Liquid Glass icon and the current design need the macOS 26 SDK or later.
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Run tests
         run: swift test
 
       - name: Build KeepAlive.app
         run: scripts/build_app.sh --universal
 
+      # Lets you try the app from a pull request, and hands the build to the release job.
+      - name: Upload KeepAlive.zip
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: KeepAlive
+          path: build/KeepAlive.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [lint, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write      # create releases
+      id-token: write      # sign the build provenance
+      attestations: write  # store the build provenance
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Release notes fall back to the commits since the previous tag.
+          fetch-depth: 0
+
+      - name: Download KeepAlive.zip
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: KeepAlive
+          path: build
+
       - name: Attest build provenance
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: actions/attest-build-provenance@v4
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: build/KeepAlive.zip
 
       - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/v')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

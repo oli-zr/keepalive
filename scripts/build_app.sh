@@ -1,5 +1,6 @@
 #!/bin/sh
-# Builds KeepAlive.app into ./build. Usage: scripts/build_app.sh [--universal]
+# Builds KeepAlive.app into ./build. Usage: scripts/build_app.sh [--universal] [--debug]
+# --debug builds the debug configuration, which includes the previews (see scripts/preview.sh).
 # On GitHub Actions, a version tag such as v1.2 sets the app's version number.
 set -eu
 
@@ -19,15 +20,20 @@ fi
 SDK_VERSION="$(xcrun --sdk macosx --show-sdk-version)"
 [ "${SDK_VERSION%%.*}" -ge 26 ] || fail "Xcode 26 or later is required (found macOS SDK $SDK_VERSION)."
 
+CONFIGURATION=release
 ARCH_FLAGS=""
-if [ "${1:-}" = "--universal" ]; then
-    ARCH_FLAGS="--arch arm64 --arch x86_64"
-fi
+for option in "$@"; do
+    case "$option" in
+        --universal) ARCH_FLAGS="--arch arm64 --arch x86_64" ;;
+        --debug) CONFIGURATION=debug ;;
+        *) fail "Unknown option $option. Usage: scripts/build_app.sh [--universal] [--debug]" ;;
+    esac
+done
 
 # shellcheck disable=SC2086
-swift build -c release $ARCH_FLAGS
+swift build -c "$CONFIGURATION" $ARCH_FLAGS
 # shellcheck disable=SC2086
-BIN_DIR="$(swift build -c release $ARCH_FLAGS --show-bin-path)"
+BIN_DIR="$(swift build -c "$CONFIGURATION" $ARCH_FLAGS --show-bin-path)"
 
 APP="$ROOT/build/KeepAlive.app"
 rm -rf "$APP"

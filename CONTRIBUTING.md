@@ -9,6 +9,7 @@ swift build                 # compile
 swift test                  # run the tests
 scripts/build_app.sh        # create build/KeepAlive.app
 open build/KeepAlive.app
+scripts/preview.sh apps     # show a part of the app with sample data
 ```
 
 Building requires Xcode 26 or later. You can also open `Package.swift` in Xcode, but the

@@ -2,7 +2,8 @@
 import SwiftUI
 
 /// Shows a view in a normal window with sample data, for screenshots during development.
-/// Usage: KEEPALIVE_PREVIEW=menu|general|apps|device|activity swift run
+/// Usage: scripts/preview.sh menu|settings|general|apps|device|activity|window
+/// `KEEPALIVE_PREVIEW=… swift run` works too, but shows the compatibility look instead of Liquid Glass.
 @MainActor
 enum DebugPreview {
     private static var window: NSWindow?

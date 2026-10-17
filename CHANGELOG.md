@@ -3,7 +3,7 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
-## [Unreleased]
+## [1.2] - 2026-10-17
 
 ### Features
 

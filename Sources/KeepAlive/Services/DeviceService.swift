@@ -97,8 +97,11 @@ private struct RawDevice: Decodable {
     let hardwareProperties: Hardware?
 
     var device: Device? {
+        // Xcode 27 omits `reality` for physical devices, so simulators are also
+        // recognized by their `sameMachine` transport.
         guard let hardware = hardwareProperties,
-              hardware.reality == "physical",
+              hardware.reality != "simulated",
+              connectionProperties?.transportType != "sameMachine",
               hardware.platform == "iOS",
               connectionProperties?.pairingState == "paired"
         else { return nil }

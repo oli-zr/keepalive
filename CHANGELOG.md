@@ -3,6 +3,13 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.2.1] - 2026-10-18
+
+### Fixed
+
+- With Xcode 27, KeepAlive showed the iPhone as “Not reachable” and did not renew apps,
+  even though the iPhone was connected and visible in Xcode.
+
 ## [1.2] - 2026-10-17
 
 ### Features

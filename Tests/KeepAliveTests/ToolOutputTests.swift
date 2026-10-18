@@ -36,6 +36,10 @@ struct DeviceParsingTests {
            "connectionProperties":{"pairingState":"paired","transportType":"sameMachine","tunnelState":"connected"},
            "deviceProperties":{"name":"iPhone 17"},
            "hardwareProperties":{"reality":"simulated","platform":"iOS","marketingName":"iPhone 17","udid":"SIM-1"}},
+          {"identifier":"SIM-2",
+           "connectionProperties":{"pairingState":"paired","transportType":"sameMachine","tunnelState":"disconnected"},
+           "deviceProperties":{"name":"iPhone 18 Pro"},
+           "hardwareProperties":{"platform":"iOS","udid":"SIM-2"}},
           {"identifier":"PHONE-1",
            "connectionProperties":{"pairingState":"paired","transportType":"localNetwork","tunnelState":"connected"},
            "deviceProperties":{"name":"Work iPhone"},
@@ -51,6 +55,10 @@ struct DeviceParsingTests {
           {"identifier":"PHONE-4",
            "connectionProperties":{"pairingState":"unpaired","transportType":"wired","tunnelState":"connected"},
            "hardwareProperties":{"reality":"physical","platform":"iOS","udid":"0000-4"}},
+          {"identifier":"PHONE-5",
+           "connectionProperties":{"pairingState":"paired","transportType":"localNetwork","tunnelState":"disconnected"},
+           "deviceProperties":{"name":"New iPhone"},
+           "hardwareProperties":{"platform":"iOS","deviceType":"iPhone","productType":"iPhone17,3","udid":"0000-6"}},
           {"identifier":"WATCH-1",
            "connectionProperties":{"pairingState":"paired","transportType":"localNetwork","tunnelState":"connected"},
            "hardwareProperties":{"reality":"physical","platform":"watchOS","udid":"0000-5"}}
@@ -60,7 +68,7 @@ struct DeviceParsingTests {
     @Test("Keeps only paired physical iPhones and iPads")
     func filtersDevices() throws {
         let devices = try DeviceService.parseDevices(json)
-        #expect(devices.map(\.id) == ["PHONE-1", "PHONE-2", "PHONE-3"])
+        #expect(devices.map(\.id) == ["PHONE-1", "PHONE-2", "PHONE-3", "PHONE-5"])
     }
 
     @Test("Reads name, model and connection")
@@ -83,6 +91,13 @@ struct DeviceParsingTests {
         let gone = try #require(try DeviceService.parseDevices(json).first { $0.id == "PHONE-3" })
         #expect(!gone.isReachable)
         #expect(gone.name == "Old iPhone")
+    }
+
+    @Test("Accepts physical devices without a reality field (Xcode 27)")
+    func missingReality() throws {
+        let phone = try #require(try DeviceService.parseDevices(json).first { $0.id == "PHONE-5" })
+        #expect(phone.isReachable)
+        #expect(phone.transport == .network)
     }
 }
 

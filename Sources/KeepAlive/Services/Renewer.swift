@@ -192,6 +192,7 @@ final class Renewer {
         do {
             let toolchain = try Toolchain.resolve(override: store.preferences.xcodePath)
             let device = try await reachableDevice(toolchain: toolchain)
+            try await DeviceService(toolchain: toolchain).prepare(device)
 
             store.record(String(localized: "Building for \(device.name)…"), app: app.name)
             store.update(id) { $0.lastAttempt = .now }
@@ -219,13 +220,13 @@ final class Renewer {
         } catch {
             let message = error.localizedDescription
             let isNewProblem = message != app.lastError
-            let isUnreachable = if case RenewError.deviceUnreachable = error { true } else { false }
+            let isUnreachable = (error as? RenewError)?.isWaitingForDevice ?? false
             store.update(id) {
                 $0.lastError = message
                 $0.isWaitingForDevice = isUnreachable
             }
             store.record(message, app: app.name, isError: true)
-            // An iPhone that is away is normal and covered by the expiry warning;
+            // An iPhone that is away or locked is normal and covered by the expiry warning;
             // only new, real failures deserve a notification.
             if isNewProblem && !isUnreachable {
                 Notifier.post(
@@ -277,6 +278,15 @@ final class Renewer {
 enum RenewError: LocalizedError {
     case noDeviceSelected
     case deviceUnreachable(String)
+    case deviceLocked(String)
+
+    /// The iPhone is fine but cannot be used right now, so KeepAlive keeps looking for it.
+    var isWaitingForDevice: Bool {
+        switch self {
+        case .noDeviceSelected: false
+        case .deviceUnreachable, .deviceLocked: true
+        }
+    }
 
     var errorDescription: String? {
         switch self {
@@ -284,6 +294,8 @@ enum RenewError: LocalizedError {
             return String(localized: "No iPhone selected. Choose one in Settings → Device.")
         case .deviceUnreachable(let name):
             return String(localized: "\(name) is not reachable. KeepAlive will try again later.")
+        case .deviceLocked(let name):
+            return String(localized: "Unlock \(name) once so KeepAlive can install apps. It will try again later.")
         }
     }
 }

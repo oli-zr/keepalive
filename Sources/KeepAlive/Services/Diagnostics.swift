@@ -8,6 +8,12 @@ enum Diagnostics {
         "connection to this device could not be established", "CoreDeviceError error 4000",
     ]
 
+    /// Output that means the iPhone is locked. The developer disk image (CoreDeviceError 12040)
+    /// can only be mounted while it is unlocked, once after every restart.
+    private static let lockedNeedles = [
+        "device is locked", "device is currently locked", "device was still locked", "passcode", "CoreDeviceError error 10003",
+    ]
+
     private static let hints: [(needles: [String], message: String.LocalizationValue)] = [
         (["No Accounts", "No Account for Team", "not signed in"],
          "Sign in to your Apple Account in Xcode → Settings → Accounts."),
@@ -15,8 +21,7 @@ enum Diagnostics {
          "Apple’s limit for free accounts was reached. Remove an app from your iPhone or wait a few days."),
         (["Developer Mode"],
          "Turn on Developer Mode on your iPhone in Settings → Privacy & Security."),
-        // The developer disk image (CoreDeviceError 12040) can only be mounted while the iPhone is unlocked.
-        (["device is locked", "device is currently locked", "device was still locked", "passcode", "CoreDeviceError error 10003"],
+        (lockedNeedles,
          "Unlock your iPhone and try again."),
         (unreachableNeedles,
          "Your iPhone could not be reached. Make sure it is on the same Wi‑Fi network as this Mac."),
@@ -34,6 +39,11 @@ enum Diagnostics {
     /// Whether the device went away, which is worth retrying when it is back rather than reporting.
     static func isUnreachable(_ output: String) -> Bool {
         unreachableNeedles.contains { output.localizedCaseInsensitiveContains($0) }
+    }
+
+    /// Whether the iPhone has to be unlocked before anything can be installed.
+    static func isLocked(_ output: String) -> Bool {
+        lockedNeedles.contains { output.localizedCaseInsensitiveContains($0) }
     }
 
     static func firstError(in output: String) -> String? {

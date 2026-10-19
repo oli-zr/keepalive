@@ -54,6 +54,19 @@ struct DeviceService: Sendable {
         try JSONDecoder().decode(ListResponse.self, from: data).result.devices.compactMap(\.device)
     }
 
+    /// Mounts the developer disk image, which iOS only allows while the iPhone is unlocked.
+    /// Checking before the build avoids building an app that cannot be installed yet.
+    /// Other failures are left to the installation, which explains them.
+    func prepare(_ device: Device) async throws {
+        let result = try await Shell.run(
+            Toolchain.xcrun,
+            ["devicectl", "device", "info", "ddiServices", "--device", device.id],
+            environment: toolchain.environment,
+            timeout: 2 * 60
+        )
+        if !result.succeeded, Diagnostics.isLocked(result.output) { throw RenewError.deviceLocked(device.name) }
+    }
+
     func install(appAt appURL: URL, on device: Device, onLine: (@Sendable (String) -> Void)? = nil) async throws {
         let result = try await Shell.run(
             Toolchain.xcrun,
@@ -65,6 +78,7 @@ struct DeviceService: Sendable {
         guard result.succeeded else {
             // The iPhone can lock or leave the Wi‑Fi while the app is being built.
             if Diagnostics.isUnreachable(result.output) { throw RenewError.deviceUnreachable(device.name) }
+            if Diagnostics.isLocked(result.output) { throw RenewError.deviceLocked(device.name) }
             throw DeviceError.installFailed(Diagnostics.explain(result.output))
         }
     }

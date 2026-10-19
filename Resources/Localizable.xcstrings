@@ -1104,6 +1104,16 @@
         }
       }
     },
+    "Unlock %@ once so KeepAlive can install apps. It will try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entsperre %@ einmal, damit KeepAlive Apps installieren kann. KeepAlive versucht es später erneut."
+          }
+        }
+      }
+    },
     "Unlock your iPhone and try again.": {
       "localizations": {
         "de": {

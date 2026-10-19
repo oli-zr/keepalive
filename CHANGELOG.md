@@ -3,6 +3,14 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.2.4] - 2026-10-19
+
+### Fixed
+
+- A locked iPhone no longer counts as a failed renewal. When your iPhone has to be unlocked
+  first, for example after a restart, KeepAlive waits without building the app or sending
+  a failure notification, and renews it after you next unlock your iPhone.
+
 ## [1.2.3] - 2026-10-19
 
 ### Fixed

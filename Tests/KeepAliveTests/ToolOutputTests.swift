@@ -31,6 +31,22 @@ struct DiagnosticsTests {
         #expect(Diagnostics.isUnreachable(output) == expected)
     }
 
+    @Test("Recognizes a locked iPhone", arguments: [
+        ("The operation failed because the device was still locked. (com.apple.dt.CoreDeviceError error 10003 (0x2713))", true),
+        ("ERROR: The device is locked.", true),
+        ("Timed out while attempting to establish tunnel", false),
+    ])
+    func locked(output: String, expected: Bool) {
+        #expect(Diagnostics.isLocked(output) == expected)
+    }
+
+    @Test("A locked or unreachable iPhone is waited for, a missing selection is not")
+    func waiting() {
+        #expect(RenewError.deviceLocked("iPhone").isWaitingForDevice)
+        #expect(RenewError.deviceUnreachable("iPhone").isWaitingForDevice)
+        #expect(!RenewError.noDeviceSelected.isWaitingForDevice)
+    }
+
     @Test("Falls back to the first error line")
     func firstError() {
         let output = "note: building\n/path/File.swift:3:1: error: cannot find 'x' in scope\nerror: second"

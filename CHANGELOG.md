@@ -3,6 +3,13 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.2.3] - 2026-10-19
+
+### Fixed
+
+- When the iPhone was locked after a restart, KeepAlive showed “The developer disk image
+  could not be mounted on this device”. It now asks you to unlock your iPhone.
+
 ## [1.2.2] - 2026-10-19
 
 ### Fixed

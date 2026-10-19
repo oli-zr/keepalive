@@ -15,7 +15,8 @@ enum Diagnostics {
          "Apple’s limit for free accounts was reached. Remove an app from your iPhone or wait a few days."),
         (["Developer Mode"],
          "Turn on Developer Mode on your iPhone in Settings → Privacy & Security."),
-        (["device is locked", "passcode"],
+        // The developer disk image (CoreDeviceError 12040) can only be mounted while the iPhone is unlocked.
+        (["device is locked", "device is currently locked", "device was still locked", "passcode", "CoreDeviceError error 10003"],
          "Unlock your iPhone and try again."),
         (unreachableNeedles,
          "Your iPhone could not be reached. Make sure it is on the same Wi‑Fi network as this Mac."),

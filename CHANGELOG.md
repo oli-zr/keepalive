@@ -3,6 +3,14 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.2.2] - 2026-10-19
+
+### Fixed
+
+- When the iPhone locked or left the Wi‑Fi while an app was being built, KeepAlive showed
+  “A connection to this device could not be established” and sent a failure notification.
+  It now shows the iPhone as not reachable and tries again as soon as it is back.
+
 ## [1.2.1] - 2026-10-18
 
 ### Fixed

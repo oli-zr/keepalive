@@ -63,6 +63,8 @@ struct DeviceService: Sendable {
             onLine: onLine
         )
         guard result.succeeded else {
+            // The iPhone can lock or leave the Wi‑Fi while the app is being built.
+            if Diagnostics.isUnreachable(result.output) { throw RenewError.deviceUnreachable(device.name) }
             throw DeviceError.installFailed(Diagnostics.explain(result.output))
         }
     }

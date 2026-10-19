@@ -10,10 +10,20 @@ struct DiagnosticsTests {
         ("Developer Mode is disabled on the device.", "Developer Mode"),
         ("ERROR: The device is locked.", "Unlock your iPhone"),
         ("Timed out while attempting to establish tunnel", "could not be reached"),
+        ("ERROR: A connection to this device could not be established. (com.apple.dt.CoreDeviceError error 4000 (0xFA0))", "could not be reached"),
         ("error: No profiles for 'com.example.App' were found", "No provisioning profile"),
     ])
     func knownProblems(output: String, expected: String) {
         #expect(Diagnostics.explain(output).contains(expected))
+    }
+
+    @Test("Recognizes a lost connection to the iPhone", arguments: [
+        ("A connection to this device could not be established. (com.apple.dt.CoreDeviceError error 4000 (0xFA0))", true),
+        ("Timed out while attempting to establish tunnel", true),
+        ("Developer Mode is disabled on the device.", false),
+    ])
+    func unreachable(output: String, expected: Bool) {
+        #expect(Diagnostics.isUnreachable(output) == expected)
     }
 
     @Test("Falls back to the first error line")

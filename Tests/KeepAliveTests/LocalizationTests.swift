@@ -13,14 +13,32 @@ struct LocalizationTests {
         return json?["strings"] as? [String: [String: Any]] ?? [:]
     }
 
-    @Test("Every text has a German translation")
-    func german() throws {
-        let missing = try Self.catalog().filter { key, entry in
-            guard entry["shouldTranslate"] as? Bool != false else { return false }
-            let localizations = entry["localizations"] as? [String: Any]
-            return localizations?["de"] == nil
-        }.keys.sorted()
-        #expect(missing.isEmpty, "Missing German translations: \(missing)")
+    /// The languages the app announces in its Info.plist, apart from English.
+    static func languages() throws -> [String] {
+        let data = try Data(contentsOf: root.appendingPathComponent("Resources/Info.plist"))
+        let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any]
+        return (plist?["CFBundleLocalizations"] as? [String] ?? []).filter { $0 != "en" }
+    }
+
+    /// Every translated value of an entry in one language, including plural forms.
+    static func values(of entry: [String: Any], in language: String) -> [String]? {
+        guard let localization = (entry["localizations"] as? [String: Any])?[language] as? [String: Any] else { return nil }
+        if let value = (localization["stringUnit"] as? [String: Any])?["value"] as? String { return [value] }
+        let forms = ((localization["variations"] as? [String: Any])?["plural"] as? [String: Any]) ?? [:]
+        let values = forms.values.compactMap { (($0 as? [String: Any])?["stringUnit"] as? [String: Any])?["value"] as? String }
+        return values.isEmpty ? nil : values
+    }
+
+    @Test("Every text is translated into every language of the app")
+    func translated() throws {
+        let languages = try Self.languages()
+        #expect(languages.contains("de"))
+        for language in languages {
+            let missing = try Self.catalog().filter { _, entry in
+                entry["shouldTranslate"] as? Bool != false && Self.values(of: entry, in: language) == nil
+            }.keys.sorted()
+            #expect(missing.isEmpty, "Missing \(language) translations: \(missing)")
+        }
     }
 
     @Test("Translations keep their placeholders")
@@ -31,10 +49,12 @@ struct LocalizationTests {
                 .map { (string as NSString).substring(with: $0.range).replacingOccurrences(of: #"\d\$"#, with: "", options: .regularExpression) }
                 .sorted()
         }
-        for (key, entry) in try Self.catalog() {
-            guard let german = ((entry["localizations"] as? [String: Any])?["de"] as? [String: Any])?["stringUnit"] as? [String: Any],
-                  let value = german["value"] as? String else { continue }
-            #expect(placeholders(value) == placeholders(key), "Placeholders differ for “\(key)”")
+        for language in try Self.languages() {
+            for (key, entry) in try Self.catalog() {
+                for value in Self.values(of: entry, in: language) ?? [] {
+                    #expect(placeholders(value) == placeholders(key), "Placeholders differ for “\(key)” in \(language)")
+                }
+            }
         }
     }
 

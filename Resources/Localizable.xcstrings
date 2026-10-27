@@ -8,6 +8,36 @@
             "state": "translated",
             "value": "%1$@ konnte nicht zum Provisioning-Profil hinzugefügt werden. Öffne das Projekt in Xcode und führe es einmal auf %2$@ aus."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido añadir %1$@ al perfil de aprovisionamiento. Abre el proyecto en Xcode y ejecútalo una vez en %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’ajouter %1$@ au profil de provisionnement. Ouvrez le projet dans Xcode et exécutez-le une fois sur %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@をプロビジョニングプロファイルに追加できませんでした。Xcodeでプロジェクトを開き、%2$@で一度実行してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法将“%1$@”添加到描述文件。请在 Xcode 中打开项目，并在“%2$@”上运行一次。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível adicionar %1$@ ao perfil de provisionamento. Abra o projeto no Xcode e execute-o uma vez em %2$@."
+          }
         }
       }
     },
@@ -17,6 +47,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "„%@“ konnte nicht erneuert werden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido renovar “%@”"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de renouveler « %@ »"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「%@」を更新できませんでした"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法续期“%@”"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível renovar “%@”"
           }
         }
       }
@@ -28,6 +88,36 @@
             "state": "translated",
             "value": "„%@“ läuft bald ab"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” caducará pronto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« %@ » expire bientôt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「%@」の有効期限がまもなく切れます"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”即将过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” expira em breve"
+          }
         }
       }
     },
@@ -37,6 +127,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "„%1$@“ läuft auf %2$@ bald ab"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%1$@” caducará pronto en %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« %1$@ » expire bientôt sur %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@の「%1$@」の有効期限がまもなく切れます"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%2$@”上的“%1$@”即将过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%1$@” expira em breve em %2$@"
           }
         }
       }
@@ -48,6 +168,36 @@
             "state": "translated",
             "value": "%@ ist nicht erreichbar. KeepAlive versucht es später erneut."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede conectar con %@. KeepAlive lo volverá a intentar más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ est injoignable. KeepAlive réessaiera plus tard."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@に接続できません。KeepAliveはあとでもう一度試します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接“%@”。KeepAlive 稍后会再试。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não é possível conectar a %@. O KeepAlive tentará novamente mais tarde."
+          }
         }
       }
     },
@@ -57,6 +207,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ hat zu lange gedauert und wurde abgebrochen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ha tardado demasiado y se ha detenido."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ a pris trop de temps et a été arrêté."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@に時間がかかりすぎたため停止しました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 耗时过长，已停止。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ demorou demais e foi interrompido."
           }
         }
       }
@@ -68,12 +248,72 @@
             "state": "translated",
             "value": "%@ · Nicht erreichbar"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Injoignable"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 未接続"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 无法连接"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Sem conexão"
+          }
         }
       }
     },
     "%@: %@": {
       "localizations": {
         "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ : %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@：%2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@：%2$@"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "%1$@: %2$@"
@@ -88,6 +328,36 @@
             "state": "translated",
             "value": "Läuft auf %1$@ %2$@ ab"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: caduca %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ : expire %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@：有効期限 %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@：%2$@过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: expira %2$@"
+          }
         }
       }
     },
@@ -97,6 +367,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld Geräte"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dispositivos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld appareils"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld台のデバイス"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 台设备"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dispositivos"
           }
         }
       }
@@ -108,6 +408,36 @@
             "state": "translated",
             "value": "%lld Geräte nicht erreichbar"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dispositivos sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld appareils injoignables"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld台が未接続"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 台设备无法连接"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dispositivos sem conexão"
+          }
         }
       }
     },
@@ -117,6 +447,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mit einem kostenlosen Apple Account lassen sich zehn neue App-IDs pro Woche erstellen. Versuche es in ein paar Tagen erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con una cuenta de Apple gratuita se pueden crear diez nuevos ID de app por semana. Vuelve a intentarlo dentro de unos días."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un compte Apple gratuit peut créer dix nouveaux identifiants d’app par semaine. Réessayez dans quelques jours."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無料のApple Accountで作成できる新しいApp IDは週に10個までです。数日後にもう一度お試しください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费 Apple 账户每周最多可创建 10 个新的 App ID。请过几天再试。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma Conta Apple gratuita pode criar dez novos IDs de app por semana. Tente novamente em alguns dias."
           }
         }
       }
@@ -128,6 +488,36 @@
             "state": "translated",
             "value": "Mit einem kostenlosen Apple Account können drei eigene Apps gleichzeitig auf einem Gerät sein. Entferne eine davon vom Gerät."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con una cuenta de Apple gratuita puedes tener tres apps propias a la vez en un dispositivo. Elimina una de ellas del dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un compte Apple gratuit permet d’avoir trois de vos propres apps à la fois sur un appareil. Supprimez-en une de l’appareil."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無料のApple Accountでは、1台のデバイスに同時にインストールできる自作のAppは3つまでです。いずれかをデバイスから削除してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用免费 Apple 账户时，一台设备上最多可同时安装 3 个你自己的 App。请从设备上移除其中一个。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com uma Conta Apple gratuita, você pode ter três apps próprios ao mesmo tempo em um dispositivo. Remova um deles do dispositivo."
+          }
         }
       }
     },
@@ -137,6 +527,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mit einem kostenlosen Apple Account können bis zu drei eigene Apps gleichzeitig auf einem Gerät installiert sein."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con una cuenta de Apple gratuita puedes tener hasta tres apps propias instaladas a la vez en un dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un compte Apple gratuit permet d’installer jusqu’à trois de vos propres apps à la fois sur un appareil."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無料のApple Accountでは、1台のデバイスに同時にインストールできる自作のAppは3つまでです。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用免费 Apple 账户时，一台设备上最多可同时安装 3 个你自己的 App。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com uma Conta Apple gratuita, você pode ter até três apps próprios instalados ao mesmo tempo em um dispositivo."
           }
         }
       }
@@ -148,6 +568,36 @@
             "state": "translated",
             "value": "Aktivität"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actividad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activité"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクティビティ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活动"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atividade"
+          }
         }
       }
     },
@@ -157,6 +607,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追加"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar"
           }
         }
       }
@@ -168,6 +648,36 @@
             "state": "translated",
             "value": "Füge ein Xcode-Projekt hinzu, damit seine App auf deinem iPhone oder iPad installiert bleibt."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade un proyecto de Xcode y KeepAlive mantendrá su app instalada en tu iPhone o iPad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez un projet Xcode et KeepAlive gardera son app installée sur votre iPhone ou iPad."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcodeプロジェクトを追加すると、KeepAliveがそのAppをiPhoneやiPadにインストールしたまま維持します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加 Xcode 项目后，KeepAlive 会让它的 App 一直安装在你的 iPhone 或 iPad 上。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione um projeto do Xcode e o KeepAlive manterá o app dele instalado no seu iPhone ou iPad."
+          }
         }
       }
     },
@@ -177,6 +687,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "App hinzufügen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir app…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une app…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appを追加…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加 App…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar App…"
           }
         }
       }
@@ -188,6 +728,36 @@
             "state": "translated",
             "value": "Füge deinen Apple Account in den Einstellungen von Xcode hinzu."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade tu cuenta de Apple en los ajustes de Xcode."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez votre compte Apple dans les réglages de Xcode."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcodeの設定でApple Accountを追加してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在 Xcode 设置中添加你的 Apple 账户。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione sua Conta Apple nos ajustes do Xcode."
+          }
         }
       }
     },
@@ -197,6 +767,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hinzugefügt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追加しました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已添加。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionado."
           }
         }
       }
@@ -208,12 +808,72 @@
             "state": "translated",
             "value": "%@ wird zum Provisioning-Profil hinzugefügt …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadiendo %@ al perfil de aprovisionamiento…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout de %@ au profil de provisionnement…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@をプロビジョニングプロファイルに追加中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在将“%@”添加到描述文件…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionando %@ ao perfil de provisionamento…"
+          }
         }
       }
     },
     "Apps": {
       "localizations": {
         "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Apps"
@@ -228,6 +888,36 @@
             "state": "translated",
             "value": "Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben Tagen nicht mehr öffnen. KeepAlive erneuert sie frühzeitig, sobald dein iPhone oder iPad im selben Netzwerk ist. Apps, die innerhalb eines Tages ablaufen, werden auch im Batteriebetrieb erneuert."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las apps firmadas con una cuenta de Apple gratuita dejan de abrirse a los siete días. KeepAlive las renueva antes, siempre que tu iPhone o iPad esté en la misma red. Las apps que caducan en menos de un día también se renuevan con batería."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les apps signées avec un compte Apple gratuit ne s’ouvrent plus au bout de sept jours. KeepAlive les renouvelle à l’avance, dès que votre iPhone ou iPad est sur le même réseau. Les apps qui expirent dans moins d’un jour sont renouvelées même sur batterie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無料のApple Accountで署名されたAppは7日後に開けなくなります。KeepAliveは、iPhoneやiPadが同じネットワークにあるときに早めに更新します。1日以内に期限が切れるAppは、バッテリー駆動中でも更新されます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用免费 Apple 账户签名的 App 在七天后将无法打开。只要你的 iPhone 或 iPad 在同一网络中，KeepAlive 就会提前为它们续期。一天内即将过期的 App 在使用电池时也会续期。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps assinados com uma Conta Apple gratuita deixam de abrir após sete dias. O KeepAlive os renova antes, sempre que seu iPhone ou iPad estiver na mesma rede. Apps que expiram em menos de um dia também são renovados na bateria."
+          }
         }
       }
     },
@@ -237,6 +927,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vor dem Build"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes de compilar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant la compilation"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビルド前"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "构建前"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes da compilação"
           }
         }
       }
@@ -248,6 +968,36 @@
             "state": "translated",
             "value": "Build fehlgeschlagen: %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de compilación: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la compilation : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビルドに失敗しました：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "构建失败：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falha na compilação: %@"
+          }
         }
       }
     },
@@ -257,6 +1007,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Build für %@ …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilando para %@…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilation pour %@…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@用にビルド中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在为 %@ 构建…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilando para %@…"
           }
         }
       }
@@ -268,6 +1048,36 @@
             "state": "translated",
             "value": "Build läuft …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilation…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビルド中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在构建…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilando…"
+          }
         }
       }
     },
@@ -277,6 +1087,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Builds und Installationen erscheinen hier."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aquí aparecerán las compilaciones e instalaciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les compilations et installations apparaîtront ici."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビルドとインストールがここに表示されます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "构建和安装记录将显示在这里。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As compilações e instalações aparecerão aqui."
           }
         }
       }
@@ -288,6 +1128,36 @@
             "state": "translated",
             "value": "Abbrechen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセル"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
@@ -297,6 +1167,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abgebrochen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annulé."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセルしました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelado."
           }
         }
       }
@@ -308,6 +1208,36 @@
             "state": "translated",
             "value": "Automatisch nach Updates suchen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones automáticamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher automatiquement les mises à jour"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートを自動的に確認"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动检查更新"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar atualizações automaticamente"
+          }
         }
       }
     },
@@ -317,6 +1247,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jetzt suchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher maintenant"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今すぐ確認"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立即检查"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar agora"
           }
         }
       }
@@ -328,6 +1288,36 @@
             "state": "translated",
             "value": "Suche läuft …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "確認中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificando…"
+          }
         }
       }
     },
@@ -337,6 +1327,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auswählen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选取"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolher"
           }
         }
       }
@@ -348,6 +1368,36 @@
             "state": "translated",
             "value": "Wähle ein Xcode-Projekt, einen Workspace oder den Ordner, der ihn enthält."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige un proyecto de Xcode, un espacio de trabajo o la carpeta que lo contiene."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez un projet Xcode, un espace de travail ou le dossier qui le contient."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcodeプロジェクト、ワークスペース、またはそれを含むフォルダを選択してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选取 Xcode 项目、工作区或包含它的文件夹。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha um projeto do Xcode, um workspace ou a pasta que o contém."
+          }
         }
       }
     },
@@ -357,6 +1407,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auswählen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选取…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolher…"
           }
         }
       }
@@ -368,6 +1448,36 @@
             "state": "translated",
             "value": "Löschen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "消去"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar"
+          }
         }
       }
     },
@@ -377,6 +1487,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Konfiguration"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "構成"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配置"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuração"
           }
         }
       }
@@ -388,6 +1528,36 @@
             "state": "translated",
             "value": "Verbinde %@ mit dem WLAN dieses Macs, damit KeepAlive die App erneuern kann."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta %@ a la misma red Wi‑Fi que este Mac para que KeepAlive pueda renovar la app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez %@ au même réseau Wi‑Fi que ce Mac pour que KeepAlive puisse renouveler l’app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveがAppを更新できるように、%@をこのMacと同じWi‑Fiに接続してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请将“%@”连接到与这台 Mac 相同的无线局域网，以便 KeepAlive 为 App 续期。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecte %@ à mesma rede Wi‑Fi deste Mac para que o KeepAlive possa renovar o app."
+          }
         }
       }
     },
@@ -397,6 +1567,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Über Kabel verbunden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado por cable"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté par câble"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ケーブルで接続済み"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过线缆连接"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado por cabo"
           }
         }
       }
@@ -408,6 +1608,36 @@
             "state": "translated",
             "value": "Über WLAN verbunden"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado por Wi‑Fi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté par Wi‑Fi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wi‑Fiで接続済み"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过无线局域网连接"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado por Wi‑Fi"
+          }
         }
       }
     },
@@ -417,6 +1647,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Geräte konnten nicht abgefragt werden: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se han podido obtener los dispositivos: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’obtenir la liste des appareils : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスを一覧表示できませんでした：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法列出设备：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível listar os dispositivos: %@"
           }
         }
       }
@@ -428,6 +1688,36 @@
             "state": "translated",
             "value": "GitHub ist nicht erreichbar, daher konnte nicht nach Updates gesucht werden."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido conectar con GitHub para buscar actualizaciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de joindre GitHub pour rechercher des mises à jour."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートを確認するためにGitHubに接続できませんでした。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接 GitHub 检查更新。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível acessar o GitHub para verificar atualizações."
+          }
         }
       }
     },
@@ -437,6 +1727,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ konnte nicht ausgeführt werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido ejecutar %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’exécuter %@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@を実行できませんでした。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法运行 %@。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível executar %@."
           }
         }
       }
@@ -448,6 +1768,36 @@
             "state": "translated",
             "value": "Details"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détails"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詳細"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "详细信息"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhes"
+          }
         }
       }
     },
@@ -457,6 +1807,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Entwicklerwerkzeuge"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herramientas de desarrollo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outils de développement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デベロッパツール"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开发者工具"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ferramentas de Desenvolvimento"
           }
         }
       }
@@ -468,6 +1848,36 @@
             "state": "translated",
             "value": "Geräte"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dispositivos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appareils"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイス"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dispositivos"
+          }
         }
       }
     },
@@ -477,6 +1887,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fertig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完了"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         }
       }
@@ -488,6 +1928,36 @@
             "state": "translated",
             "value": "%@ laden"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@をダウンロード"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载 %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixar %@"
+          }
         }
       }
     },
@@ -497,6 +1967,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wird geladen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téléchargement…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロード中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在下载…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixando…"
           }
         }
       }
@@ -508,6 +2008,36 @@
             "state": "translated",
             "value": "Abgelaufen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caducada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expirée"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "期限切れ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expirado"
+          }
         }
       }
     },
@@ -517,6 +2047,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auf %@ abgelaufen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caducada en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expirée sur %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@で期限切れ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在“%@”上已过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expirado em %@"
           }
         }
       }
@@ -528,6 +2088,36 @@
             "state": "translated",
             "value": "Läuft %@ ab"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caduca %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expire %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有効期限：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@过期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expira %@"
+          }
         }
       }
     },
@@ -537,6 +2127,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allgemein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Général"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一般"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通用"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geral"
           }
         }
       }
@@ -548,6 +2168,36 @@
             "state": "translated",
             "value": "%@ installieren"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@をインストール"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装 %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar %@"
+          }
         }
       }
     },
@@ -557,6 +2207,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "KeepAlive %@ installieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar KeepAlive %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer KeepAlive %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@をインストール"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装 KeepAlive %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar o KeepAlive %@"
           }
         }
       }
@@ -568,6 +2248,36 @@
             "state": "translated",
             "value": "Updates automatisch installieren"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar actualizaciones automáticamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer automatiquement les mises à jour"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートを自動的にインストール"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动安装更新"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar atualizações automaticamente"
+          }
         }
       }
     },
@@ -577,6 +2287,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Installation fehlgeschlagen: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de instalación: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l’installation : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インストールに失敗しました：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装失败：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falha na instalação: %@"
           }
         }
       }
@@ -588,6 +2328,36 @@
             "state": "translated",
             "value": "Auf %1$@ installiert. Gültig bis %2$@."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalada en %1$@. Válida hasta el %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installée sur %1$@. Valide jusqu’au %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@にインストールしました。%2$@まで有効です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已安装到“%1$@”。有效期至 %2$@。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalado em %1$@. Válido até %2$@."
+          }
         }
       }
     },
@@ -598,6 +2368,36 @@
             "state": "translated",
             "value": "Wird auf %@ installiert …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando en %@…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation sur %@…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@にインストール中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在安装到“%@”…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando em %@…"
+          }
         }
       }
     },
@@ -607,6 +2407,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wird installiert …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インストール中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在安装…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando…"
           }
         }
       }
@@ -621,6 +2451,36 @@
             "state": "translated",
             "value": "KeepAlive %@ ist verfügbar."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@ está disponible."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@ est disponible."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@が利用可能です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive %@ 现已推出。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O KeepAlive %@ está disponível."
+          }
         }
       }
     },
@@ -630,6 +2490,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "KeepAlive installiert deine Apps auf jedem eingeschalteten Gerät. Auf ausgeschalteten Geräten bleiben sie installiert, werden aber nicht mehr erneuert. Um Geräte für eine einzelne App auszuwählen, öffne ihre Details unter Apps."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive instala tus apps en todos los dispositivos activados. En un dispositivo desactivado, las apps siguen instaladas pero ya no se renuevan. Para elegir los dispositivos de una sola app, abre sus detalles en Apps."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive installe vos apps sur chaque appareil activé. Sur un appareil désactivé, elles restent installées mais ne sont plus renouvelées. Pour choisir les appareils d’une seule app, ouvrez ses détails dans Apps."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveは、オンになっているすべてのデバイスにAppをインストールします。オフにしたデバイスではAppはインストールされたままですが、更新されなくなります。App個別にデバイスを選ぶには、「App」でそのAppの詳細を開いてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive 会将你的 App 安装到所有已打开的设备上。在已关闭的设备上，App 仍会保留，但不再续期。若要为单个 App 选择设备，请在“App”中打开它的详细信息。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O KeepAlive instala seus apps em todos os dispositivos ativados. Em um dispositivo desativado, eles continuam instalados, mas não são mais renovados. Para escolher os dispositivos de um app específico, abra os detalhes dele em Apps."
           }
         }
       }
@@ -641,6 +2531,36 @@
             "state": "translated",
             "value": "KeepAlive ist aktuell."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive está actualizado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive est à jour."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveは最新です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive 已是最新版本。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O KeepAlive está atualizado."
+          }
         }
       }
     },
@@ -650,6 +2570,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "KeepAlive wurde auf %@ aktualisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive se ha actualizado a la versión %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive a été mis à jour vers la version %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveが%@にアップデートされました"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive 已更新至 %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O KeepAlive foi atualizado para a versão %@"
           }
         }
       }
@@ -661,6 +2611,36 @@
             "state": "translated",
             "value": "Zuletzt geprüft %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última comprobación: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernière vérification : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最終確認：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次检查：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última verificação: %@"
+          }
         }
       }
     },
@@ -670,6 +2650,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zuletzt erneuert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última renovación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernier renouvellement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最終更新"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última renovação"
           }
         }
       }
@@ -681,6 +2691,36 @@
             "state": "translated",
             "value": "Zuletzt erneuert: %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última renovación: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernier renouvellement : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最終更新：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次续期：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última renovação: %@"
+          }
         }
       }
     },
@@ -690,6 +2730,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ wird gesucht …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando %@…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche de %@…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@を探しています…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在查找“%@”…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Procurando %@…"
           }
         }
       }
@@ -701,6 +2771,36 @@
             "state": "translated",
             "value": "Geräte werden gesucht …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando dispositivos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche des appareils…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスを探しています…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在查找设备…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Procurando dispositivos…"
+          }
         }
       }
     },
@@ -710,6 +2810,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
           }
         }
       }
@@ -721,6 +2851,36 @@
             "state": "translated",
             "value": "Keine Aktivität"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin actividad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune activité"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクティビティなし"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无活动"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma atividade"
+          }
         }
       }
     },
@@ -730,6 +2890,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Keine Apps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay apps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune app"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appなし"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无 App"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum app"
           }
         }
       }
@@ -741,6 +2931,36 @@
             "state": "translated",
             "value": "Noch keine Apps."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay apps."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune app pour l’instant."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだAppがありません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有 App。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há apps."
+          }
         }
       }
     },
@@ -750,6 +2970,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kein Gerät ausgewählt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún dispositivo seleccionado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun appareil sélectionné"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスが選択されていません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未选择设备"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum dispositivo selecionado"
           }
         }
       }
@@ -761,6 +3011,36 @@
             "state": "translated",
             "value": "Kein Gerät ausgewählt. Wähle eines unter Einstellungen → Geräte."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún dispositivo seleccionado. Elige uno en Ajustes → Dispositivos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun appareil sélectionné. Choisissez-en un dans Réglages → Appareils."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスが選択されていません。「設定」→「デバイス」で選択してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未选择设备。请在“设置”→“设备”中选择一个。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum dispositivo selecionado. Escolha um em Ajustes → Dispositivos."
+          }
         }
       }
     },
@@ -770,6 +3050,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kein Gerät eingeschaltet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún dispositivo activado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun appareil activé"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オンのデバイスがありません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有已打开的设备"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum dispositivo ativado"
           }
         }
       }
@@ -781,6 +3091,36 @@
             "state": "translated",
             "value": "Kein gekoppeltes iPhone oder iPad gefunden."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha encontrado ningún iPhone o iPad enlazado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun iPhone ou iPad jumelé trouvé."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ペアリング済みのiPhoneまたはiPadが見つかりません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到已配对的 iPhone 或 iPad。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum iPhone ou iPad emparelhado encontrado."
+          }
         }
       }
     },
@@ -790,6 +3130,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Es konnte kein Provisioning-Profil erstellt werden. Öffne das Projekt einmal in Xcode und wähle unter „Signing & Capabilities“ dein Personal Team."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido crear un perfil de aprovisionamiento. Abre el proyecto una vez en Xcode y selecciona tu Personal Team en “Signing & Capabilities”."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer un profil de provisionnement. Ouvrez le projet une fois dans Xcode et sélectionnez votre Personal Team dans « Signing & Capabilities »."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロビジョニングプロファイルを作成できませんでした。Xcodeでプロジェクトを一度開き、「Signing & Capabilities」でPersonal Teamを選択してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法创建描述文件。请在 Xcode 中打开一次项目，并在“Signing & Capabilities”中选择你的 Personal Team。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível criar um perfil de provisionamento. Abra o projeto uma vez no Xcode e selecione seu Personal Team em “Signing & Capabilities”."
           }
         }
       }
@@ -801,6 +3171,36 @@
             "state": "translated",
             "value": "Kein Xcode-Projekt gefunden"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha encontrado ningún proyecto de Xcode"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun projet Xcode trouvé"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcodeプロジェクトが見つかりません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到 Xcode 项目"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum projeto do Xcode encontrado"
+          }
         }
       }
     },
@@ -810,6 +3210,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Noch nicht geprüft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no se ha comprobado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore vérifié"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだ確認していません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未检查"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não verificado"
           }
         }
       }
@@ -821,6 +3251,36 @@
             "state": "translated",
             "value": "Nicht gefunden"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No encontrado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introuvable"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "見つかりません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não encontrado"
+          }
         }
       }
     },
@@ -830,6 +3290,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auf %@ noch nicht installiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no instalada en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore installée sur %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@にはまだインストールされていません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未安装到“%@”"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não instalado em %@"
           }
         }
       }
@@ -841,6 +3331,36 @@
             "state": "translated",
             "value": "Noch nicht installiert"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no instalada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore installée"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだインストールされていません"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未安装"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não instalado"
+          }
         }
       }
     },
@@ -850,6 +3370,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nicht erreichbar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Injoignable"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未接続"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem conexão"
           }
         }
       }
@@ -861,6 +3411,36 @@
             "state": "translated",
             "value": "Auf einem ausgeschalteten Gerät bleibt die App installiert, wird dort aber nicht mehr erneuert."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En un dispositivo desactivado, la app sigue instalada pero ya no se renueva."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur un appareil désactivé, l’app reste installée mais n’est plus renouvelée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オフにしたデバイスでは、Appはインストールされたままですが、更新されなくなります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在已关闭的设备上，App 仍会保留，但不再续期。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em um dispositivo desativado, o app continua instalado, mas não é mais renovado."
+          }
         }
       }
     },
@@ -870,6 +3450,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nur am Stromnetz bauen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilar solo con el adaptador de corriente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compiler uniquement sur secteur"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電源接続時のみビルド"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅在接通电源时构建"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilar apenas na tomada"
           }
         }
       }
@@ -881,6 +3491,36 @@
             "state": "translated",
             "value": "nur auf %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "solo en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uniquement sur %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@のみ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅限 %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "apenas em %@"
+          }
         }
       }
     },
@@ -890,6 +3530,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Beim Anmelden öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir al iniciar sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir à l’ouverture de session"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ログイン時に開く"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录时打开"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir ao iniciar sessão"
           }
         }
       }
@@ -901,6 +3571,36 @@
             "state": "translated",
             "value": "Optional. Wird vor jedem Build im Projektordner ausgeführt, zum Beispiel um ein Flutter-Projekt vorzubereiten."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcional. Se ejecuta en la carpeta del proyecto antes de cada compilación, por ejemplo para preparar un proyecto de Flutter."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Facultatif. S’exécute dans le dossier du projet avant chaque compilation, par exemple pour préparer un projet Flutter."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オプション。各ビルドの前にプロジェクトフォルダで実行されます。たとえばFlutterプロジェクトの準備に使います。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可选。每次构建前在项目文件夹中运行，例如用于准备 Flutter 项目。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcional. É executado na pasta do projeto antes de cada compilação, por exemplo para preparar um projeto Flutter."
+          }
         }
       }
     },
@@ -910,6 +3610,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gekoppelte Geräte"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dispositivos enlazados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appareils jumelés"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ペアリング済みのデバイス"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已配对的设备"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dispositivos emparelhados"
           }
         }
       }
@@ -921,6 +3651,36 @@
             "state": "translated",
             "value": "Pausiert"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pausa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pause"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一時停止中"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已暂停"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em pausa"
+          }
         }
       }
     },
@@ -930,6 +3690,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Projekt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proyecto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projet"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロジェクト"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "项目"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projeto"
           }
         }
       }
@@ -941,6 +3731,36 @@
             "state": "translated",
             "value": "KeepAlive beenden"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de KeepAlive"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter KeepAlive"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveを終了"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 KeepAlive"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerrar o KeepAlive"
+          }
         }
       }
     },
@@ -950,6 +3770,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Projekt wird gelesen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leyendo el proyecto…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture du projet…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロジェクトを読み込み中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取项目…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lendo o projeto…"
           }
         }
       }
@@ -961,6 +3811,36 @@
             "state": "translated",
             "value": "Aktualisieren"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualiser"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再読み込み"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刷新"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizar"
+          }
         }
       }
     },
@@ -970,6 +3850,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "削除"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remover"
           }
         }
       }
@@ -981,6 +3891,36 @@
             "state": "translated",
             "value": "„%@“ entfernen?"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar “%@”?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer « %@ » ?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「%@」を削除しますか？"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要移除“%@”吗？"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remover “%@”?"
+          }
         }
       }
     },
@@ -990,6 +3930,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "App entfernen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar app…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l’app…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appを削除…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除 App…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remover App…"
           }
         }
       }
@@ -1031,6 +4001,84 @@
               }
             }
           }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renovar después de %lld día"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renovar después de %lld días"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renouveler après %lld jour"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renouveler après %lld jours"
+                }
+              }
+            }
+          }
+        },
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld日後に更新"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 天后续期"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renovar após %lld dia"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Renovar após %lld dias"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -1040,6 +4088,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Alle jetzt erneuern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar todo ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout renouveler maintenant"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべて今すぐ更新"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立即全部续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar tudo agora"
           }
         }
       }
@@ -1051,6 +4129,36 @@
             "state": "translated",
             "value": "Automatisch erneuern"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar automáticamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renouveler automatiquement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動的に更新"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar automaticamente"
+          }
         }
       }
     },
@@ -1060,6 +4168,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jetzt erneuern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renouveler maintenant"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今すぐ更新"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立即续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovar agora"
           }
         }
       }
@@ -1071,6 +4209,36 @@
             "state": "translated",
             "value": "Erneuerung"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renouvellement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renovação"
+          }
         }
       }
     },
@@ -1080,6 +4248,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Schema"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esquema"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schéma"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキーム"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "方案"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esquema"
           }
         }
       }
@@ -1091,6 +4289,36 @@
             "state": "translated",
             "value": "Suche läuft …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "検索中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在搜索…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Procurando…"
+          }
         }
       }
     },
@@ -1100,6 +4328,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Einstellungen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes…"
           }
         }
       }
@@ -1111,6 +4369,36 @@
             "state": "translated",
             "value": "Aktivität anzeigen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar actividad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher l’activité"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクティビティを表示"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示活动"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar atividade"
+          }
         }
       }
     },
@@ -1120,6 +4408,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Im Finder anzeigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Finder"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher dans le Finder"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finderで表示"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在访达中显示"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar no Finder"
           }
         }
       }
@@ -1131,6 +4449,36 @@
             "state": "translated",
             "value": "Protokolle im Finder anzeigen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar registros en el Finder"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les journaux dans le Finder"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ログをFinderで表示"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在访达中显示日志"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar registros no Finder"
+          }
         }
       }
     },
@@ -1140,6 +4488,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Status"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "État"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "状況"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "状态"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado"
           }
         }
       }
@@ -1151,6 +4529,36 @@
             "state": "translated",
             "value": "Erneuern stoppen"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener la renovación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter le renouvellement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新を停止"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止续期"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parar renovação"
+          }
         }
       }
     },
@@ -1160,6 +4568,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die App bleibt auf deinen Geräten, wird aber nicht mehr von KeepAlive erneuert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La app seguirá en tus dispositivos, pero KeepAlive dejará de renovarla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app reste sur vos appareils, mais KeepAlive ne la renouvellera plus."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appはデバイスに残りますが、KeepAliveによる更新は行われなくなります。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该 App 会保留在你的设备上，但 KeepAlive 将不再为其续期。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O app continuará nos seus dispositivos, mas o KeepAlive deixará de renová-lo."
           }
         }
       }
@@ -1171,6 +4609,36 @@
             "state": "translated",
             "value": "Der Build ist fertig, aber %@ wurde nicht gefunden."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La compilación ha terminado, pero no se ha encontrado %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La compilation est terminée, mais %@ est introuvable."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビルドは完了しましたが、%@が見つかりませんでした。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "构建已完成，但未找到 %@。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A compilação terminou, mas %@ não foi encontrado."
+          }
         }
       }
     },
@@ -1180,6 +4648,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Das Gerät ist nicht erreichbar. Stelle sicher, dass es im selben WLAN wie dieser Mac ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede conectar con el dispositivo. Asegúrate de que esté en la misma red Wi‑Fi que este Mac."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’appareil est injoignable. Assurez-vous qu’il est sur le même réseau Wi‑Fi que ce Mac."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスに接続できません。このMacと同じWi‑Fiに接続されていることを確認してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接设备。请确保它与这台 Mac 连接到同一无线局域网。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não é possível conectar ao dispositivo. Verifique se ele está na mesma rede Wi‑Fi deste Mac."
           }
         }
       }
@@ -1191,6 +4689,36 @@
             "state": "translated",
             "value": "Das geladene Update ist beschädigt und wurde verworfen."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La actualización descargada está dañada y se ha descartado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mise à jour téléchargée est endommagée et a été supprimée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロードしたアップデートは破損していたため破棄しました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载的更新已损坏，已被丢弃。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A atualização baixada está danificada e foi descartada."
+          }
         }
       }
     },
@@ -1200,6 +4728,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Das geladene Update ist keine gültige Version von KeepAlive und wurde verworfen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La actualización descargada no es una versión válida de KeepAlive y se ha descartado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mise à jour téléchargée n’est pas une version valide de KeepAlive et a été supprimée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロードしたアップデートは有効なKeepAliveではないため破棄しました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载的更新不是有效的 KeepAlive 版本，已被丢弃。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A atualização baixada não é uma versão válida do KeepAlive e foi descartada."
           }
         }
       }
@@ -1211,6 +4769,36 @@
             "state": "translated",
             "value": "Das Projekt konnte nicht gelesen werden: %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido leer el proyecto: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire le projet : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロジェクトを読み込めませんでした：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取项目：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler o projeto: %@"
+          }
         }
       }
     },
@@ -1220,6 +4808,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Das Release enthält keine KeepAlive.zip."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La versión publicada no contiene KeepAlive.zip."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La version publiée ne contient pas KeepAlive.zip."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リリースにKeepAlive.zipが含まれていません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该发布版本不包含 KeepAlive.zip。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A versão publicada não contém o KeepAlive.zip."
           }
         }
       }
@@ -1231,6 +4849,36 @@
             "state": "translated",
             "value": "Der ausgewählte Ordner enthält kein .xcodeproj oder .xcworkspace."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La carpeta seleccionada no contiene ningún .xcodeproj ni .xcworkspace."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le dossier sélectionné ne contient ni .xcodeproj ni .xcworkspace."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択したフォルダに.xcodeprojまたは.xcworkspaceがありません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所选文件夹中没有 .xcodeproj 或 .xcworkspace。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A pasta selecionada não contém um .xcodeproj ou .xcworkspace."
+          }
         }
       }
     },
@@ -1240,6 +4888,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Das Update stammt nicht von GitHub und wurde verworfen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La actualización no se ha descargado de GitHub y se ha descartado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mise à jour ne provient pas de GitHub et a été supprimée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートがGitHubからダウンロードされたものではないため破棄しました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该更新并非从 GitHub 下载，已被丢弃。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A atualização não foi baixada do GitHub e foi descartada."
           }
         }
       }
@@ -1251,6 +4929,36 @@
             "state": "translated",
             "value": "Der Befehl unter „Vor dem Build“ ist fehlgeschlagen: %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error en el comando de “Antes de compilar”: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la commande « Avant la compilation » : %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「ビルド前」のコマンドに失敗しました：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“构建前”命令失败：%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O comando de “Antes da compilação” falhou: %@"
+          }
         }
       }
     },
@@ -1260,6 +4968,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Diese App ist auf allen Geräten ausgeschaltet. Schalte in ihren Details unter Apps ein Gerät ein."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta app está desactivada en todos los dispositivos. Activa un dispositivo en sus detalles, en Apps."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette app est désactivée sur tous les appareils. Activez un appareil dans ses détails, dans Apps."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このAppはすべてのデバイスでオフになっています。「App」でこのAppの詳細を開き、デバイスをオンにしてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 App 在所有设备上均已关闭。请在“App”中打开它的详细信息并打开一台设备。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este app está desativado em todos os dispositivos. Ative um dispositivo nos detalhes dele, em Apps."
           }
         }
       }
@@ -1271,6 +5009,36 @@
             "state": "translated",
             "value": "Dieses Gerät ist nicht im Provisioning-Profil der App. Öffne das Projekt in Xcode und führe es einmal auf diesem Gerät aus."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este dispositivo no está en el perfil de aprovisionamiento de la app. Abre el proyecto en Xcode y ejecútalo una vez en este dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet appareil ne figure pas dans le profil de provisionnement de l’app. Ouvrez le projet dans Xcode et exécutez-le une fois sur cet appareil."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このデバイスはAppのプロビジョニングプロファイルに含まれていません。Xcodeでプロジェクトを開き、このデバイスで一度実行してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备不在该 App 的描述文件中。请在 Xcode 中打开项目，并在此设备上运行一次。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este dispositivo não está no perfil de provisionamento do app. Abra o projeto no Xcode e execute-o uma vez neste dispositivo."
+          }
         }
       }
     },
@@ -1280,6 +5048,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dieses Schema erstellt keine iOS-App."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este esquema no compila una app de iOS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce schéma ne compile pas d’app iOS."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このスキームはiOS Appをビルドしません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此方案不会构建 iOS App。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este esquema não compila um app para iOS."
           }
         }
       }
@@ -1291,6 +5089,36 @@
             "state": "translated",
             "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone oder iPad einmal per Kabel mit diesem Mac und tippe auf dem Gerät auf „Vertrauen“. Mit Xcode 26 oder älter aktiviere außerdem „Connect via network“ unter Window → Devices and Simulators."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para renovar por Wi‑Fi, conecta tu iPhone o iPad a este Mac con un cable una vez y toca “Confiar” en el dispositivo. Con Xcode 26 o anterior, activa también “Connect via network” en Window → Devices and Simulators."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour renouveler par Wi‑Fi, connectez une fois votre iPhone ou iPad à ce Mac avec un câble, puis touchez « Se fier » sur l’appareil. Avec Xcode 26 ou une version antérieure, activez aussi « Connect via network » dans Window → Devices and Simulators."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wi‑Fi経由で更新するには、iPhoneまたはiPadをケーブルでこのMacに一度接続し、デバイスで「信頼」をタップしてください。Xcode 26以前では、Window → Devices and Simulatorsで「Connect via network」もオンにしてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若要通过无线局域网续期，请用线缆将 iPhone 或 iPad 连接到这台 Mac 一次，并在设备上轻点“信任”。使用 Xcode 26 或更早版本时，还需在 Window → Devices and Simulators 中打开“Connect via network”。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para renovar por Wi‑Fi, conecte seu iPhone ou iPad a este Mac com um cabo uma vez e toque em “Confiar” no dispositivo. Com o Xcode 26 ou anterior, ative também “Connect via network” em Window → Devices and Simulators."
+          }
         }
       }
     },
@@ -1300,6 +5128,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aktiviere auf dem Gerät den Entwicklermodus unter Einstellungen → Datenschutz & Sicherheit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa el modo de desarrollador en el dispositivo en Ajustes → Privacidad y seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez le mode développeur sur l’appareil dans Réglages → Confidentialité et sécurité."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスの「設定」→「プライバシーとセキュリティ」でデベロッパモードをオンにしてください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在设备的“设置”→“隐私与安全性”中打开开发者模式。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative o Modo de Desenvolvedor no dispositivo em Ajustes → Privacidade e Segurança."
           }
         }
       }
@@ -1311,6 +5169,36 @@
             "state": "translated",
             "value": "Entsperre %@ einmal, damit KeepAlive Apps installieren kann. KeepAlive versucht es später erneut."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquea %@ una vez para que KeepAlive pueda instalar apps. Lo volverá a intentar más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouillez %@ une fois pour que KeepAlive puisse installer des apps. Il réessaiera plus tard."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveがAppをインストールできるように、%@のロックを一度解除してください。あとでもう一度試します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请解锁“%@”一次，以便 KeepAlive 安装 App。稍后会再试。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloqueie %@ uma vez para que o KeepAlive possa instalar apps. Ele tentará novamente mais tarde."
+          }
         }
       }
     },
@@ -1320,6 +5208,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Entsperre das Gerät und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquea el dispositivo y vuelve a intentarlo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouillez l’appareil et réessayez."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイスのロックを解除して、もう一度お試しください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请解锁设备后重试。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloqueie o dispositivo e tente novamente."
           }
         }
       }
@@ -1337,6 +5255,36 @@
             "state": "translated",
             "value": "Updated from %1$@ to %2$@."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizado de %1$@ a %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mis à jour de %1$@ vers %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@から%2$@にアップデートしました。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已从 %1$@ 更新至 %2$@。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizado de %1$@ para %2$@."
+          }
         }
       }
     },
@@ -1346,6 +5294,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Updates"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizaciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mises à jour"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデート"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizações"
           }
         }
       }
@@ -1357,6 +5335,36 @@
             "state": "translated",
             "value": "Updates werden installiert, während keine App gebaut wird. Deine Apps und Einstellungen bleiben erhalten."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las actualizaciones se instalan mientras no se compila ninguna app. Tus apps y ajustes se conservan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les mises à jour sont installées quand aucune app n’est en cours de compilation. Vos apps et réglages sont conservés."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートはAppのビルド中以外にインストールされます。Appと設定はそのまま保持されます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新会在没有构建 App 时安装。你的 App 和设置会保留。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As atualizações são instaladas quando nenhum app está sendo compilado. Seus apps e ajustes são mantidos."
+          }
         }
       }
     },
@@ -1366,6 +5374,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Standard verwenden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar predeterminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la valeur par défaut"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デフォルトを使用"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用默认"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar padrão"
           }
         }
       }
@@ -1377,6 +5415,36 @@
             "state": "translated",
             "value": "Version %@"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バージョン %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本 %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versão %@"
+          }
         }
       }
     },
@@ -1386,6 +5454,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Version %@ ist verfügbar."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La versión %@ está disponible."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La version %@ est disponible."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バージョン %@が利用可能です。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本 %@ 现已推出。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A versão %@ está disponível."
           }
         }
       }
@@ -1397,12 +5495,72 @@
             "state": "translated",
             "value": "Wartet …"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En espera…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待機中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在等待…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aguardando…"
+          }
         }
       }
     },
     "Xcode": {
       "localizations": {
         "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Xcode"
@@ -1417,6 +5575,36 @@
             "state": "translated",
             "value": "Xcode wurde nicht gefunden. Installiere es aus dem App Store oder wähle es unter Einstellungen → Allgemein aus."
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha encontrado Xcode. Instálalo desde el App Store o elígelo en Ajustes → General."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode est introuvable. Installez-le depuis l’App Store ou choisissez-le dans Réglages → Général."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcodeが見つかりません。App Storeからインストールするか、「設定」→「一般」で選択してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到 Xcode。请从 App Store 安装，或在“设置”→“通用”中选取。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Xcode não foi encontrado. Instale-o pela App Store ou escolha-o em Ajustes → Geral."
+          }
         }
       }
     },
@@ -1426,6 +5614,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deine Apps und Einstellungen bleiben unverändert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus apps y ajustes no han cambiado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos apps et réglages sont inchangés."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appと設定は変更されていません。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的 App 和设置未更改。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus apps e ajustes não foram alterados."
           }
         }
       }

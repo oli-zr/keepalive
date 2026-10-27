@@ -23,7 +23,8 @@ have to think about it again.
 - Installs over Wi‑Fi or a cable using Apple’s own tools. Your data in the apps is kept.
 - Uses little energy: builds wait for a power adapter unless an app expires within a day.
 - Works with any Xcode project, including Flutter and other cross-platform projects.
-- Updates itself, and is available in English and German.
+- Updates itself, and is available in English, German, Spanish, French, Japanese,
+  Portuguese and Simplified Chinese. [Corrections are welcome.](../../issues/new/choose)
 
 ## What you need
 

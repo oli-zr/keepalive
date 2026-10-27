@@ -3,6 +3,22 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.3.1] - 2026-10-27
+
+### Features
+
+- KeepAlive is now also available in Spanish, French, Japanese, Portuguese and Simplified
+  Chinese. If you spot a wording that could be better,
+  [let us know](https://github.com/oli-zr/keepalive/issues/new/choose).
+
+### Fixed
+
+- Hints now match Xcode 27, where devices are managed in Device Hub and paired devices are
+  reachable over Wi‑Fi without turning on “Connect via network”.
+- When Apple’s limit for free accounts is reached, the message now says which limit it is
+  and what helps: removing an app from the device, or waiting a few days for new app IDs.
+- Several texts are clearer, and speak of your device instead of always your iPhone.
+
 ## [1.3] - 2026-10-27
 
 ### Features

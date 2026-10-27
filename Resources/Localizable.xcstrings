@@ -111,6 +111,26 @@
         }
       }
     },
+    "A free Apple Account can create ten new app IDs per week. Try again in a few days.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem kostenlosen Apple Account lassen sich zehn neue App-IDs pro Woche erstellen. Versuche es in ein paar Tagen erneut."
+          }
+        }
+      }
+    },
+    "A free Apple Account can have three of your own apps on a device at the same time. Remove one of them from the device.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit einem kostenlosen Apple Account können drei eigene Apps gleichzeitig auf einem Gerät sein. Entferne eine davon vom Gerät."
+          }
+        }
+      }
+    },
     "A free Apple Account can have up to three of your own apps installed on a device at the same time.": {
       "localizations": {
         "de": {
@@ -141,12 +161,12 @@
         }
       }
     },
-    "Add an Xcode project to keep it installed on your iPhone or iPad.": {
+    "Add an Xcode project, and KeepAlive keeps its app installed on your iPhone or iPad.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Füge ein Xcode-Projekt hinzu, damit es auf deinem iPhone oder iPad installiert bleibt."
+            "value": "Füge ein Xcode-Projekt hinzu, damit seine App auf deinem iPhone oder iPad installiert bleibt."
           }
         }
       }
@@ -157,6 +177,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "App hinzufügen …"
+          }
+        }
+      }
+    },
+    "Add your Apple Account in Xcode’s settings.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Füge deinen Apple Account in den Einstellungen von Xcode hinzu."
           }
         }
       }
@@ -177,16 +207,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ wird zum Provisioning-Profil hinzugefügt …"
-          }
-        }
-      }
-    },
-    "Apple’s limit for free accounts was reached. Remove an app from your iPhone or wait a few days.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Das Limit für kostenlose Accounts ist erreicht. Entferne eine App von deinem iPhone oder warte ein paar Tage."
           }
         }
       }
@@ -366,7 +386,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verbinde %@ mit demselben WLAN wie diesen Mac, damit KeepAlive die App erneuern kann."
+            "value": "Verbinde %@ mit dem WLAN dieses Macs, damit KeepAlive die App erneuern kann."
           }
         }
       }
@@ -639,7 +659,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zuletzt gesucht %@"
+            "value": "Zuletzt geprüft %@"
           }
         }
       }
@@ -789,7 +809,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noch nicht gesucht"
+            "value": "Noch nicht geprüft"
           }
         }
       }
@@ -1089,7 +1109,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aktivität zeigen"
+            "value": "Aktivität anzeigen"
           }
         }
       }
@@ -1099,7 +1119,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Im Finder zeigen"
+            "value": "Im Finder anzeigen"
           }
         }
       }
@@ -1109,17 +1129,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protokolle im Finder zeigen"
-          }
-        }
-      }
-    },
-    "Sign in to your Apple Account in Xcode → Settings → Accounts.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Melde dich in Xcode unter Settings → Accounts mit deinem Apple Account an."
+            "value": "Protokolle im Finder anzeigen"
           }
         }
       }
@@ -1164,6 +1174,16 @@
         }
       }
     },
+    "The device could not be reached. Make sure it is on the same Wi‑Fi as this Mac.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Gerät ist nicht erreichbar. Stelle sicher, dass es im selben WLAN wie dieser Mac ist."
+          }
+        }
+      }
+    },
     "The downloaded update is damaged and was discarded.": {
       "localizations": {
         "de": {
@@ -1180,16 +1200,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Das geladene Update ist keine gültige Version von KeepAlive und wurde verworfen."
-          }
-        }
-      }
-    },
-    "The pre-build command failed: %@": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Befehl vor dem Build ist fehlgeschlagen: %@"
           }
         }
       }
@@ -1234,6 +1244,16 @@
         }
       }
     },
+    "The “Before Build” command failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Befehl unter „Vor dem Build“ ist fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
     "This app is turned off on every device. Turn on a device in its details under Apps.": {
       "localizations": {
         "de": {
@@ -1264,22 +1284,22 @@
         }
       }
     },
-    "To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.": {
+    "To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once and tap Trust on the device. With Xcode 26 or earlier, also turn on “Connect via network” under Window → Devices and Simulators.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone oder iPad einmal per Kabel mit diesem Mac. Öffne dann Xcode, wähle Window → Devices and Simulators und aktiviere „Connect via network“."
+            "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone oder iPad einmal per Kabel mit diesem Mac und tippe auf dem Gerät auf „Vertrauen“. Mit Xcode 26 oder älter aktiviere außerdem „Connect via network“ unter Window → Devices and Simulators."
           }
         }
       }
     },
-    "Turn on Developer Mode on your iPhone in Settings → Privacy & Security.": {
+    "Turn on Developer Mode on the device in Settings → Privacy & Security.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aktiviere den Entwicklermodus auf deinem iPhone unter Einstellungen → Datenschutz & Sicherheit."
+            "value": "Aktiviere auf dem Gerät den Entwicklermodus unter Einstellungen → Datenschutz & Sicherheit."
           }
         }
       }
@@ -1294,12 +1314,12 @@
         }
       }
     },
-    "Unlock your iPhone and try again.": {
+    "Unlock the device and try again.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Entsperre dein iPhone und versuche es erneut."
+            "value": "Entsperre das Gerät und versuche es erneut."
           }
         }
       }
@@ -1390,12 +1410,12 @@
         }
       }
     },
-    "Xcode was not found. Install Xcode or choose its location in Settings.": {
+    "Xcode was not found. Install it from the App Store, or choose it in Settings → General.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Xcode wurde nicht gefunden. Installiere Xcode oder wähle den Speicherort in den Einstellungen."
+            "value": "Xcode wurde nicht gefunden. Installiere es aus dem App Store oder wähle es unter Einstellungen → Allgemein aus."
           }
         }
       }
@@ -1406,16 +1426,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deine Apps und Einstellungen bleiben unverändert."
-          }
-        }
-      }
-    },
-    "Your iPhone could not be reached. Make sure it is on the same Wi‑Fi network as this Mac.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein iPhone ist nicht erreichbar. Stelle sicher, dass es im selben WLAN wie dieser Mac ist."
           }
         }
       }

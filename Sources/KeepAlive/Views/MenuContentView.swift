@@ -93,7 +93,7 @@ struct MenuContentView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text("No Apps")
                 .font(.subheadline.weight(.semibold))
-            Text("Add an Xcode project to keep it installed on your iPhone or iPad.")
+            Text("Add an Xcode project, and KeepAlive keeps its app installed on your iPhone or iPad.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)

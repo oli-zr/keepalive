@@ -4,7 +4,7 @@ enum ToolchainError: LocalizedError {
     case xcodeNotFound
 
     var errorDescription: String? {
-        String(localized: "Xcode was not found. Install Xcode or choose its location in Settings.")
+        String(localized: "Xcode was not found. Install it from the App Store, or choose it in Settings → General.")
     }
 }
 

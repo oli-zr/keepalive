@@ -10,7 +10,7 @@ enum BuildError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .preBuildFailed(let detail):
-            return String(localized: "The pre-build command failed: \(detail)")
+            return String(localized: "The “Before Build” command failed: \(detail)")
         case .buildFailed(let detail):
             return String(localized: "Build failed: \(detail)")
         case .productMissing(let name):

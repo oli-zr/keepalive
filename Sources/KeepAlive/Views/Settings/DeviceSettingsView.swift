@@ -41,7 +41,7 @@ struct DeviceSettingsView: View {
             } footer: {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("KeepAlive installs your apps on every device that is turned on. On a device that is turned off, they stay installed but are no longer renewed. To choose devices for a single app, open its details under Apps.")
-                    Text("To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.")
+                    Text("To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once and tap Trust on the device. With Xcode 26 or earlier, also turn on “Connect via network” under Window → Devices and Simulators.")
                 }
                 .settingsFooter()
             }

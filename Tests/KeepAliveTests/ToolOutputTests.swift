@@ -5,15 +5,16 @@ import Testing
 @Suite("Error messages")
 struct DiagnosticsTests {
     @Test("Explains common failures in plain words", arguments: [
-        ("error: No Accounts: Add a new account in Accounts settings.", "Sign in to your Apple Account"),
-        ("Your maximum App ID limit has been reached.", "limit for free accounts"),
+        ("error: No Accounts: Add a new account in Accounts settings.", "Add your Apple Account"),
+        ("Your maximum App ID limit has been reached.", "ten new app IDs"),
+        ("The maximum number of apps for free development profiles has been reached.", "three of your own apps"),
         ("Developer Mode is disabled on the device.", "Developer Mode"),
-        ("ERROR: The device is locked.", "Unlock your iPhone"),
+        ("ERROR: The device is locked.", "Unlock the device"),
         ("""
         ERROR: The developer disk image could not be mounted on this device. (com.apple.dt.CoreDeviceError error 12040 (0x2F08))
                        The operation failed because the device was still locked. (com.apple.dt.CoreDeviceError error 10003 (0x2713))
                        NSLocalizedFailureReason = The device is currently locked.
-        """, "Unlock your iPhone"),
+        """, "Unlock the device"),
         ("Timed out while attempting to establish tunnel", "could not be reached"),
         ("ERROR: A connection to this device could not be established. (com.apple.dt.CoreDeviceError error 4000 (0xFA0))", "could not be reached"),
         ("error: No profiles for 'com.example.App' were found", "No provisioning profile"),

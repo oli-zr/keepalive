@@ -88,17 +88,18 @@ gh attestation verify KeepAlive.zip --repo oli-zr/keepalive
 
 ### 1. Sign in to Xcode (once)
 
-Open Xcode, choose Xcode → Settings → Accounts, click **+**, and sign in with your Apple
-Account.
+Open Xcode, choose Xcode → Settings → **Apple Accounts**, click **+**, and sign in with
+your Apple Account. In Xcode 26 and earlier, the section is called **Accounts**.
 
 ### 2. Connect your iPhone or iPad (once per device)
 
-1. Connect the device to your Mac with a cable and unlock it. If it asks whether to trust
-   this computer, tap **Trust**.
-2. In Xcode, choose Window → Devices and Simulators and select the device.
-3. Turn on **Connect via network**, so KeepAlive can reach it over Wi‑Fi later.
-4. On the device, turn on Settings → Privacy & Security → **Developer Mode** and restart it
+1. Open Xcode, connect the device to your Mac with a cable, and unlock it. When it asks
+   whether to trust this computer, tap **Trust**.
+2. On the device, turn on Settings → Privacy & Security → **Developer Mode** and restart it
    when asked. The option appears once the device has been connected to Xcode.
+3. With Xcode 27, that’s all: from now on, the device is reachable over Wi‑Fi too. With
+   Xcode 26 or earlier, also choose Window → Devices and Simulators, select the device,
+   and turn on **Connect via network**.
 
 ### 3. Prepare your project (once per app)
 
@@ -133,7 +134,8 @@ everything KeepAlive did, including the full messages.
 | *iPhone is not reachable* | Connect the device to the same Wi‑Fi as your Mac. KeepAlive tries again on its own. |
 | *Unlock iPhone once…* | Unlock the device. After a restart, this is needed once before apps can be installed. |
 | *No provisioning profile could be created* | Do [step 3 of the setup](#3-prepare-your-project-once-per-app) for this project. |
-| *Apple’s limit for free accounts was reached* | Remove one of your own apps from the device, or wait a few days. See [Limits](#limits). |
+| *A free Apple Account can have three of your own apps on a device…* | Remove one of them from the device, or turn the app off for that device in KeepAlive. See [Limits](#limits). |
+| *A free Apple Account can create ten new app IDs per week…* | Wait a few days. KeepAlive tries again on its own. |
 | *Xcode was not found* | Install Xcode from the App Store, or choose it under Settings → General. |
 | The device is not listed under **Devices** | Do [step 2 of the setup](#2-connect-your-iphone-or-ipad-once-per-device) again, and click the refresh button. |
 

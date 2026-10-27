@@ -89,18 +89,19 @@ gh attestation verify KeepAlive.zip --repo oli-zr/keepalive
 
 ### 1. In Xcode anmelden (einmalig)
 
-Öffne Xcode, wähle Xcode → Settings → Accounts, klicke auf **+** und melde dich mit deinem
-Apple Account an.
+Öffne Xcode, wähle Xcode → Settings → **Apple Accounts**, klicke auf **+** und melde dich
+mit deinem Apple Account an. In Xcode 26 und älter heißt der Bereich **Accounts**.
 
 ### 2. iPhone oder iPad verbinden (einmal pro Gerät)
 
-1. Schließe das Gerät per Kabel an deinen Mac an und entsperre es. Fragt es, ob du diesem
-   Computer vertraust, tippe auf **Vertrauen**.
-2. Wähle in Xcode Window → Devices and Simulators und dann das Gerät.
-3. Aktiviere **Connect via network**, damit KeepAlive es später über WLAN erreicht.
-4. Aktiviere auf dem Gerät Einstellungen → Datenschutz & Sicherheit → **Entwicklermodus**
+1. Öffne Xcode, schließe das Gerät per Kabel an deinen Mac an und entsperre es. Fragt es,
+   ob du diesem Computer vertraust, tippe auf **Vertrauen**.
+2. Aktiviere auf dem Gerät Einstellungen → Datenschutz & Sicherheit → **Entwicklermodus**
    und starte es neu, wenn du dazu aufgefordert wirst. Die Option erscheint, sobald das
    Gerät einmal mit Xcode verbunden war.
+3. Mit Xcode 27 war’s das schon: Ab jetzt ist das Gerät auch über WLAN erreichbar. Mit
+   Xcode 26 oder älter wähle außerdem Window → Devices and Simulators, dann das Gerät, und
+   aktiviere **Connect via network**.
 
 ### 3. Projekt vorbereiten (einmal pro App)
 
@@ -134,10 +135,11 @@ Aktivität** steht alles, was KeepAlive gemacht hat, mit den vollständigen Meld
 
 | Meldung | Was zu tun ist |
 | --- | --- |
-| *iPhone ist nicht erreichbar* | Verbinde das Gerät mit demselben WLAN wie deinen Mac. KeepAlive versucht es selbst erneut. |
+| *iPhone ist nicht erreichbar* | Verbinde das Gerät mit dem WLAN deines Macs. KeepAlive versucht es selbst erneut. |
 | *Entsperre iPhone einmal …* | Entsperre das Gerät. Nach einem Neustart ist das einmal nötig, bevor Apps installiert werden können. |
 | *Es konnte kein Provisioning-Profil erstellt werden* | Führe für dieses Projekt [Schritt 3 der Einrichtung](#3-projekt-vorbereiten-einmal-pro-app) aus. |
-| *Das Limit für kostenlose Accounts ist erreicht* | Entferne eine deiner eigenen Apps vom Gerät oder warte ein paar Tage. Siehe [Grenzen](#grenzen). |
+| *Mit einem kostenlosen Apple Account können drei eigene Apps gleichzeitig auf einem Gerät sein …* | Entferne eine davon vom Gerät oder schalte die App in KeepAlive für dieses Gerät aus. Siehe [Grenzen](#grenzen). |
+| *Mit einem kostenlosen Apple Account lassen sich zehn neue App-IDs pro Woche erstellen …* | Warte ein paar Tage. KeepAlive versucht es selbst erneut. |
 | *Xcode wurde nicht gefunden* | Installiere Xcode aus dem App Store oder wähle es unter Einstellungen → Allgemein aus. |
 | Das Gerät fehlt unter **Geräte** | Wiederhole [Schritt 2 der Einrichtung](#2-iphone-oder-ipad-verbinden-einmal-pro-gerät) und klicke auf die Schaltfläche zum Aktualisieren. |
 

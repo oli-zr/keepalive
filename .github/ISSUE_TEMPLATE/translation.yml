@@ -1,0 +1,35 @@
+name: Translation
+description: Suggest a better wording, or ask for a new language.
+labels: [translation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. Native speakers have not reviewed most translations yet, so every correction helps. You can write in English or in the language itself.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - English
+        - German (Deutsch)
+        - Spanish (Español)
+        - French (Français)
+        - Japanese (日本語)
+        - Portuguese, Brazil (Português)
+        - Simplified Chinese (简体中文)
+        - Another language
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+      description: The text as KeepAlive shows it, and where, for example “Settings → Devices”. A screenshot helps too. Leave this empty when you ask for a new language.
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+      description: Your wording, and why it is better if that is not obvious. For a new language, say which one.
+    validations:
+      required: true

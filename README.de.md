@@ -25,7 +25,7 @@ Einmal eingerichtet, musst du dich um nichts mehr kümmern.
 - Spart Energie: Builds warten auf das Netzteil, außer eine App läuft innerhalb eines Tages ab.
 - Funktioniert mit jedem Xcode-Projekt, auch mit Flutter und anderen plattformübergreifenden Projekten.
 - Aktualisiert sich selbst und ist auf Deutsch, Englisch, Spanisch, Französisch, Japanisch,
-  Portugiesisch und vereinfachtem Chinesisch verfügbar. [Korrekturen sind willkommen.](../../issues/new/choose)
+  Portugiesisch und vereinfachtem Chinesisch verfügbar. [Korrekturen sind willkommen.](../../issues/new?template=translation.yml)
 
 ## Was du brauchst
 

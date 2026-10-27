@@ -24,7 +24,7 @@ have to think about it again.
 - Uses little energy: builds wait for a power adapter unless an app expires within a day.
 - Works with any Xcode project, including Flutter and other cross-platform projects.
 - Updates itself, and is available in English, German, Spanish, French, Japanese,
-  Portuguese and Simplified Chinese. [Corrections are welcome.](../../issues/new/choose)
+  Portuguese and Simplified Chinese. [Corrections are welcome.](../../issues/new?template=translation.yml)
 
 ## What you need
 

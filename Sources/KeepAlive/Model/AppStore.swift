@@ -28,12 +28,34 @@ final class AppStore {
 
     var isBusy: Bool { activity.values.contains { $0.isBusy } }
 
-    var selectedDevice: Device? {
-        devices.first { $0.id == preferences.deviceIdentifier }
+    /// The devices chosen in Settings. Two devices with the same name, such as two iPhones
+    /// both called “iPhone”, get their model added so they can be told apart.
+    var chosenDevices: [SavedDevice] {
+        preferences.devices.map { device in
+            let isAmbiguous = preferences.devices.contains { $0.id != device.id && $0.name == device.name }
+            guard isAmbiguous, !device.model.isEmpty else { return device }
+            var named = device
+            named.name = "\(device.name) (\(device.model))"
+            return named
+        }
+    }
+
+    /// The devices an app is installed on: those chosen in Settings, minus the ones
+    /// turned off for this app.
+    func targets(for app: ManagedApp) -> [SavedDevice] {
+        chosenDevices.filter { !app.excludedDevices.contains($0.id) }
+    }
+
+    /// The device as `devicectl` saw it at the last refresh.
+    func liveDevice(_ id: Device.ID) -> Device? {
+        devices.first { $0.id == id }
     }
 
     var hasProblem: Bool {
-        apps.contains { $0.isEnabled && $0.lastError != nil }
+        apps.contains { app in
+            let targets = targets(for: app)
+            return app.isEnabled && (targets.isEmpty || targets.contains { app.installation(on: $0.id).lastError != nil })
+        }
     }
 
     private let settingsURL = BuildService.supportDirectory.appendingPathComponent("Settings.json")
@@ -149,6 +171,7 @@ final class AppStore {
         guard let data = try? Data(contentsOf: settingsURL) else { return }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
+        if let device = Preferences.legacyDevice(in: data) { decoder.userInfo[.legacyDevice] = device }
         guard let stored = try? decoder.decode(Stored.self, from: data) else { return }
         apps = stored.apps
         preferences = stored.preferences

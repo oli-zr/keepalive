@@ -25,6 +25,8 @@ enum Diagnostics {
          "Unlock your iPhone and try again."),
         (unreachableNeedles,
          "Your iPhone could not be reached. Make sure it is on the same Wi‑Fi network as this Mac."),
+        (["valid provisioning profile for this executable was not found", "0xe8008015"],
+         "This device is not in the app’s provisioning profile. Open the project in Xcode and run it on this device once."),
         (["requires a provisioning profile", "No profiles for"],
          "No provisioning profile could be created. Open the project in Xcode once and select your Personal Team under Signing & Capabilities."),
     ]

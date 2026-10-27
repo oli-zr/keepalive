@@ -77,40 +77,50 @@ enum DebugPreview {
     }
 
     private static func fillSampleData(_ store: AppStore) {
-        func sample(_ name: String, installed days: Double?, at hour: Double = 10) -> ManagedApp {
+        let environment = ProcessInfo.processInfo.environment
+        let phone = Device(id: "1", udid: "1", name: "iPhone", model: "iPhone 17 Pro", isPad: false, transport: .network, isReachable: true)
+        let pad = Device(id: "2", udid: "2", name: "iPad", model: "iPad Air", isPad: true, transport: .network, isReachable: true)
+        // KEEPALIVE_SAMPLE_DEVICES=1 shows a single iPhone.
+        let devices = environment["KEEPALIVE_SAMPLE_DEVICES"] == "1" ? [phone] : [phone, pad]
+        store.devices = devices
+        store.preferences.devices = devices.map(SavedDevice.init)
+
+        func sample(_ name: String, installed days: Double?, at hour: Double = 10, excluding excluded: Set<Device.ID> = []) -> ManagedApp {
             let id = name.replacingOccurrences(of: " ", with: "")
             var app = ManagedApp(name: name, projectPath: "/Projects/\(id)/\(id).xcodeproj", scheme: id,
                                  bundleIdentifier: "com.example.\(id)", productName: "\(id).app")
+            app.excludedDevices = excluded
             if let days {
                 let midnight = Calendar.current.startOfDay(for: .now)
-                app.lastInstall = midnight.addingTimeInterval(-days.rounded(.down) * 86_400 + hour * 3600)
-                app.expirationDate = app.lastInstall?.addingTimeInterval(7 * 86_400)
+                let installed = midnight.addingTimeInterval(-days.rounded(.down) * 86_400 + hour * 3600)
+                for device in devices where !excluded.contains(device.id) {
+                    app.installations[device.id] = Installation(lastInstall: installed, expirationDate: installed.addingTimeInterval(7 * 86_400))
+                }
             }
             return app
         }
         let trail = sample("Trail Log", installed: 1, at: 9.25)
         let synth = sample("Pocket Synth", installed: 3, at: 19.7)
-        let notes = sample("Field Notes", installed: 2, at: 8.1)
+        let notes = sample("Field Notes", installed: 2, at: 8.1, excluding: [pad.id])
         store.apps = [trail, synth, notes]
         // KEEPALIVE_SAMPLE_IDLE shows every app at rest, for the menu screenshot.
-        if ProcessInfo.processInfo.environment["KEEPALIVE_SAMPLE_IDLE"] == nil {
+        if environment["KEEPALIVE_SAMPLE_IDLE"] == nil {
             store.activity[synth.id] = .building
         }
-        store.devices = [Device(id: "1", udid: "1", name: "iPhone", model: "iPhone 17 Pro", transport: .network, isReachable: true)]
-        store.preferences.deviceIdentifier = "1"
-        store.preferences.deviceName = "iPhone"
         // A believable history: each app was renewed a few days apart.
-        func entry(_ app: ManagedApp, _ message: String, minutesAfterInstall: Double = 0) -> LogEntry {
-            let date = (app.lastInstall ?? .now).addingTimeInterval(minutesAfterInstall * 60 - 60)
-            return LogEntry(date: date, app: app.name, message: message, isError: false)
+        func entries(_ app: ManagedApp) -> [LogEntry] {
+            let targets = store.targets(for: app)
+            let installation = app.installation(on: phone.id)
+            let date = (installation.lastInstall ?? .now).addingTimeInterval(-60)
+            let until = installation.expirationDate?.formatted(date: .abbreviated, time: .shortened) ?? ""
+            let names = targets.map(\.name).formatted(.list(type: .and).locale(.interface))
+            return [LogEntry(date: date, app: app.name, message: "Building for \(names)…", isError: false)]
+                + targets.enumerated().map { index, device in
+                    LogEntry(date: date.addingTimeInterval(Double(index + 1) * 60), app: app.name,
+                             message: "Installed on \(device.name). Valid until \(until).", isError: false)
+                }
         }
-        func installed(_ app: ManagedApp) -> String {
-            let until = app.expirationDate?.formatted(date: .abbreviated, time: .shortened) ?? ""
-            return "Installed. Valid until \(until)."
-        }
-        store.log = [synth, notes, trail].flatMap { app in
-            [entry(app, "Building for iPhone…"), entry(app, installed(app), minutesAfterInstall: 1)]
-        }
+        store.log = [synth, notes, trail].flatMap(entries)
     }
 }
 #endif

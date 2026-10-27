@@ -9,7 +9,7 @@ enum SettingsPane: String, CaseIterable, Identifiable {
         switch self {
         case .general: "General"
         case .apps: "Apps"
-        case .device: "Device"
+        case .device: "Devices"
         case .activity: "Activity"
         }
     }
@@ -18,7 +18,7 @@ enum SettingsPane: String, CaseIterable, Identifiable {
         switch self {
         case .general: "gearshape.fill"
         case .apps: "square.grid.2x2.fill"
-        case .device: "iphone"
+        case .device: "ipad.and.iphone"
         case .activity: "clock.fill"
         }
     }

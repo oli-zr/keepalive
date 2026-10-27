@@ -7,6 +7,14 @@ struct ProvisioningProfile: Sendable {
     /// Team prefix plus bundle identifier, for example `ABCDE12345.com.example.app`.
     let applicationIdentifier: String
     let expirationDate: Date
+    /// Hardware identifiers of the devices the app may run on; `nil` when the profile
+    /// does not limit them.
+    var provisionedDevices: [String]?
+
+    func includes(_ device: Device) -> Bool {
+        guard let provisionedDevices, let udid = device.udid else { return true }
+        return provisionedDevices.contains { $0.caseInsensitiveCompare(udid) == .orderedSame }
+    }
 
     func matches(bundleIdentifier: String) -> Bool {
         guard let dot = applicationIdentifier.firstIndex(of: ".") else { return false }
@@ -36,7 +44,8 @@ enum ProfileInspector {
             url: url,
             name: plist["Name"] as? String ?? url.lastPathComponent,
             applicationIdentifier: identifier,
-            expirationDate: expiration
+            expirationDate: expiration,
+            provisionedDevices: plist["ProvisionedDevices"] as? [String]
         )
     }
 

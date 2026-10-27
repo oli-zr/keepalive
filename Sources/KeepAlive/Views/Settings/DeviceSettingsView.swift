@@ -5,23 +5,29 @@ struct DeviceSettingsView: View {
     @Environment(Renewer.self) private var renewer
     @State private var isRefreshing = false
 
+    /// Paired devices, followed by chosen ones that `devicectl` does not list right now.
+    private var rows: [DeviceRow.Model] {
+        let paired = store.devices.map { DeviceRow.Model(saved: SavedDevice($0), live: $0) }
+        let missing = store.preferences.devices
+            .filter { saved in !store.devices.contains { $0.id == saved.id } }
+            .map { DeviceRow.Model(saved: $0, live: nil) }
+        return paired + missing
+    }
+
     var body: some View {
         Form {
             Section {
-                if store.devices.isEmpty {
-                    Text(isRefreshing ? LocalizedStringKey("Searching…") : LocalizedStringKey("No paired iPhone found."))
+                if rows.isEmpty {
+                    Text(isRefreshing ? LocalizedStringKey("Searching…") : LocalizedStringKey("No paired iPhone or iPad found."))
                         .foregroundStyle(.secondary)
                 } else {
-                    ForEach(store.devices) { device in
-                        DeviceRow(device: device, isSelected: device.id == store.preferences.deviceIdentifier) {
-                            store.preferences.deviceIdentifier = device.id
-                            store.preferences.deviceName = device.name
-                        }
+                    ForEach(rows) { row in
+                        DeviceRow(model: row, isOn: binding(for: row.saved))
                     }
                 }
             } header: {
                 HStack {
-                    Text("iPhone")
+                    Text("Paired Devices")
                     Spacer()
                     if isRefreshing {
                         ProgressView().controlSize(.small)
@@ -33,12 +39,31 @@ struct DeviceSettingsView: View {
                     }
                 }
             } footer: {
-                Text("To renew over Wi‑Fi, connect your iPhone to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.")
-                    .settingsFooter()
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("KeepAlive installs your apps on every device that is turned on. On a device that is turned off, they stay installed but are no longer renewed. To choose devices for a single app, open its details under Apps.")
+                    Text("To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.")
+                }
+                .settingsFooter()
             }
         }
         .formStyle(.grouped)
         .task { await refresh() }
+    }
+
+    private func binding(for device: SavedDevice) -> Binding<Bool> {
+        Binding(
+            get: { store.preferences.devices.contains { $0.id == device.id } },
+            set: { isOn in
+                if isOn {
+                    guard !store.preferences.devices.contains(where: { $0.id == device.id }) else { return }
+                    store.preferences.devices.append(device)
+                    // Bring the apps to the new device without waiting for the next check.
+                    Task { await renewer.checkDueApps() }
+                } else {
+                    store.preferences.devices.removeAll { $0.id == device.id }
+                }
+            }
+        )
     }
 
     private func refresh() async {
@@ -49,32 +74,38 @@ struct DeviceSettingsView: View {
 }
 
 private struct DeviceRow: View {
-    let device: Device
-    let isSelected: Bool
-    let select: () -> Void
+    struct Model: Identifiable {
+        let saved: SavedDevice
+        let live: Device?
+
+        var id: Device.ID { saved.id }
+    }
+
+    let model: Model
+    let isOn: Binding<Bool>
 
     var body: some View {
-        Button(action: select) {
-            HStack(spacing: 10) {
-                Image(systemName: "iphone")
-                    .font(.title2)
+        HStack(spacing: 10) {
+            Image(systemName: model.saved.symbolName)
+                .font(.title2)
+                .foregroundStyle(.secondary)
+                .frame(width: 24)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(model.saved.name)
+                Text(subtitle)
+                    .font(.callout)
                     .foregroundStyle(.secondary)
-                    .frame(width: 24)
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(device.name)
-                    Text(device.model.isEmpty ? device.connectionDescription : "\(device.model) · \(device.connectionDescription)")
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if isSelected {
-                    Image(systemName: "checkmark")
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.tint)
-                }
             }
-            .contentShape(Rectangle())
+            Spacer()
+            Toggle(model.saved.name, isOn: isOn)
+                .labelsHidden()
+                .toggleStyle(.switch)
+                .controlSize(.small)
         }
-        .buttonStyle(.plain)
+    }
+
+    private var subtitle: String {
+        guard let live = model.live else { return String(localized: "Not reachable") }
+        return live.model.isEmpty ? live.connectionDescription : "\(live.model) · \(live.connectionDescription)"
     }
 }

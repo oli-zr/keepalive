@@ -15,6 +15,8 @@ final class Renewer {
     @ObservationIgnored private let store: AppStore
     @ObservationIgnored private var scheduler: NSBackgroundActivityScheduler?
     @ObservationIgnored private var queue: [ManagedApp.ID] = []
+    /// Apps the user asked to renew now, on all their devices instead of only where they are due.
+    @ObservationIgnored private var forced: Set<ManagedApp.ID> = []
     @ObservationIgnored private var worker: Task<Void, Never>?
     @ObservationIgnored private var wakeObserver: NSObjectProtocol?
     @ObservationIgnored private var networkMonitor: NWPathMonitor?
@@ -25,7 +27,7 @@ final class Renewer {
 
     nonisolated static let retryInterval: TimeInterval = 60 * 60
     nonisolated static let urgentInterval: TimeInterval = 24 * 60 * 60
-    /// How long to wait after a network change before looking for the iPhone.
+    /// How long to wait after a network change before looking for devices.
     nonisolated static let networkSettleDelay: Duration = .seconds(30)
 
     init(store: AppStore) {
@@ -49,14 +51,14 @@ final class Renewer {
         wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.didWakeNotification, object: nil, queue: .main
         ) { [weak self] _ in
-            // Give Wi‑Fi a moment to reconnect before looking for the iPhone.
+            // Give Wi‑Fi a moment to reconnect before looking for devices.
             Task { @MainActor in
                 try? await Task.sleep(for: .seconds(90))
                 await self?.checkDueApps()
             }
         }
 
-        // Joining a network, for example at home, is a good moment to look for the iPhone.
+        // Joining a network, for example at home, is a good moment to look for devices.
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { [weak self] path in
             let isOnline = path.status == .satisfied
@@ -74,18 +76,20 @@ final class Renewer {
 
     // MARK: - Public actions
 
-    /// Renews the given apps right away, regardless of schedule or power source.
+    /// Renews the given apps right away on all their devices, regardless of schedule or power source.
     func renew(_ ids: [ManagedApp.ID]) {
+        forced.formUnion(ids.filter { store.app($0) != nil })
         enqueue(ids)
     }
 
     func renewAll() {
-        enqueue(store.apps.filter(\.isEnabled).map(\.id))
+        renew(store.apps.filter(\.isEnabled).map(\.id))
     }
 
     func cancelAll() {
         for id in queue { store.activity[id] = .idle }
         queue.removeAll()
+        forced.removeAll()
         worker?.cancel()
     }
 
@@ -102,7 +106,7 @@ final class Renewer {
         do {
             store.devices = try await DeviceService(toolchain: toolchain).devices()
             store.lastDeviceRefresh = .now
-            selectOnlyDeviceIfNeeded()
+            if updateSavedDevices() { await checkDueApps() }
         } catch is CancellationError {
             // The view that asked for the refresh went away.
         } catch {
@@ -112,30 +116,43 @@ final class Renewer {
 
     // MARK: - Scheduling
 
+    /// Whether the app is due on at least one of its devices.
     func isDue(_ app: ManagedApp, now: Date = .now) -> Bool {
-        guard app.isEnabled else { return false }
-        // Looking for an iPhone that was away is cheap, so only real failures wait.
-        if app.lastError != nil, !app.isWaitingForDevice, let attempt = app.lastAttempt, now.timeIntervalSince(attempt) < Self.retryInterval {
+        app.isEnabled && store.targets(for: app).contains { isDue(app.installation(on: $0.id), now: now) }
+    }
+
+    func isDue(_ installation: Installation, now: Date = .now) -> Bool {
+        // Looking for a device that was away is cheap, so only real failures wait.
+        if installation.lastError != nil, !installation.isWaitingForDevice,
+           let attempt = installation.lastAttempt, now.timeIntervalSince(attempt) < Self.retryInterval {
             return false
         }
-        guard let installed = app.lastInstall else { return true }
-        if let expiration = app.expirationDate, expiration.timeIntervalSince(now) < Self.urgentInterval { return true }
+        guard let installed = installation.lastInstall else { return true }
+        if isUrgent(installation, now: now) { return true }
         return now.timeIntervalSince(installed) >= Double(store.preferences.renewAfterDays) * 86_400
     }
 
-    private func isUrgent(_ app: ManagedApp, now: Date) -> Bool {
-        guard let expiration = app.expirationDate else { return false }
+    private func isUrgent(_ installation: Installation, now: Date) -> Bool {
+        guard let expiration = installation.expirationDate else { return false }
         return expiration.timeIntervalSince(now) < Self.urgentInterval
+    }
+
+    /// The devices a scheduled check renews the app on. On battery, only those where it
+    /// expires within a day.
+    func dueDevices(for app: ManagedApp, now: Date = .now) -> [SavedDevice] {
+        guard app.isEnabled else { return [] }
+        let onBattery = store.preferences.onlyOnPower && !PowerState.isOnExternalPower
+        return store.targets(for: app).filter { device in
+            let installation = app.installation(on: device.id)
+            return isDue(installation, now: now) && (!onBattery || isUrgent(installation, now: now))
+        }
     }
 
     func checkDueApps() async {
         let now = Date.now
         warnAboutExpiringApps(now: now)
 
-        var due = store.apps.filter { isDue($0, now: now) && !store.activity(for: $0).isBusy }
-        if store.preferences.onlyOnPower && !PowerState.isOnExternalPower {
-            due = due.filter { isUrgent($0, now: now) }
-        }
+        let due = store.apps.filter { !dueDevices(for: $0, now: now).isEmpty && !store.activity(for: $0).isBusy }
         guard !due.isEmpty else { return }
         enqueue(due.map(\.id))
     }
@@ -170,6 +187,7 @@ final class Renewer {
             while !queue.isEmpty, !Task.isCancelled {
                 let id = queue.removeFirst()
                 if let renewal { await renewal(id) } else { await renewOne(id) }
+                forced.remove(id)
                 store.activity[id] = .idle
             }
             worker = nil
@@ -180,110 +198,234 @@ final class Renewer {
 
     // MARK: - Renewal
 
+    /// Builds the app once and installs it on every device it is due on. A device that is
+    /// away or locked does not hold up the others.
     private func renewOne(_ id: ManagedApp.ID) async {
         guard let app = store.app(id) else { return }
+        let isForced = forced.contains(id)
         defer {
-            // Builds are only needed until the app is on the iPhone. Keeping them would
+            // Builds are only needed until the app is on the device. Keeping them would
             // duplicate Xcode's own build folder, a few hundred MB per app.
             BuildService.removeBuildFiles(for: app)
         }
         store.activity[id] = .preparing
+        var problems: [String] = []
+        var ready: [Device] = []
 
         do {
             let toolchain = try Toolchain.resolve(override: store.preferences.xcodePath)
-            let device = try await reachableDevice(toolchain: toolchain)
-            try await DeviceService(toolchain: toolchain).prepare(device)
+            let deviceService = DeviceService(toolchain: toolchain)
+            store.devices = (try? await deviceService.devices()) ?? []
+            store.lastDeviceRefresh = .now
+            updateSavedDevices()
 
-            store.record(String(localized: "Building for \(device.name)…"), app: app.name)
-            store.update(id) { $0.lastAttempt = .now }
+            let targets = isForced ? store.targets(for: app) : dueDevices(for: app)
+            guard !targets.isEmpty else {
+                if store.targets(for: app).isEmpty {
+                    let error = store.preferences.devices.isEmpty ? RenewError.noDeviceSelected : RenewError.noDeviceForApp
+                    store.record(error.localizedDescription, app: app.name, isError: true)
+                }
+                return
+            }
+
+            for target in targets {
+                do {
+                    guard let device = store.liveDevice(target.id)?.named(target.name), device.isReachable else {
+                        throw RenewError.deviceUnreachable(target.name)
+                    }
+                    try await deviceService.prepare(device)
+                    ready.append(device)
+                } catch is CancellationError {
+                    throw CancellationError()
+                } catch {
+                    fail(app, on: target, error, problems: &problems)
+                }
+            }
+            guard !ready.isEmpty else { return }
+
+            store.record(String(localized: "Building for \(ready.map(\.name).formatted(.list(type: .and).locale(.interface)))…"), app: app.name)
+            store.update(id) { app in
+                for device in ready { app.installations[device.id, default: Installation()].lastAttempt = .now }
+            }
             store.activity[id] = .building
 
             let buildLog = BuildLog(url: AppStore.buildLogURL(for: app))
-            let product = try await BuildService(toolchain: toolchain).build(app) { buildLog.write($0) }
+            defer { buildLog.close() }
+            let buildService = BuildService(toolchain: toolchain)
+            let product = try await buildService.build(app) { buildLog.write($0) }
             let profile = ProfileInspector.embeddedProfile(inApp: product)
             IconLocator.cacheIcon(for: app, builtApp: product)
 
-            store.activity[id] = .installing
-            try await DeviceService(toolchain: toolchain).install(appAt: product, on: device) { buildLog.write($0) }
-            buildLog.close()
-
-            store.update(id) {
-                $0.lastInstall = .now
-                $0.expirationDate = profile?.expirationDate
-                $0.lastError = nil
-                $0.isWaitingForDevice = false
+            // A device that is new to the Personal Team is not in the profile yet. Install on
+            // the others first, so a failed registration cannot affect them.
+            let unregistered = ready.filter { profile?.includes($0) == false }
+            for device in ready where !unregistered.contains(device) {
+                try await install(app, at: product, profile: profile, on: device, service: deviceService, log: buildLog, problems: &problems)
             }
-            let until = profile?.expirationDate.formatted(date: .abbreviated, time: .shortened) ?? "–"
-            store.record(String(localized: "Installed. Valid until \(until)."), app: app.name)
+            for device in unregistered {
+                let saved = SavedDevice(device)
+                do {
+                    store.record(String(localized: "Adding \(device.name) to the provisioning profile…"), app: app.name)
+                    store.activity[id] = .building
+                    let product = try await buildService.build(app, registering: device) { buildLog.write($0) }
+                    let profile = ProfileInspector.embeddedProfile(inApp: product)
+                    guard profile?.includes(device) != false else { throw DeviceError.notRegistered(device.name) }
+                    try await install(app, at: product, profile: profile, on: device, service: deviceService, log: buildLog, problems: &problems)
+                } catch is CancellationError {
+                    throw CancellationError()
+                } catch {
+                    fail(app, on: saved, error, problems: &problems)
+                }
+            }
         } catch is CancellationError {
             store.record(String(localized: "Cancelled."), app: app.name)
         } catch {
-            let message = error.localizedDescription
-            let isNewProblem = message != app.lastError
-            let isUnreachable = (error as? RenewError)?.isWaitingForDevice ?? false
-            store.update(id) {
-                $0.lastError = message
-                $0.isWaitingForDevice = isUnreachable
-            }
-            store.record(message, app: app.name, isError: true)
-            // An iPhone that is away or locked is normal and covered by the expiry warning;
-            // only new, real failures deserve a notification.
-            if isNewProblem && !isUnreachable {
-                Notifier.post(
-                    title: String(localized: "\(app.name) could not be renewed"),
-                    body: message,
-                    kind: .failure,
-                    app: id
-                )
-            }
+            // Xcode is missing or the build failed, which affects every device alike.
+            let devices = ready.isEmpty ? store.targets(for: app) : ready.map(SavedDevice.init)
+            failBuild(app, on: devices, error, problems: &problems)
+        }
+
+        // Devices that are away or locked are normal and covered by the expiry warning;
+        // only new, real failures deserve a notification.
+        if !problems.isEmpty {
+            Notifier.post(
+                title: String(localized: "\(app.name) could not be renewed"),
+                body: problems.joined(separator: "\n"),
+                kind: .failure,
+                app: id
+            )
         }
     }
 
-    private func reachableDevice(toolchain: Toolchain) async throws -> Device {
-        store.devices = (try? await DeviceService(toolchain: toolchain).devices()) ?? []
-        store.lastDeviceRefresh = .now
-        selectOnlyDeviceIfNeeded()
-        guard let device = store.selectedDevice else {
-            if store.preferences.deviceIdentifier == nil { throw RenewError.noDeviceSelected }
-            throw RenewError.deviceUnreachable(store.preferences.deviceName ?? "iPhone")
+    private func install(
+        _ app: ManagedApp, at product: URL, profile: ProvisioningProfile?, on device: Device,
+        service: DeviceService, log: BuildLog, problems: inout [String]
+    ) async throws {
+        store.activity[app.id] = .installing(on: device.name)
+        do {
+            try await service.install(appAt: product, on: device) { log.write($0) }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {
+            fail(app, on: SavedDevice(device), error, problems: &problems)
+            return
         }
-        guard device.isReachable else { throw RenewError.deviceUnreachable(device.name) }
-        return device
+        store.update(app.id) { app in
+            var installation = app.installation(on: device.id)
+            installation.lastInstall = .now
+            installation.expirationDate = profile?.expirationDate
+            installation.lastError = nil
+            installation.isWaitingForDevice = false
+            app.installations[device.id] = installation
+        }
+        let until = profile?.expirationDate.formatted(date: .abbreviated, time: .shortened) ?? "–"
+        store.record(String(localized: "Installed on \(device.name). Valid until \(until)."), app: app.name)
     }
 
-    private func selectOnlyDeviceIfNeeded() {
-        guard store.preferences.deviceIdentifier == nil, store.devices.count == 1, let only = store.devices.first else { return }
-        store.preferences.deviceIdentifier = only.id
-        store.preferences.deviceName = only.name
+    /// Records a problem with one device.
+    private func fail(_ app: ManagedApp, on device: SavedDevice, _ error: Error, problems: inout [String]) {
+        let message = message(for: error, on: device, of: app)
+        markProblem(message, for: app, on: [device], isWaiting: (error as? RenewError)?.isWaitingForDevice ?? false,
+                    reported: message, problems: &problems)
+    }
+
+    /// Records a problem that affects every device the app was being built for. The log and
+    /// the notification mention it once.
+    private func failBuild(_ app: ManagedApp, on devices: [SavedDevice], _ error: Error, problems: inout [String]) {
+        let current = store.app(app.id) ?? app
+        let isNewProblem = devices.contains { current.installation(on: $0.id).lastError != message(for: error, on: $0, of: app) }
+        for device in devices {
+            markProblem(message(for: error, on: device, of: app), for: app, on: [device], isWaiting: false,
+                        reported: nil, problems: &problems)
+        }
+        store.record(error.localizedDescription, app: app.name, isError: true)
+        if isNewProblem { problems.append(error.localizedDescription) }
+    }
+
+    /// With several devices, a message names the device it is about. Messages about a device
+    /// that is away, locked or not registered name it already.
+    private func message(for error: Error, on device: SavedDevice, of app: ManagedApp) -> String {
+        let namesDevice = switch error {
+        case RenewError.deviceUnreachable, RenewError.deviceLocked, DeviceError.notRegistered: true
+        default: false
+        }
+        guard store.targets(for: app).count > 1, !namesDevice else { return error.localizedDescription }
+        return String(localized: "\(device.name): \(error.localizedDescription)")
+    }
+
+    /// Saves the problem on the device. `reported` is logged, and becomes part of the
+    /// notification if it is new and not just a device that is away.
+    private func markProblem(
+        _ message: String, for app: ManagedApp, on devices: [SavedDevice], isWaiting: Bool,
+        reported: String?, problems: inout [String]
+    ) {
+        let current = store.app(app.id) ?? app
+        let isNewProblem = devices.contains { current.installation(on: $0.id).lastError != message }
+        store.update(app.id) { app in
+            for device in devices {
+                app.installations[device.id, default: Installation()].lastError = message
+                app.installations[device.id, default: Installation()].isWaitingForDevice = isWaiting
+            }
+        }
+        guard let reported else { return }
+        store.record(reported, app: app.name, isError: true)
+        if isNewProblem && !isWaiting { problems.append(reported) }
+    }
+
+    /// Keeps the names of chosen devices current, and chooses the only paired device when
+    /// none is chosen yet. Returns whether a device was chosen.
+    @discardableResult
+    private func updateSavedDevices() -> Bool {
+        for index in store.preferences.devices.indices {
+            guard let live = store.liveDevice(store.preferences.devices[index].id) else { continue }
+            let saved = SavedDevice(live)
+            if store.preferences.devices[index] != saved { store.preferences.devices[index] = saved }
+        }
+        guard store.preferences.devices.isEmpty, store.devices.count == 1, let only = store.devices.first else { return false }
+        store.preferences.devices = [SavedDevice(only)]
+        return true
     }
 
     private func warnAboutExpiringApps(now: Date) {
         for app in store.apps where app.isEnabled {
-            guard let expiration = app.expirationDate,
-                  isUrgent(app, now: now),
-                  expiration > now,
-                  app.warnedExpiration != expiration
-            else { continue }
-            store.update(app.id) { $0.warnedExpiration = expiration }
-            Notifier.post(
-                title: String(localized: "\(app.name) expires soon"),
-                body: String(localized: "Connect your iPhone to the same Wi‑Fi as this Mac so KeepAlive can renew it."),
-                kind: .expiry,
-                app: app.id
-            )
+            let targets = store.targets(for: app)
+            for device in targets {
+                let installation = app.installation(on: device.id)
+                guard let expiration = installation.expirationDate,
+                      isUrgent(installation, now: now),
+                      expiration > now,
+                      installation.warnedExpiration != expiration
+                else { continue }
+                store.update(app.id) { $0.installations[device.id]?.warnedExpiration = expiration }
+                Notifier.post(
+                    title: targets.count > 1
+                        ? String(localized: "\(app.name) expires soon on \(device.name)")
+                        : String(localized: "\(app.name) expires soon"),
+                    body: String(localized: "Connect \(device.name) to the same Wi‑Fi as this Mac so KeepAlive can renew it."),
+                    kind: .expiry,
+                    app: app.id
+                )
+            }
         }
+    }
+}
+
+extension SavedDevice {
+    init(_ device: Device) {
+        self.init(id: device.id, name: device.name, model: device.model, isPad: device.isPad)
     }
 }
 
 enum RenewError: LocalizedError {
     case noDeviceSelected
+    case noDeviceForApp
     case deviceUnreachable(String)
     case deviceLocked(String)
 
-    /// The iPhone is fine but cannot be used right now, so KeepAlive keeps looking for it.
+    /// The device is fine but cannot be used right now, so KeepAlive keeps looking for it.
     var isWaitingForDevice: Bool {
         switch self {
-        case .noDeviceSelected: false
+        case .noDeviceSelected, .noDeviceForApp: false
         case .deviceUnreachable, .deviceLocked: true
         }
     }
@@ -291,7 +433,9 @@ enum RenewError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .noDeviceSelected:
-            return String(localized: "No iPhone selected. Choose one in Settings → Device.")
+            return String(localized: "No device selected. Choose one in Settings → Devices.")
+        case .noDeviceForApp:
+            return String(localized: "This app is turned off on every device. Turn on a device in its details under Apps.")
         case .deviceUnreachable(let name):
             return String(localized: "\(name) is not reachable. KeepAlive will try again later.")
         case .deviceLocked(let name):

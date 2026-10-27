@@ -3,6 +3,20 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.3] - 2026-10-27
+
+### Features
+
+- KeepAlive works with several devices, for example an iPhone and an iPad. Turn on every
+  device it should use under **Devices**. Each app is built once and installed on all of
+  them, and in an app’s details you can choose which devices it goes to.
+- A device that is away or locked no longer holds up the others. It gets its apps as soon
+  as it is back, and the menu shows which device needs attention.
+- A device that is new to your Personal Team is added to the app’s provisioning profile
+  automatically.
+
+Your device and the state of your apps carry over from earlier versions.
+
 ## [1.2.4] - 2026-10-19
 
 ### Fixed

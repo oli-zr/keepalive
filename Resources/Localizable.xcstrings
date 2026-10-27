@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@ could not be added to the provisioning profile. Open the project in Xcode and run it on %@ once.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ konnte nicht zum Provisioning-Profil hinzugefügt werden. Öffne das Projekt in Xcode und führe es einmal auf %2$@ aus."
+          }
+        }
+      }
+    },
     "%@ could not be renewed": {
       "localizations": {
         "de": {
@@ -17,6 +27,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "„%@“ läuft bald ab"
+          }
+        }
+      }
+    },
+    "%@ expires soon on %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%1$@“ läuft auf %2$@ bald ab"
           }
         }
       }
@@ -51,6 +71,46 @@
         }
       }
     },
+    "%@: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%@: expires %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läuft auf %1$@ %2$@ ab"
+          }
+        }
+      }
+    },
+    "%lld devices": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Geräte"
+          }
+        }
+      }
+    },
+    "%lld devices not reachable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Geräte nicht erreichbar"
+          }
+        }
+      }
+    },
     "A free Apple Account can have up to three of your own apps installed on a device at the same time.": {
       "localizations": {
         "de": {
@@ -81,12 +141,12 @@
         }
       }
     },
-    "Add an Xcode project to keep it installed on your iPhone.": {
+    "Add an Xcode project to keep it installed on your iPhone or iPad.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Füge ein Xcode-Projekt hinzu, damit es auf deinem iPhone installiert bleibt."
+            "value": "Füge ein Xcode-Projekt hinzu, damit es auf deinem iPhone oder iPad installiert bleibt."
           }
         }
       }
@@ -111,6 +171,16 @@
         }
       }
     },
+    "Adding %@ to the provisioning profile…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ wird zum Provisioning-Profil hinzugefügt …"
+          }
+        }
+      }
+    },
     "Apple’s limit for free accounts was reached. Remove an app from your iPhone or wait a few days.": {
       "localizations": {
         "de": {
@@ -131,12 +201,12 @@
         }
       }
     },
-    "Apps signed with a free Apple Account stop opening after seven days. KeepAlive renews them early, whenever your iPhone is on the same network. Apps that expire within a day are renewed on battery power too.": {
+    "Apps signed with a free Apple Account stop opening after seven days. KeepAlive renews them early, whenever your iPhone or iPad is on the same network. Apps that expire within a day are renewed on battery power too.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben Tagen nicht mehr öffnen. KeepAlive erneuert sie frühzeitig, sobald dein iPhone im selben Netzwerk ist. Apps, die innerhalb eines Tages ablaufen, werden auch im Batteriebetrieb erneuert."
+            "value": "Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben Tagen nicht mehr öffnen. KeepAlive erneuert sie frühzeitig, sobald dein iPhone oder iPad im selben Netzwerk ist. Apps, die innerhalb eines Tages ablaufen, werden auch im Batteriebetrieb erneuert."
           }
         }
       }
@@ -291,12 +361,12 @@
         }
       }
     },
-    "Connect your iPhone to the same Wi‑Fi as this Mac so KeepAlive can renew it.": {
+    "Connect %@ to the same Wi‑Fi as this Mac so KeepAlive can renew it.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verbinde dein iPhone mit demselben WLAN wie diesen Mac, damit KeepAlive die App erneuern kann."
+            "value": "Verbinde %@ mit demselben WLAN wie diesen Mac, damit KeepAlive die App erneuern kann."
           }
         }
       }
@@ -371,12 +441,12 @@
         }
       }
     },
-    "Device": {
+    "Devices": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gerät"
+            "value": "Geräte"
           }
         }
       }
@@ -417,6 +487,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abgelaufen"
+          }
+        }
+      }
+    },
+    "Expired on %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf %@ abgelaufen"
           }
         }
       }
@@ -481,12 +561,22 @@
         }
       }
     },
-    "Installed. Valid until %@.": {
+    "Installed on %@. Valid until %@.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installiert. Gültig bis %@."
+            "value": "Auf %1$@ installiert. Gültig bis %2$@."
+          }
+        }
+      }
+    },
+    "Installing on %@…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird auf %@ installiert …"
           }
         }
       }
@@ -501,16 +591,6 @@
         }
       }
     },
-    "iPhone": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iPhone"
-          }
-        }
-      }
-    },
     "KeepAlive": {
       "shouldTranslate": false
     },
@@ -520,6 +600,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "KeepAlive %@ ist verfügbar."
+          }
+        }
+      }
+    },
+    "KeepAlive installs your apps on every device that is turned on. On a device that is turned off, they stay installed but are no longer renewed. To choose devices for a single app, open its details under Apps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive installiert deine Apps auf jedem eingeschalteten Gerät. Auf ausgeschalteten Geräten bleiben sie installiert, werden aber nicht mehr erneuert. Um Geräte für eine einzelne App auszuwählen, öffne ihre Details unter Apps."
           }
         }
       }
@@ -564,12 +654,32 @@
         }
       }
     },
-    "Looking for iPhone…": {
+    "Last renewed %@": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "iPhone wird gesucht …"
+            "value": "Zuletzt erneuert: %@"
+          }
+        }
+      }
+    },
+    "Looking for %@…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ wird gesucht …"
+          }
+        }
+      }
+    },
+    "Looking for devices…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geräte werden gesucht …"
           }
         }
       }
@@ -614,32 +724,42 @@
         }
       }
     },
-    "No iPhone selected": {
+    "No device selected": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein iPhone ausgewählt"
+            "value": "Kein Gerät ausgewählt"
           }
         }
       }
     },
-    "No iPhone selected. Choose one in Settings → Device.": {
+    "No device selected. Choose one in Settings → Devices.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein iPhone ausgewählt. Wähle eines unter Einstellungen → Gerät."
+            "value": "Kein Gerät ausgewählt. Wähle eines unter Einstellungen → Geräte."
           }
         }
       }
     },
-    "No paired iPhone found.": {
+    "No device turned on": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein gekoppeltes iPhone gefunden."
+            "value": "Kein Gerät eingeschaltet"
+          }
+        }
+      }
+    },
+    "No paired iPhone or iPad found.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein gekoppeltes iPhone oder iPad gefunden."
           }
         }
       }
@@ -684,6 +804,16 @@
         }
       }
     },
+    "Not installed on %@ yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf %@ noch nicht installiert"
+          }
+        }
+      }
+    },
     "Not installed yet": {
       "localizations": {
         "de": {
@@ -704,12 +834,32 @@
         }
       }
     },
+    "On a device that is turned off, the app stays installed but is no longer renewed.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf einem ausgeschalteten Gerät bleibt die App installiert, wird dort aber nicht mehr erneuert."
+          }
+        }
+      }
+    },
     "Only Build While Connected to Power": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Nur am Stromnetz bauen"
+          }
+        }
+      }
+    },
+    "only on %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nur auf %@"
           }
         }
       }
@@ -730,6 +880,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Optional. Wird vor jedem Build im Projektordner ausgeführt, zum Beispiel um ein Flutter-Projekt vorzubereiten."
+          }
+        }
+      }
+    },
+    "Paired Devices": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gekoppelte Geräte"
           }
         }
       }
@@ -924,22 +1084,22 @@
         }
       }
     },
-    "Show in Finder": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Im Finder zeigen"
-          }
-        }
-      }
-    },
     "Show Activity": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Aktivität zeigen"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Finder zeigen"
           }
         }
       }
@@ -984,12 +1144,12 @@
         }
       }
     },
-    "The app stays on your iPhone, but KeepAlive will stop renewing it.": {
+    "The app stays on your devices, but KeepAlive will stop renewing it.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die App bleibt auf deinem iPhone, wird aber nicht mehr von KeepAlive erneuert."
+            "value": "Die App bleibt auf deinen Geräten, wird aber nicht mehr von KeepAlive erneuert."
           }
         }
       }
@@ -1074,6 +1234,26 @@
         }
       }
     },
+    "This app is turned off on every device. Turn on a device in its details under Apps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese App ist auf allen Geräten ausgeschaltet. Schalte in ihren Details unter Apps ein Gerät ein."
+          }
+        }
+      }
+    },
+    "This device is not in the app’s provisioning profile. Open the project in Xcode and run it on this device once.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Gerät ist nicht im Provisioning-Profil der App. Öffne das Projekt in Xcode und führe es einmal auf diesem Gerät aus."
+          }
+        }
+      }
+    },
     "This scheme does not build an iOS app.": {
       "localizations": {
         "de": {
@@ -1084,12 +1264,12 @@
         }
       }
     },
-    "To renew over Wi‑Fi, connect your iPhone to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.": {
+    "To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once. Then open Xcode, choose Window → Devices and Simulators, and select “Connect via network”.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone einmal per Kabel mit diesem Mac. Öffne dann Xcode, wähle Window → Devices and Simulators und aktiviere „Connect via network“."
+            "value": "Damit über WLAN erneuert werden kann, verbinde dein iPhone oder iPad einmal per Kabel mit diesem Mac. Öffne dann Xcode, wähle Window → Devices and Simulators und aktiviere „Connect via network“."
           }
         }
       }

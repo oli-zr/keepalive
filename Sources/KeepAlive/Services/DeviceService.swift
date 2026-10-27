@@ -3,20 +3,28 @@ import Foundation
 struct Device: Identifiable, Hashable, Codable, Sendable {
     /// CoreDevice identifier, accepted by `devicectl --device`.
     let id: String
-    let udid: String
+    /// Hardware identifier, as listed in provisioning profiles.
+    let udid: String?
     let name: String
     let model: String
+    let isPad: Bool
     let transport: Transport
     let isReachable: Bool
 
     enum Transport: String, Codable, Sendable {
         case wired, network, unknown
     }
+
+    /// The same device under the name KeepAlive shows for it.
+    func named(_ name: String) -> Device {
+        Device(id: id, udid: udid, name: name, model: model, isPad: isPad, transport: transport, isReachable: isReachable)
+    }
 }
 
 enum DeviceError: LocalizedError {
     case listFailed(String)
     case installFailed(String)
+    case notRegistered(String)
 
     var errorDescription: String? {
         switch self {
@@ -24,6 +32,8 @@ enum DeviceError: LocalizedError {
             return String(localized: "Could not list devices: \(detail)")
         case .installFailed(let detail):
             return String(localized: "Installation failed: \(detail)")
+        case .notRegistered(let name):
+            return String(localized: "\(name) could not be added to the provisioning profile. Open the project in Xcode and run it on \(name) once.")
         }
     }
 }
@@ -104,6 +114,7 @@ private struct RawDevice: Decodable {
         let reality: String?
         let platform: String?
         let marketingName: String?
+        let deviceType: String?
         let udid: String?
     }
 
@@ -132,11 +143,13 @@ private struct RawDevice: Decodable {
         let tunnel = connectionProperties?.tunnelState ?? "unavailable"
         let reachable = tunnel != "unavailable" && transport != .unknown
 
+        let model = hardware.marketingName ?? ""
         return Device(
             id: identifier,
-            udid: hardware.udid ?? identifier,
+            udid: hardware.udid,
             name: deviceProperties?.name ?? hardware.marketingName ?? "iPhone",
-            model: hardware.marketingName ?? "",
+            model: model,
+            isPad: hardware.deviceType.map { $0 == "iPad" } ?? model.hasPrefix("iPad"),
             transport: transport,
             isReachable: reachable
         )

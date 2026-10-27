@@ -37,7 +37,7 @@ struct GeneralSettingsView: View {
             } header: {
                 Text("Renewal")
             } footer: {
-                Text("Apps signed with a free Apple Account stop opening after seven days. KeepAlive renews them early, whenever your iPhone is on the same network. Apps that expire within a day are renewed on battery power too.")
+                Text("Apps signed with a free Apple Account stop opening after seven days. KeepAlive renews them early, whenever your iPhone or iPad is on the same network. Apps that expire within a day are renewed on battery power too.")
                     .settingsFooter()
             }
 

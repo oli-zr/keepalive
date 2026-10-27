@@ -19,11 +19,11 @@ struct AppsSettingsView: View {
                         AppIconView(app: app, size: 30)
                         VStack(alignment: .leading, spacing: 1) {
                             Text(app.name)
-                            let status = AppStatus(app: app, activity: store.activity(for: app))
-                            Text(status.text)
+                            let status = store.status(for: app)
+                            (Text(status.text).foregroundStyle(status.style) + devicesNote(for: app))
                                 .font(.callout)
-                                .foregroundStyle(status.style)
                                 .lineLimit(1)
+                                .help(status.details)
                         }
                         Spacer()
                         Toggle("Renew Automatically", isOn: $app.isEnabled)
@@ -52,6 +52,14 @@ struct AppsSettingsView: View {
         .sheet(item: $editor) { target in
             AppEditorView(target: target)
         }
+    }
+
+    /// Names the devices of an app that is not on all of them, for example “· only on iPhone”.
+    private func devicesNote(for app: ManagedApp) -> Text {
+        let targets = store.targets(for: app)
+        guard !targets.isEmpty, targets.count < store.chosenDevices.count else { return Text(verbatim: "") }
+        let names = targets.map(\.name).formatted(.list(type: .and).locale(.interface))
+        return Text(verbatim: " · ").foregroundStyle(.secondary) + Text("only on \(names)").foregroundStyle(.secondary)
     }
 
     private func chooseProject() {
@@ -155,7 +163,7 @@ private struct AppEditorView: View {
                 dismiss()
             }
         } message: {
-            Text("The app stays on your iPhone, but KeepAlive will stop renewing it.")
+            Text("The app stays on your devices, but KeepAlive will stop renewing it.")
         }
     }
 
@@ -210,6 +218,34 @@ private struct AppEditorView: View {
             }
         }
 
+        if showsDevices(for: app) {
+            Section {
+                let devices = store.chosenDevices
+                let onCount = devices.filter { !app.excludedDevices.contains($0.id) }.count
+                ForEach(devices) { device in
+                    let isOn = !app.excludedDevices.contains(device.id)
+                    AppDeviceRow(
+                        device: device,
+                        app: store.app(app.id) ?? app,
+                        showsStatus: !isNew,
+                        // The last device stays on; “Renew Automatically” pauses the app instead.
+                        isLocked: isOn && onCount == 1,
+                        isOn: Binding(
+                            get: { !app.excludedDevices.contains(device.id) },
+                            set: { isOn in
+                                if isOn { draft?.excludedDevices.remove(device.id) } else { draft?.excludedDevices.insert(device.id) }
+                            }
+                        )
+                    )
+                }
+            } header: {
+                Text("Devices")
+            } footer: {
+                Text("On a device that is turned off, the app stays installed but is no longer renewed.")
+                    .settingsFooter()
+            }
+        }
+
         Section {
             TextField("Before Build", text: binding(\.preBuildCommand), prompt: Text(verbatim: "flutter build ios --release --config-only"))
                 .font(.system(.body, design: .monospaced))
@@ -220,13 +256,15 @@ private struct AppEditorView: View {
 
         Section {
             Toggle("Renew Automatically", isOn: binding(\.isEnabled))
-            if !isNew {
+            if !isNew && !showsDevices(for: app) {
                 LabeledContent("Status") {
-                    Text(AppStatus(app: app, activity: store.activity(for: app)).text)
+                    // The saved app, so the status follows a renewal while the sheet is open.
+                    Text(store.status(for: store.app(app.id) ?? app).text)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.trailing)
                 }
-                if let installed = app.lastInstall {
+                if let device = store.chosenDevices.first,
+                   let installed = (store.app(app.id) ?? app).installation(on: device.id).lastInstall {
                     LabeledContent("Last Renewed") {
                         Text(installed, format: .dateTime.weekday(.wide).day().month().hour().minute())
                             .foregroundStyle(.secondary)
@@ -234,6 +272,13 @@ private struct AppEditorView: View {
                 }
             }
         }
+    }
+
+    /// With one device there is nothing to choose, unless the app was turned off for it
+    /// while there were several.
+    private func showsDevices(for app: ManagedApp) -> Bool {
+        let devices = store.chosenDevices
+        return devices.count > 1 || devices.contains { app.excludedDevices.contains($0.id) }
     }
 
     private func binding<Value>(_ keyPath: WritableKeyPath<ManagedApp, Value>) -> Binding<Value> {
@@ -321,8 +366,52 @@ private struct AppEditorView: View {
                 $0.productName = draft.productName
                 $0.preBuildCommand = draft.preBuildCommand
                 $0.isEnabled = draft.isEnabled
+                $0.excludedDevices = draft.excludedDevices
             }
+            // A device that was turned on may need the app right away.
+            Task { await renewer.checkDueApps() }
         }
         dismiss()
+    }
+}
+
+/// One device in the app's details: whether the app is installed there, and how it is doing.
+private struct AppDeviceRow: View {
+    let device: SavedDevice
+    /// The saved app, so the status follows a renewal while the sheet is open.
+    let app: ManagedApp
+    let showsStatus: Bool
+    let isLocked: Bool
+    let isOn: Binding<Bool>
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: device.symbolName)
+                .font(.title2)
+                .foregroundStyle(.secondary)
+                .frame(width: 24)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(device.name)
+                if showsStatus && isOn.wrappedValue {
+                    let installation = app.installation(on: device.id)
+                    let status = AppStatus(installation: installation, isEnabled: app.isEnabled)
+                    Text(status.text)
+                        .font(.callout)
+                        .foregroundStyle(status.style)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if let installed = installation.lastInstall {
+                        Text("Last renewed \(installed.formatted(.dateTime.weekday(.wide).day().month().hour().minute()))")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            Spacer()
+            Toggle(device.name, isOn: isOn)
+                .labelsHidden()
+                .toggleStyle(.switch)
+                .controlSize(.small)
+                .disabled(isLocked)
+        }
     }
 }

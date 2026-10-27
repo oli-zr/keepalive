@@ -58,6 +58,7 @@ struct MenuContentView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
+                .help(deviceDetails)
         }
         .padding(.horizontal, 14)
         .padding(.top, 11)
@@ -65,20 +66,34 @@ struct MenuContentView: View {
     }
 
     private var deviceLine: String {
-        if let device = store.selectedDevice {
-            return device.isReachable ? device.name : String(localized: "\(device.name) · Not reachable")
+        let devices = store.chosenDevices
+        let away = devices.filter { store.liveDevice($0.id)?.isReachable != true }
+        switch (devices.count, away.count) {
+        case (0, _):
+            return String(localized: "No device selected")
+        case (1, 0):
+            return devices[0].name
+        case (_, 0):
+            return String(localized: "\(devices.count) devices")
+        case (_, 1):
+            return String(localized: "\(away[0].name) · Not reachable")
+        default:
+            return String(localized: "\(away.count) devices not reachable")
         }
-        if let name = store.preferences.deviceName {
-            return String(localized: "\(name) · Not reachable")
-        }
-        return String(localized: "No iPhone selected")
+    }
+
+    private var deviceDetails: String {
+        store.chosenDevices.map { device in
+            let connection = store.liveDevice(device.id)?.connectionDescription ?? String(localized: "Not reachable")
+            return String(localized: "\(device.name): \(connection)")
+        }.joined(separator: "\n")
     }
 
     private var emptyState: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("No Apps")
                 .font(.subheadline.weight(.semibold))
-            Text("Add an Xcode project to keep it installed on your iPhone.")
+            Text("Add an Xcode project to keep it installed on your iPhone or iPad.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -96,7 +111,7 @@ struct AppRowView: View {
 
     var body: some View {
         let activity = store.activity(for: app)
-        let status = AppStatus(app: app, activity: activity)
+        let status = store.status(for: app)
 
         HStack(spacing: 10) {
             AppIconView(app: app, size: 26)
@@ -110,7 +125,7 @@ struct AppRowView: View {
                     .lineLimit(1)
                     .truncationMode(.tail)
             }
-            .help(status.text)
+            .help(status.details)
 
             Spacer(minLength: 4)
 

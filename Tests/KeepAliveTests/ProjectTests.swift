@@ -108,6 +108,21 @@ struct ProfileTests {
         #expect(!profile(identifier).matches(bundleIdentifier: "com.example.App"))
     }
 
+    @Test("Knows which devices a profile includes")
+    func devices() {
+        func device(udid: String?) -> Device {
+            Device(id: "ID", udid: udid, name: "iPad", model: "", isPad: true, transport: .network, isReachable: true)
+        }
+        var profile = profile("ABCDE12345.com.example.App")
+        profile.provisionedDevices = ["00008140-001E426E1A61801C"]
+        #expect(profile.includes(device(udid: "00008140-001e426e1a61801c")))
+        #expect(!profile.includes(device(udid: "00008120-000A1B2C3D4E5F60")))
+        #expect(profile.includes(device(udid: nil)), "Without a hardware identifier, the installation decides")
+
+        profile.provisionedDevices = nil
+        #expect(profile.includes(device(udid: "00008120-000A1B2C3D4E5F60")))
+    }
+
     @Test("Ignores files that are not signed profiles")
     func unreadable() throws {
         let folder = try TemporaryFolder()

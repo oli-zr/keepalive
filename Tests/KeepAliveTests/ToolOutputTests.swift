@@ -112,7 +112,10 @@ struct DeviceParsingTests {
         #expect(wifi.transport == .network)
         #expect(wifi.isReachable)
 
+        #expect(!wifi.isPad)
+
         let cable = try #require(devices.first { $0.id == "PHONE-2" })
+        #expect(cable.isPad, "Recognized by its model when the device type is missing")
         #expect(cable.transport == .wired)
         #expect(cable.isReachable, "A disconnected tunnel is opened on demand")
     }

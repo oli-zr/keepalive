@@ -40,8 +40,9 @@ struct BuildService: Sendable {
     }
 
     /// Builds the Release configuration with a freshly requested provisioning profile
-    /// and returns the signed `.app`.
-    func build(_ app: ManagedApp, onLine: @escaping @Sendable (String) -> Void) async throws -> URL {
+    /// and returns the signed `.app`. Building for a specific device registers it with
+    /// the Personal Team first, so the profile includes it.
+    func build(_ app: ManagedApp, registering device: Device? = nil, onLine: @escaping @Sendable (String) -> Void) async throws -> URL {
         let command = app.preBuildCommand.trimmingCharacters(in: .whitespacesAndNewlines)
         if !command.isEmpty {
             let result = try await Shell.runScript(command, in: app.projectDirectory, onLine: onLine)
@@ -52,12 +53,14 @@ struct BuildService: Sendable {
         if removed > 0 { onLine("Removed \(removed) cached provisioning profile(s) for \(app.bundleIdentifier)") }
 
         let derivedData = Self.derivedDataURL(for: app)
+        let destination = device?.udid.map { ["-destination", "platform=iOS,id=\($0)", "-allowProvisioningDeviceRegistration"] }
+            ?? ["-destination", "generic/platform=iOS"]
         let result = try await Shell.run(
             Toolchain.xcrun,
             ["xcodebuild"] + projectArguments(for: app.projectURL) + [
                 "-scheme", app.scheme,
                 "-configuration", "Release",
-                "-destination", "generic/platform=iOS",
+            ] + destination + [
                 "-derivedDataPath", derivedData.path,
                 "-allowProvisioningUpdates",
                 "build",

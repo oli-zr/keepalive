@@ -1,11 +1,8 @@
 <p align="center">
-  <img src="Design/icon.png" width="128" alt="">
-</p>
-
-<h1 align="center">KeepAlive</h1>
-
-<p align="center">
-  Keeps the iOS apps you build yourself installed on your iPhone and iPad, without a paid developer account.
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="Design/readme/header-dark.png">
+    <img src="Design/readme/header-light.png" width="880" alt="KeepAlive: keeps the apps you build with Xcode installed on your iPhone and iPad, without a paid developer account.">
+  </picture>
 </p>
 
 <p align="center">
@@ -15,13 +12,18 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/oli-zr/keepalive?color=8e8e93" alt="MIT license"></a>
 </p>
 
+<table align="center">
+  <tr>
+    <td>
+      <p align="center"><b>Install or update</b> · paste this into Terminal · <a href="#installation">other ways</a></p>
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
 ```
 
-<p align="center">
-  <sub>Paste this into Terminal to install or update KeepAlive. <a href="#installation">Other ways to install</a></sub>
-</p>
+</td>
+  </tr>
+</table>
 
 <p align="center">
   <img src="Design/screenshots/keepalive.png" alt="KeepAlive settings window with its menu bar menu">

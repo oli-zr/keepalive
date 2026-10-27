@@ -22,39 +22,25 @@ curl -fsSL https://github.com/oli-zr/keepalive/raw/main/scripts/install.sh | sh
   <img src="Design/screenshots/keepalive.png" alt="KeepAlive settings window with its menu bar menu">
 </p>
 
-Apps signed with a free Apple Account stop opening after seven days. KeepAlive is a
-small menu bar app for your Mac that rebuilds and reinstalls them before that happens,
-whenever your iPhone or iPad is on the same Wi‑Fi network. Once it is set up, you don’t
-have to think about it again.
+Apps you sign with a free Apple Account stop launching after seven days. KeepAlive sits
+in your Mac’s menu bar and rebuilds and reinstalls them before that happens, over Wi‑Fi
+or a cable.
 
-- Renews early, by default once an app is three days old, so there are four days of buffer.
-- Works with several devices, for example an iPhone and an iPad.
-- Installs over Wi‑Fi or a cable using Apple’s own tools. Your data in the apps is kept.
-- Uses little energy: builds wait for a power adapter unless an app expires within a day.
-- Works with any Xcode project, including Flutter and other cross-platform projects.
-- Updates itself, and is available in English, German, Spanish, French, Japanese,
-  Portuguese and Simplified Chinese. [Corrections are welcome.](../../issues/new?template=translation.yml)
+- Renews after three days by default, leaving four days of buffer
+- Handles several devices, for example an iPhone and an iPad
+- Installs with Apple’s own `xcodebuild` and `devicectl`, keeping the data in your apps
+- Waits for a power adapter, unless an app would expire within a day
+- Works with any Xcode project, Flutter included
+- Updates itself
+- In English, German, Spanish, French, Japanese, Portuguese and Chinese
+  ([suggest a better translation](../../issues/new?template=translation.yml))
 
-## Why KeepAlive
+## Compared to AltStore and SideStore
 
-Tools like AltStore or SideStore re-sign app files. KeepAlive builds your own projects instead.
-
-<table>
-  <tr>
-    <td width="33%" align="center" valign="top">
-      <h3>🔒<br>Your password stays yours</h3>
-      <p>KeepAlive uses the Apple Account you signed in to Xcode. No other app or server ever sees your password.</p>
-    </td>
-    <td width="33%" align="center" valign="top">
-      <h3>🛠️<br>Built from your code</h3>
-      <p>Each renewal is a fresh build of your project, so the app on your device is always your latest version.</p>
-    </td>
-    <td width="33%" align="center" valign="top">
-      <h3>💻<br>Stays on your Mac</h3>
-      <p>No server, no sign-up, no tracking. KeepAlive only asks GitHub whether there is a new version.</p>
-    </td>
-  </tr>
-</table>
+Those re-sign app files and ask for your Apple Account password. KeepAlive builds your
+own Xcode projects instead, with the account you already signed in to Xcode, so it never
+sees your password. Besides Apple, the only server it talks to is GitHub, to check for
+updates.
 
 ## What you need
 
@@ -151,9 +137,9 @@ up to date before each build.
 2. Under **Apps**, click **Add App…** and choose the project folder.
 3. Under **General**, turn on **Open at Login**, so KeepAlive keeps running.
 
-That’s it. KeepAlive installs the app right away and renews it from then on. If you use
-more than one device, turn on each one under **Devices**. To put an app on only some of
-them, click ⓘ next to the app under **Apps**.
+KeepAlive installs the app right away and renews it from then on. If you use more than
+one device, turn on each one under **Devices**. To put an app on only some of them, click
+ⓘ next to the app under **Apps**.
 
 ## If something doesn’t work
 
@@ -170,12 +156,12 @@ everything KeepAlive did, including the full messages.
 | *Xcode was not found* | Install Xcode from the App Store, or choose it under Settings → General. |
 | The device is not listed under **Devices** | Do [step 2 of the setup](#2-connect-your-iphone-or-ipad-once-per-device) again, and click the refresh button. |
 
-Still stuck? [Open an issue](../../issues/new/choose) and include the relevant lines from
-`~/Library/Logs/KeepAlive/`.
+If none of this helps, [open an issue](../../issues/new/choose) with the relevant lines
+from `~/Library/Logs/KeepAlive/`.
 
 ## Limits
 
-These are limits Apple sets for free accounts, not limits of KeepAlive.
+Apple sets these limits for free accounts:
 
 - At most three of your own apps can be installed on a device at the same time.
 - At most ten new app IDs can be created in seven days.

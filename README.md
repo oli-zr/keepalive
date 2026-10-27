@@ -10,6 +10,21 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/oli-zr/keepalive/releases/latest"><img src="https://img.shields.io/github/v/release/oli-zr/keepalive?label=version&color=34c759" alt="Latest version"></a>
+  <img src="https://img.shields.io/badge/macOS-14%2B-0a84ff?logo=apple&logoColor=white" alt="macOS 14 or later">
+  <a href="https://github.com/oli-zr/keepalive/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/oli-zr/keepalive/build.yml?branch=main&label=build" alt="Build status"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/oli-zr/keepalive?color=8e8e93" alt="MIT license"></a>
+</p>
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+```
+
+<p align="center">
+  <sub>Paste this into Terminal to install or update KeepAlive. <a href="#installation">Other ways to install</a></sub>
+</p>
+
+<p align="center">
   <img src="Design/screenshots/keepalive.png" alt="KeepAlive settings window with its menu bar menu">
 </p>
 
@@ -26,6 +41,27 @@ have to think about it again.
 - Updates itself, and is available in English, German, Spanish, French, Japanese,
   Portuguese and Simplified Chinese. [Corrections are welcome.](../../issues/new?template=translation.yml)
 
+## Why KeepAlive
+
+Tools like AltStore or SideStore re-sign app files. KeepAlive builds your own projects instead.
+
+<table>
+  <tr>
+    <td width="33%" align="center" valign="top">
+      <h3>🔒<br>Your password stays yours</h3>
+      <p>KeepAlive uses the Apple Account you signed in to Xcode. No other app or server ever sees your password.</p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>🛠️<br>Built from your code</h3>
+      <p>Each renewal is a fresh build of your project, so the app on your device is always your latest version.</p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>💻<br>Stays on your Mac</h3>
+      <p>No server, no sign-up, no tracking. KeepAlive only asks GitHub whether there is a new version.</p>
+    </td>
+  </tr>
+</table>
+
 ## What you need
 
 - A Mac with macOS 14 Sonoma or later
@@ -36,7 +72,7 @@ have to think about it again.
 ## Installation
 
 1. Open **Terminal**: press ⌘ Space, type `Terminal`, and press Return.
-2. Copy this line, paste it into Terminal, and press Return:
+2. Paste this line and press Return:
 
    ```sh
    curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
@@ -153,25 +189,8 @@ These are limits Apple sets for free accounts, not limits of KeepAlive.
 - Your Mac needs to be awake and on the same network as your devices at least once
   every few days.
 
-## Updates
-
-KeepAlive checks GitHub once a day and installs new versions by itself while no app is
-being built. You can turn this off under General → Updates, or check manually there.
-Running the installation command again also updates KeepAlive.
-
-## Uninstall
-
-1. Click the KeepAlive icon and choose **Quit KeepAlive**.
-2. Move KeepAlive from your Applications folder to the Trash.
-3. To remove its settings and logs as well, run this in Terminal:
-
-   ```sh
-   rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
-   ```
-
-The apps on your devices stay installed until they expire.
-
-## How it works
+<details>
+<summary>How it works</summary>
 
 Every 30 minutes, at a time macOS considers convenient, and after your Mac wakes or
 joins a network, KeepAlive checks whether an app is due. For each app that is due, it:
@@ -189,6 +208,23 @@ it is back.
 
 Settings are stored in `~/Library/Application Support/KeepAlive`, and logs in
 `~/Library/Logs/KeepAlive`. Together they take up less than a megabyte.
+
+</details>
+
+<details>
+<summary>Uninstall</summary>
+
+1. Click the KeepAlive icon and choose **Quit KeepAlive**.
+2. Move KeepAlive from your Applications folder to the Trash.
+3. To remove its settings and logs as well, run this in Terminal:
+
+   ```sh
+   rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
+   ```
+
+The apps on your devices stay installed until they expire.
+
+</details>
 
 ## License
 

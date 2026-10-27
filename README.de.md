@@ -10,6 +10,21 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/oli-zr/keepalive/releases/latest"><img src="https://img.shields.io/github/v/release/oli-zr/keepalive?label=version&color=34c759" alt="Neueste Version"></a>
+  <img src="https://img.shields.io/badge/macOS-14%2B-0a84ff?logo=apple&logoColor=white" alt="macOS 14 oder neuer">
+  <a href="https://github.com/oli-zr/keepalive/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/oli-zr/keepalive/build.yml?branch=main&label=build" alt="Build-Status"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/oli-zr/keepalive?color=8e8e93" alt="MIT-Lizenz"></a>
+</p>
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+```
+
+<p align="center">
+  <sub>Im Terminal einfügen, um KeepAlive zu installieren oder zu aktualisieren. <a href="#installation">Andere Wege</a></sub>
+</p>
+
+<p align="center">
   <img src="Design/screenshots/keepalive.png" alt="KeepAlive-Einstellungsfenster mit dem Menü aus der Menüleiste">
 </p>
 
@@ -27,6 +42,27 @@ Einmal eingerichtet, musst du dich um nichts mehr kümmern.
 - Aktualisiert sich selbst und ist auf Deutsch, Englisch, Spanisch, Französisch, Japanisch,
   Portugiesisch und vereinfachtem Chinesisch verfügbar. [Korrekturen sind willkommen.](../../issues/new?template=translation.yml)
 
+## Warum KeepAlive
+
+Werkzeuge wie AltStore oder SideStore signieren App-Dateien neu. KeepAlive baut stattdessen deine eigenen Projekte.
+
+<table>
+  <tr>
+    <td width="33%" align="center" valign="top">
+      <h3>🔒<br>Dein Passwort bleibt bei dir</h3>
+      <p>KeepAlive nutzt den Apple Account, mit dem du in Xcode angemeldet bist. Keine andere App und kein Server sieht je dein Passwort.</p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>🛠️<br>Aus deinem Code gebaut</h3>
+      <p>Jede Erneuerung ist ein frischer Build deines Projekts. Auf dem Gerät ist also immer deine neueste Version.</p>
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>💻<br>Bleibt auf deinem Mac</h3>
+      <p>Kein Server, kein Konto, kein Tracking. KeepAlive fragt nur bei GitHub, ob es eine neue Version gibt.</p>
+    </td>
+  </tr>
+</table>
+
 ## Was du brauchst
 
 - Einen Mac mit macOS 14 Sonoma oder neuer
@@ -37,7 +73,7 @@ Einmal eingerichtet, musst du dich um nichts mehr kümmern.
 ## Installation
 
 1. Öffne das **Terminal**: Drücke ⌘ Leertaste, tippe `Terminal` und drücke den Zeilenschalter.
-2. Kopiere diese Zeile, füge sie im Terminal ein und drücke den Zeilenschalter:
+2. Füge diese Zeile im Terminal ein und drücke den Zeilenschalter:
 
    ```sh
    curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
@@ -156,26 +192,8 @@ Diese Grenzen setzt Apple für kostenlose Accounts, nicht KeepAlive.
 - Manche Funktionen wie Push-Mitteilungen oder iCloud sind nicht verfügbar.
 - Dein Mac muss alle paar Tage wach und im selben Netzwerk wie deine Geräte sein.
 
-## Updates
-
-KeepAlive prüft einmal am Tag auf GitHub, ob es eine neue Version gibt, und installiert
-sie selbst, während keine App gebaut wird. Unter Allgemein → Updates lässt sich das
-abschalten oder von Hand prüfen. Auch der Installationsbefehl aktualisiert KeepAlive,
-wenn du ihn erneut ausführst.
-
-## Deinstallieren
-
-1. Klicke auf das KeepAlive-Symbol und wähle **KeepAlive beenden**.
-2. Bewege KeepAlive aus dem Ordner „Programme“ in den Papierkorb.
-3. Um auch Einstellungen und Protokolle zu entfernen, führe im Terminal aus:
-
-   ```sh
-   rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
-   ```
-
-Die Apps auf deinen Geräten bleiben installiert, bis sie ablaufen.
-
-## So funktioniert’s
+<details>
+<summary>So funktioniert’s</summary>
 
 Alle 30 Minuten, zu einem Zeitpunkt, den macOS für günstig hält, und wenn der Mac aufwacht
 oder sich mit einem Netzwerk verbindet, prüft KeepAlive, ob eine App fällig ist. Für jede
@@ -194,6 +212,23 @@ die App, sobald es wieder erreichbar ist.
 
 Die Einstellungen liegen in `~/Library/Application Support/KeepAlive`, die Protokolle in
 `~/Library/Logs/KeepAlive`. Zusammen brauchen sie weniger als ein Megabyte.
+
+</details>
+
+<details>
+<summary>Deinstallieren</summary>
+
+1. Klicke auf das KeepAlive-Symbol und wähle **KeepAlive beenden**.
+2. Bewege KeepAlive aus dem Ordner „Programme“ in den Papierkorb.
+3. Um auch Einstellungen und Protokolle zu entfernen, führe im Terminal aus:
+
+   ```sh
+   rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
+   ```
+
+Die Apps auf deinen Geräten bleiben installiert, bis sie ablaufen.
+
+</details>
 
 ## Lizenz
 

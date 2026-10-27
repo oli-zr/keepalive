@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Design/readme/header-dark.png">
-    <img src="Design/readme/header-light.png" width="880" alt="KeepAlive: keeps the apps you build with Xcode installed on your iPhone and iPad, without a paid developer account.">
+    <img src="Design/readme/header-light.png" width="640" alt="KeepAlive: keeps the apps you build with Xcode installed on your iPhone and iPad, without a paid developer account.">
   </picture>
 </p>
 
@@ -12,18 +12,11 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/oli-zr/keepalive?color=8e8e93" alt="MIT license"></a>
 </p>
 
-<table align="center">
-  <tr>
-    <td>
-      <p align="center"><b>Install or update</b> · paste this into Terminal · <a href="#installation">other ways</a></p>
+<p align="center"><b>Install or update</b> · paste this into Terminal · <a href="#installation">other ways</a></p>
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+curl -fsSL https://github.com/oli-zr/keepalive/raw/main/scripts/install.sh | sh
 ```
-
-</td>
-  </tr>
-</table>
 
 <p align="center">
   <img src="Design/screenshots/keepalive.png" alt="KeepAlive settings window with its menu bar menu">
@@ -76,7 +69,7 @@ Tools like AltStore or SideStore re-sign app files. KeepAlive builds your own pr
 2. Paste this line and press Return:
 
    ```sh
-   curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+   curl -fsSL https://github.com/oli-zr/keepalive/raw/main/scripts/install.sh | sh
    ```
 
 The command downloads the latest version, checks that it is complete and unchanged,

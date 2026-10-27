@@ -39,7 +39,7 @@ cat <<EOF
 Open Terminal, paste this line and press Return:
 
 \`\`\`sh
-curl -fsSL https://raw.githubusercontent.com/$REPO/main/scripts/install.sh | sh
+curl -fsSL https://github.com/$REPO/raw/main/scripts/install.sh | sh
 \`\`\`
 
 It installs or updates KeepAlive and opens it. Then follow the

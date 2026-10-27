@@ -1,6 +1,6 @@
 #!/bin/sh
 # Installs or updates KeepAlive from the latest GitHub release.
-# Usage: curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+# Usage: curl -fsSL https://github.com/oli-zr/keepalive/raw/main/scripts/install.sh | sh
 #
 # Downloads KeepAlive.zip, checks it against the published checksum and its signature,
 # moves KeepAlive to the Applications folder and opens it. Files downloaded with curl

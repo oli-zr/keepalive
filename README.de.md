@@ -16,40 +16,51 @@
 Apps, die mit einem kostenlosen Apple Account signiert sind, lassen sich nach sieben
 Tagen nicht mehr öffnen. KeepAlive ist eine kleine Menüleisten-App für deinen Mac, die
 sie vorher neu baut und installiert, sobald dein iPhone oder iPad im selben WLAN ist.
+Einmal eingerichtet, musst du dich um nichts mehr kümmern.
 
-- Baut von jedem ausgewählten Projekt die **Release**-Konfiguration.
 - Erneuert frühzeitig, standardmäßig ab drei Tagen. So bleiben vier Tage Puffer.
-- Installiert über WLAN oder Kabel mit Apples eigenen Werkzeugen (`xcodebuild` und `devicectl`).
-- Funktioniert mit mehreren Geräten, zum Beispiel einem iPhone und einem iPad. Jede App
-  wird einmal gebaut und auf allen Geräten installiert, die du für sie auswählst.
-- Spart Energie. macOS plant die Prüfungen ein, und Builds warten auf das Netzteil,
-  außer eine App läuft innerhalb eines Tages ab.
-- Funktioniert mit jedem Xcode-Projekt oder -Workspace. Für Flutter und andere
-  plattformübergreifende Projekte lässt sich vor jedem Build ein Befehl ausführen.
-- Hinterlässt keine Build-Dateien, sobald eine App installiert ist.
-- Auf Deutsch und Englisch.
+- Funktioniert mit mehreren Geräten, zum Beispiel einem iPhone und einem iPad.
+- Installiert über WLAN oder Kabel mit Apples eigenen Werkzeugen. Deine Daten in den Apps
+  bleiben erhalten.
+- Spart Energie: Builds warten auf das Netzteil, außer eine App läuft innerhalb eines Tages ab.
+- Funktioniert mit jedem Xcode-Projekt, auch mit Flutter und anderen plattformübergreifenden Projekten.
+- Aktualisiert sich selbst und ist auf Deutsch und Englisch verfügbar.
 
-## Voraussetzungen
+## Was du brauchst
 
-- macOS 14 Sonoma oder neuer
-- Xcode 15 oder neuer, mit deinem Apple Account angemeldet
-- Ein iPhone oder iPad mit aktiviertem Entwicklermodus
+- Einen Mac mit macOS 14 Sonoma oder neuer
+- [Xcode](https://apps.apple.com/app/xcode/id497799835) 15 oder neuer aus dem App Store
+- Einen kostenlosen Apple Account
+- Ein iPhone oder iPad
 
 ## Installation
 
-Lade `KeepAlive.zip` aus dem [neuesten Release](../../releases/latest), entpacke es und
-bewege KeepAlive in den Ordner „Programme“.
+1. Öffne das **Terminal**: Drücke ⌘ Leertaste, tippe `Terminal` und drücke den Zeilenschalter.
+2. Kopiere diese Zeile, füge sie im Terminal ein und drücke den Zeilenschalter:
 
-KeepAlive ist nicht notarisiert, weil dafür ein kostenpflichtiger Developer Account nötig
-ist. Deshalb blockiert macOS die App beim ersten Öffnen. Öffne dann Systemeinstellungen →
-Datenschutz & Sicherheit, scrolle nach unten und klicke bei der Meldung zu KeepAlive auf
-**Dennoch öffnen**. Alternativ geht es im Terminal:
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/oli-zr/keepalive/main/scripts/install.sh | sh
+   ```
 
-```sh
-xattr -dr com.apple.quarantine /Applications/KeepAlive.app
-```
+Der Befehl lädt die neueste Version, prüft, dass sie vollständig und unverändert ist,
+legt KeepAlive in den Ordner „Programme“ und öffnet es. KeepAlive erscheint dann als Symbol
+oben in der Menüleiste. Du kannst vorher nachlesen, [was der Befehl macht](scripts/install.sh).
 
-Selbst bauen (dafür ist Xcode 26 oder neuer nötig):
+<details>
+<summary>Ohne Terminal installieren</summary>
+
+1. Lade `KeepAlive.zip` aus dem [neuesten Release](../../releases/latest) und öffne die Datei.
+2. Bewege KeepAlive in den Ordner „Programme“ und öffne es.
+3. Beim ersten Öffnen blockiert macOS die App, weil sie nicht notarisiert ist. Dafür wäre
+   ein kostenpflichtiger Developer Account nötig. Öffne Systemeinstellungen → Datenschutz &
+   Sicherheit, scrolle nach unten und klicke bei der Meldung zu KeepAlive auf **Dennoch öffnen**.
+
+</details>
+
+<details>
+<summary>Selbst bauen</summary>
+
+Dafür ist Xcode 26 oder neuer nötig.
 
 ```sh
 git clone https://github.com/oli-zr/keepalive.git
@@ -58,7 +69,10 @@ scripts/build_app.sh
 open build/KeepAlive.app
 ```
 
-### Download überprüfen
+</details>
+
+<details>
+<summary>Herkunft eines Downloads prüfen</summary>
 
 Jedes Release wird von GitHub Actions aus dem getaggten Quellcode gebaut, und GitHub
 signiert einen Nachweis über diesen Build. Mit der [GitHub CLI](https://cli.github.com)
@@ -69,55 +83,66 @@ wurde:
 gh attestation verify KeepAlive.zip --repo oli-zr/keepalive
 ```
 
+</details>
+
 ## Einrichtung
 
-Das ist nur einmal nötig.
+### 1. In Xcode anmelden (einmalig)
 
-1. **Anmelden:** In Xcode unter Settings → Accounts deinen Apple Account hinzufügen.
-2. **WLAN-Kopplung:** Das iPhone oder iPad per Kabel anschließen. In Xcode Window → Devices
-   and Simulators wählen, das Gerät auswählen und **Connect via network** aktivieren. Das
-   für jedes Gerät wiederholen.
-3. **Projekt vorbereiten:** Das Projekt einmal in Xcode öffnen. Unter Signing &
-   Capabilities **Automatically manage signing** und dein Personal Team wählen, dann
-   einmal auf dem iPhone ausführen. Beim ersten Mal musst du dem Entwicklerzertifikat
-   auf jedem Gerät unter Einstellungen → Allgemein → VPN und Geräteverwaltung vertrauen.
-4. **In KeepAlive hinzufügen:** Auf das KeepAlive-Symbol in der Menüleiste klicken und
-   Einstellungen … → Apps → App hinzufügen … wählen.
-5. **KeepAlive laufen lassen:** Unter Allgemein **Beim Anmelden öffnen** aktivieren.
-6. **Geräte auswählen:** Unter Geräte jedes iPhone und iPad einschalten, das KeepAlive
-   verwenden soll. Ist nur ein Gerät gekoppelt, wird es automatisch ausgewählt. Soll eine
-   App nur auf einigen Geräten landen, ihre Details unter Apps öffnen.
+Öffne Xcode, wähle Xcode → Settings → Accounts, klicke auf **+** und melde dich mit deinem
+Apple Account an.
 
-Bei Flutter-Projekten unter **Vor dem Build** `flutter build ios --release --config-only`
-eintragen, damit das iOS-Projekt vor jedem Build aktuell ist.
+### 2. iPhone oder iPad verbinden (einmal pro Gerät)
 
-## So funktioniert’s
+1. Schließe das Gerät per Kabel an deinen Mac an und entsperre es. Fragt es, ob du diesem
+   Computer vertraust, tippe auf **Vertrauen**.
+2. Wähle in Xcode Window → Devices and Simulators und dann das Gerät.
+3. Aktiviere **Connect via network**, damit KeepAlive es später über WLAN erreicht.
+4. Aktiviere auf dem Gerät Einstellungen → Datenschutz & Sicherheit → **Entwicklermodus**
+   und starte es neu, wenn du dazu aufgefordert wirst. Die Option erscheint, sobald das
+   Gerät einmal mit Xcode verbunden war.
 
-Alle 30 Minuten, zu einem Zeitpunkt, den macOS für günstig hält, und wenn der Mac aufwacht
-oder sich mit einem Netzwerk verbindet, prüft KeepAlive, ob eine App fällig ist. Für jede fällige App passiert Folgendes:
+### 3. Projekt vorbereiten (einmal pro App)
 
-1. KeepAlive sucht deine Geräte mit `devicectl`.
-2. Das zwischengespeicherte Provisioning-Profil der App wird gelöscht, damit Apple ein
-   neues ausstellt, das sieben Tage gültig ist.
-3. Die Release-Konfiguration wird mit `xcodebuild -allowProvisioningUpdates` gebaut.
-4. Die App wird mit `devicectl device install app` auf jedem Gerät installiert, auf dem
-   sie fällig ist. Deine Daten in der App bleiben erhalten. Ist ein Gerät neu in deinem
-   Personal Team, wird es vorher dort registriert.
-5. Die Build-Dateien werden gelöscht. In deinem Projektordner wird nichts angelegt.
+1. Öffne das Projekt in Xcode.
+2. Wähle das App-Target, öffne **Signing & Capabilities**, aktiviere **Automatically manage
+   signing** und wähle dein Personal Team.
+3. Wähle oben im Fenster dein Gerät und klicke auf Run (▶).
+4. Beim ersten Mal öffnet sich die App noch nicht. Öffne auf dem Gerät Einstellungen →
+   Allgemein → VPN und Geräteverwaltung, tippe auf deinen Apple Account und dann auf
+   **Vertrauen**.
 
-Ein Gerät, das gerade nicht da oder gesperrt ist, hält die anderen nicht auf. Es bekommt
-die App, sobald es wieder erreichbar ist.
+Bei Flutter-Projekten führe vorher einmal `flutter build ios` aus. In KeepAlive kannst du
+später unter **Vor dem Build** `flutter build ios --release --config-only` eintragen, damit
+das iOS-Projekt vor jedem Build aktuell ist.
 
-Die Einstellungen liegen in `~/Library/Application Support/KeepAlive`, die Protokolle in
-`~/Library/Logs/KeepAlive`. Zusammen brauchen sie weniger als ein Megabyte.
+### 4. App zu KeepAlive hinzufügen
 
-## Updates
+1. Klicke auf das KeepAlive-Symbol in der Menüleiste und wähle **Einstellungen …**.
+2. Klicke unter **Apps** auf **App hinzufügen …** und wähle den Projektordner.
+3. Aktiviere unter **Allgemein** die Option **Beim Anmelden öffnen**, damit KeepAlive
+   immer läuft.
 
-KeepAlive prüft einmal am Tag auf GitHub, ob es eine neue Version gibt, installiert sie
-selbst, während keine App gebaut wird, und startet neu. Der Download wird dabei mit der
-Prüfsumme abgeglichen, die mit jedem Release veröffentlicht wird. Unter Allgemein →
-Updates lässt sich das abschalten oder von Hand prüfen. Versionen vor 1.1 können sich
-noch nicht selbst aktualisieren; ersetze sie einmalig von Hand.
+Das war’s. KeepAlive installiert die App sofort und erneuert sie ab jetzt von selbst.
+Nutzt du mehrere Geräte, schalte jedes unter **Geräte** ein. Soll eine App nur auf einige
+davon, klicke unter **Apps** neben der App auf ⓘ.
+
+## Wenn etwas nicht klappt
+
+Ein Klick auf das KeepAlive-Symbol zeigt den Zustand jeder App. Unter **Einstellungen … →
+Aktivität** steht alles, was KeepAlive gemacht hat, mit den vollständigen Meldungen.
+
+| Meldung | Was zu tun ist |
+| --- | --- |
+| *iPhone ist nicht erreichbar* | Verbinde das Gerät mit demselben WLAN wie deinen Mac. KeepAlive versucht es selbst erneut. |
+| *Entsperre iPhone einmal …* | Entsperre das Gerät. Nach einem Neustart ist das einmal nötig, bevor Apps installiert werden können. |
+| *Es konnte kein Provisioning-Profil erstellt werden* | Führe für dieses Projekt [Schritt 3 der Einrichtung](#3-projekt-vorbereiten-einmal-pro-app) aus. |
+| *Das Limit für kostenlose Accounts ist erreicht* | Entferne eine deiner eigenen Apps vom Gerät oder warte ein paar Tage. Siehe [Grenzen](#grenzen). |
+| *Xcode wurde nicht gefunden* | Installiere Xcode aus dem App Store oder wähle es unter Einstellungen → Allgemein aus. |
+| Das Gerät fehlt unter **Geräte** | Wiederhole [Schritt 2 der Einrichtung](#2-iphone-oder-ipad-verbinden-einmal-pro-gerät) und klicke auf die Schaltfläche zum Aktualisieren. |
+
+Kommst du nicht weiter? [Eröffne ein Issue](../../issues/new/choose) und füge die
+passenden Zeilen aus `~/Library/Logs/KeepAlive/` hinzu.
 
 ## Grenzen
 
@@ -127,6 +152,45 @@ Diese Grenzen setzt Apple für kostenlose Accounts, nicht KeepAlive.
 - Höchstens zehn neue App-IDs innerhalb von sieben Tagen.
 - Manche Funktionen wie Push-Mitteilungen oder iCloud sind nicht verfügbar.
 - Dein Mac muss alle paar Tage wach und im selben Netzwerk wie deine Geräte sein.
+
+## Updates
+
+KeepAlive prüft einmal am Tag auf GitHub, ob es eine neue Version gibt, und installiert
+sie selbst, während keine App gebaut wird. Unter Allgemein → Updates lässt sich das
+abschalten oder von Hand prüfen. Auch der Installationsbefehl aktualisiert KeepAlive,
+wenn du ihn erneut ausführst.
+
+## Deinstallieren
+
+1. Klicke auf das KeepAlive-Symbol und wähle **KeepAlive beenden**.
+2. Bewege KeepAlive aus dem Ordner „Programme“ in den Papierkorb.
+3. Um auch Einstellungen und Protokolle zu entfernen, führe im Terminal aus:
+
+   ```sh
+   rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
+   ```
+
+Die Apps auf deinen Geräten bleiben installiert, bis sie ablaufen.
+
+## So funktioniert’s
+
+Alle 30 Minuten, zu einem Zeitpunkt, den macOS für günstig hält, und wenn der Mac aufwacht
+oder sich mit einem Netzwerk verbindet, prüft KeepAlive, ob eine App fällig ist. Für jede
+fällige App passiert Folgendes:
+
+1. KeepAlive sucht deine Geräte mit `devicectl`.
+2. Das zwischengespeicherte Provisioning-Profil der App wird gelöscht, damit Apple ein
+   neues ausstellt, das sieben Tage gültig ist.
+3. Die Release-Konfiguration wird mit `xcodebuild -allowProvisioningUpdates` gebaut.
+4. Die App wird mit `devicectl device install app` auf jedem Gerät installiert, auf dem
+   sie fällig ist. Ist ein Gerät neu in deinem Personal Team, wird es vorher dort registriert.
+5. Die Build-Dateien werden gelöscht. In deinem Projektordner wird nichts angelegt.
+
+Ein Gerät, das gerade nicht da oder gesperrt ist, hält die anderen nicht auf. Es bekommt
+die App, sobald es wieder erreichbar ist.
+
+Die Einstellungen liegen in `~/Library/Application Support/KeepAlive`, die Protokolle in
+`~/Library/Logs/KeepAlive`. Zusammen brauchen sie weniger als ein Megabyte.
 
 ## Lizenz
 

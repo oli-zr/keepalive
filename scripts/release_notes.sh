@@ -36,13 +36,17 @@ cat <<EOF
 
 ### Installation
 
-1. Download **KeepAlive.zip** below, unzip it and move KeepAlive to your Applications folder.
-2. Open KeepAlive. Because it is not notarized, macOS blocks it the first time: open
-   System Settings → Privacy & Security and click **Open Anyway**.
-3. Follow the [setup guide](https://github.com/$REPO#setup) to add your apps.
+Open Terminal, paste this line and press Return:
 
-KeepAlive 1.1 and later install updates by themselves. Coming from an older version, quit
-KeepAlive and replace the app once. Your settings are kept.
+\`\`\`sh
+curl -fsSL https://raw.githubusercontent.com/$REPO/main/scripts/install.sh | sh
+\`\`\`
+
+It installs or updates KeepAlive and opens it. Then follow the
+[setup guide](https://github.com/$REPO#setup) to add your apps. To install without
+Terminal, see [the other ways](https://github.com/$REPO#installation).
+
+KeepAlive 1.1 and later install updates by themselves. Your settings are kept.
 
 **Requirements:** macOS 14 or later, Xcode 15 or later, an iPhone or iPad with Developer Mode.
 EOF

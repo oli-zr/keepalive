@@ -96,7 +96,7 @@ main() {
     open "$target"
     say "" ""
     say "KeepAlive is now in your menu bar. Next steps: https://github.com/oli-zr/keepalive#setup" \
-        "KeepAlive ist jetzt in deiner Menüleiste. So geht es weiter: https://github.com/oli-zr/keepalive/blob/main/README.de.md#einrichtung"
+        "KeepAlive ist jetzt in deiner Menüleiste. So geht es weiter (auf Englisch): https://github.com/oli-zr/keepalive#setup"
 }
 
 main "$@"

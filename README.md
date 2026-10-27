@@ -5,8 +5,7 @@
 <h1 align="center">KeepAlive</h1>
 
 <p align="center">
-  Keeps the iOS apps you build yourself installed on your iPhone and iPad, without a paid developer account.<br>
-  <a href="README.de.md">Deutsch</a>
+  Keeps the iOS apps you build yourself installed on your iPhone and iPad, without a paid developer account.
 </p>
 
 <p align="center">

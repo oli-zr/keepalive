@@ -3,6 +3,17 @@
 All notable changes to KeepAlive. Each section becomes the description of the
 matching GitHub release.
 
+## [1.4] - 2026-11-02
+
+### Features
+
+- KeepAlive can keep your apps on this Mac too. On a Mac with Apple silicon, iPhone and
+  iPad apps run as “Designed for iPad” apps and also expire after seven days. Turn on
+  **This Mac** under **Devices**, and KeepAlive renews them in the Applications folder of
+  your home folder, using the same build as for your devices.
+- While an app is open on your Mac, KeepAlive waits instead of replacing it, and renews it
+  as soon as you quit it.
+
 ## [1.3.1] - 2026-10-27
 
 ### Features

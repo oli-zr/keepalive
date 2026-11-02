@@ -200,18 +200,22 @@ struct AppIconView: View {
 }
 
 extension Device {
-    var symbolName: String { isPad ? "ipad" : "iphone" }
+    var symbolName: String { SavedDevice(self).symbolName }
 
     var connectionDescription: String {
         guard isReachable else { return String(localized: "Not reachable") }
         switch transport {
         case .network: return String(localized: "Connected via Wi‑Fi")
         case .wired: return String(localized: "Connected via cable")
+        case .local: return String(localized: "This Mac")
         case .unknown: return String(localized: "Not reachable")
         }
     }
 }
 
 extension SavedDevice {
-    var symbolName: String { isPad ? "ipad" : "iphone" }
+    var symbolName: String {
+        if isMac { return model.hasPrefix("MacBook") ? "laptopcomputer" : "desktopcomputer" }
+        return isPad ? "ipad" : "iphone"
+    }
 }

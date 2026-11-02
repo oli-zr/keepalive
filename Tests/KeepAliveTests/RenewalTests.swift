@@ -118,6 +118,40 @@ struct SchedulingTests {
         #expect(store.hasProblem)
     }
 
+    @Test("Chooses the only paired device, but never this Mac on its own")
+    func automaticChoice() {
+        let livePhone = Device(id: "PHONE", udid: "1", name: "iPhone", model: "iPhone 16", isPad: false,
+                               transport: .network, isReachable: true)
+        let mac = Device(id: "MAC", udid: "MAC", name: "MacBook Air", model: "MacBook Air", isPad: false,
+                         transport: .local, isReachable: true, isMac: true)
+        store.preferences.devices = []
+        store.devices = [mac]
+        #expect(!renewer.updateSavedDevices())
+        #expect(store.preferences.devices.isEmpty)
+
+        store.devices = [livePhone, mac]
+        #expect(renewer.updateSavedDevices())
+        #expect(store.preferences.devices.map(\.id) == ["PHONE"])
+    }
+
+    @Test("An app that is open on this Mac is renewed once it is closed")
+    func openOnMac() {
+        let mac = SavedDevice(id: "MAC", name: "MacBook Air", model: "MacBook Air", isMac: true)
+        store.preferences.devices = [phone, mac]
+        var app = app(installedDaysAgo: 4)
+        app.installations[mac.id] = installation(installedDaysAgo: 4)
+        #expect(!renewer.isWaitingToQuit(app))
+
+        app.installations[mac.id]?.lastError = RenewError.appRunning("App").localizedDescription
+        app.installations[mac.id]?.isWaitingForDevice = true
+        app.installations[mac.id]?.lastAttempt = now.addingTimeInterval(-5 * 60)
+        #expect(renewer.isWaitingToQuit(app))
+        #expect(renewer.dueDevices(for: app, now: now) == [phone, mac], "Waiting does not hold back the next check")
+
+        app.excludedDevices = [mac.id]
+        #expect(!renewer.isWaitingToQuit(app))
+    }
+
     @Test("Two devices with the same name are told apart by their model")
     func sameName() {
         store.preferences.devices = [
@@ -336,6 +370,15 @@ struct SettingsDecodingTests {
         #expect(preferences.checksForUpdates)
         #expect(preferences.installsUpdates)
         #expect(preferences.devices.isEmpty)
+    }
+
+    @Test("Devices saved by earlier versions are not this Mac")
+    func olderDevice() throws {
+        let device = try JSONDecoder().decode(SavedDevice.self, from: Data(#"{"id":"PHONE-1","name":"iPhone"}"#.utf8))
+        #expect(!device.isMac)
+        #expect(!device.isPad)
+        let mac = SavedDevice(id: "MAC", name: "Mac", model: "Mac mini", isMac: true)
+        #expect(try JSONDecoder().decode(SavedDevice.self, from: JSONEncoder().encode(mac)) == mac)
     }
 
     @Test("Apps saved without optional fields still load")

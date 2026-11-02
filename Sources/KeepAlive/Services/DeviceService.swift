@@ -10,14 +10,16 @@ struct Device: Identifiable, Hashable, Codable, Sendable {
     let isPad: Bool
     let transport: Transport
     let isReachable: Bool
+    /// This Mac, which runs the apps as “Designed for iPad” apps.
+    var isMac = false
 
     enum Transport: String, Codable, Sendable {
-        case wired, network, unknown
+        case wired, network, local, unknown
     }
 
     /// The same device under the name KeepAlive shows for it.
     func named(_ name: String) -> Device {
-        Device(id: id, udid: udid, name: name, model: model, isPad: isPad, transport: transport, isReachable: isReachable)
+        Device(id: id, udid: udid, name: name, model: model, isPad: isPad, transport: transport, isReachable: isReachable, isMac: isMac)
     }
 }
 
@@ -38,11 +40,20 @@ enum DeviceError: LocalizedError {
     }
 }
 
-/// Talks to physical iPhones and iPads through `devicectl`.
+/// Talks to physical iPhones and iPads through `devicectl`, and installs on this Mac
+/// through `MacInstaller`.
 struct DeviceService: Sendable {
     let toolchain: Toolchain
 
+    /// Paired iPhones and iPads, followed by this Mac on Apple silicon.
     func devices() async throws -> [Device] {
+        async let mac = MacInstaller.thisMac()
+        let paired = try await pairedDevices()
+        guard let mac = await mac else { return paired }
+        return paired + [mac]
+    }
+
+    private func pairedDevices() async throws -> [Device] {
         let output = FileManager.default.temporaryDirectory
             .appendingPathComponent("keepalive-devices-\(UUID().uuidString).json")
         defer { try? FileManager.default.removeItem(at: output) }
@@ -65,9 +76,14 @@ struct DeviceService: Sendable {
     }
 
     /// Mounts the developer disk image, which iOS only allows while the iPhone is unlocked.
-    /// Checking before the build avoids building an app that cannot be installed yet.
-    /// Other failures are left to the installation, which explains them.
-    func prepare(_ device: Device) async throws {
+    /// On this Mac, checks that the app is closed. Checking before the build avoids building
+    /// an app that cannot be installed yet. Other failures are left to the installation,
+    /// which explains them.
+    func prepare(_ device: Device, for app: ManagedApp) async throws {
+        if device.isMac {
+            if await MacInstaller.isRunning(app.bundleIdentifier) { throw RenewError.appRunning(app.name) }
+            return
+        }
         let result = try await Shell.run(
             Toolchain.xcrun,
             ["devicectl", "device", "info", "ddiServices", "--device", device.id],
@@ -77,7 +93,20 @@ struct DeviceService: Sendable {
         if !result.succeeded, Diagnostics.isLocked(result.output) { throw RenewError.deviceLocked(device.name) }
     }
 
-    func install(appAt appURL: URL, on device: Device, onLine: (@Sendable (String) -> Void)? = nil) async throws {
+    func install(_ app: ManagedApp, at appURL: URL, on device: Device, onLine: (@Sendable (String) -> Void)? = nil) async throws {
+        if device.isMac {
+            // The app may have been opened while it was being built.
+            if await MacInstaller.isRunning(app.bundleIdentifier) { throw RenewError.appRunning(app.name) }
+            do {
+                let wrapper = try MacInstaller.install(appAt: appURL, bundleIdentifier: app.bundleIdentifier)
+                onLine?("Installed \(appURL.lastPathComponent) at \(wrapper.path)")
+            } catch let error as MacInstallError {
+                throw error
+            } catch {
+                throw DeviceError.installFailed(error.localizedDescription)
+            }
+            return
+        }
         let result = try await Shell.run(
             Toolchain.xcrun,
             ["devicectl", "device", "install", "app", "--device", device.id, appURL.path],

@@ -48,6 +48,7 @@ struct SavedDevice: Identifiable, Codable, Hashable, Sendable {
     var name: String
     var model = ""
     var isPad = false
+    var isMac = false
 }
 
 struct Preferences: Codable, Sendable {
@@ -127,6 +128,7 @@ extension SavedDevice {
         name = try c.decode(String.self, forKey: .name)
         model = try c.decodeIfPresent(String.self, forKey: .model) ?? ""
         isPad = try c.decodeIfPresent(Bool.self, forKey: .isPad) ?? false
+        isMac = try c.decodeIfPresent(Bool.self, forKey: .isMac) ?? false
     }
 }
 

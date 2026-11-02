@@ -7,11 +7,16 @@ struct DeviceSettingsView: View {
 
     /// Paired devices, followed by chosen ones that `devicectl` does not list right now.
     private var rows: [DeviceRow.Model] {
-        let paired = store.devices.map { DeviceRow.Model(saved: SavedDevice($0), live: $0) }
+        let paired = store.devices.filter { !$0.isMac }.map { DeviceRow.Model(saved: SavedDevice($0), live: $0) }
         let missing = store.preferences.devices
             .filter { saved in !store.devices.contains { $0.id == saved.id } }
             .map { DeviceRow.Model(saved: $0, live: nil) }
         return paired + missing
+    }
+
+    /// This Mac, on Apple silicon.
+    private var macRow: DeviceRow.Model? {
+        store.devices.first(where: \.isMac).map { DeviceRow.Model(saved: SavedDevice($0), live: $0) }
     }
 
     var body: some View {
@@ -44,6 +49,17 @@ struct DeviceSettingsView: View {
                     Text("To renew over Wi‑Fi, connect your iPhone or iPad to this Mac with a cable once and tap Trust on the device. With Xcode 26 or earlier, also turn on “Connect via network” under Window → Devices and Simulators.")
                 }
                 .settingsFooter()
+            }
+
+            if let macRow {
+                Section {
+                    DeviceRow(model: macRow, isOn: binding(for: macRow.saved))
+                } header: {
+                    Text("This Mac")
+                } footer: {
+                    Text("Your apps run on this Mac as iPad apps. KeepAlive installs them in the Applications folder of your home folder, and waits while an app is open.")
+                        .settingsFooter()
+                }
             }
         }
         .formStyle(.grouped)
@@ -106,6 +122,7 @@ private struct DeviceRow: View {
 
     private var subtitle: String {
         guard let live = model.live else { return String(localized: "Not reachable") }
+        if live.isMac { return live.model }
         return live.model.isEmpty ? live.connectionDescription : "\(live.model) · \(live.connectionDescription)"
     }
 }

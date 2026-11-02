@@ -6,6 +6,7 @@ enum BuildError: LocalizedError {
     case productMissing(String)
     case projectUnreadable(String)
     case noApplicationTarget
+    case macUnsupported
 
     var errorDescription: String? {
         switch self {
@@ -19,6 +20,8 @@ enum BuildError: LocalizedError {
             return String(localized: "The project could not be read: \(detail)")
         case .noApplicationTarget:
             return String(localized: "This scheme does not build an iOS app.")
+        case .macUnsupported:
+            return String(localized: "This app cannot run on a Mac. In Xcode, add “Mac (Designed for iPad)” under Supported Destinations of the app target.")
         }
     }
 }
@@ -41,7 +44,8 @@ struct BuildService: Sendable {
 
     /// Builds the Release configuration with a freshly requested provisioning profile
     /// and returns the signed `.app`. Building for a specific device registers it with
-    /// the Personal Team first, so the profile includes it.
+    /// the Personal Team first, so the profile includes it. For this Mac, that is the
+    /// “Designed for iPad” destination, which builds the same iOS app.
     func build(_ app: ManagedApp, registering device: Device? = nil, onLine: @escaping @Sendable (String) -> Void) async throws -> URL {
         let command = app.preBuildCommand.trimmingCharacters(in: .whitespacesAndNewlines)
         if !command.isEmpty {
@@ -53,8 +57,12 @@ struct BuildService: Sendable {
         if removed > 0 { onLine("Removed \(removed) cached provisioning profile(s) for \(app.bundleIdentifier)") }
 
         let derivedData = Self.derivedDataURL(for: app)
-        let destination = device?.udid.map { ["-destination", "platform=iOS,id=\($0)", "-allowProvisioningDeviceRegistration"] }
-            ?? ["-destination", "generic/platform=iOS"]
+        let destination = device.flatMap { device in
+            device.udid.map { udid in
+                let platform = device.isMac ? "platform=macOS,variant=Designed for iPad" : "platform=iOS"
+                return ["-destination", "\(platform),id=\(udid)", "-allowProvisioningDeviceRegistration"]
+            }
+        } ?? ["-destination", "generic/platform=iOS"]
         let result = try await Shell.run(
             Toolchain.xcrun,
             ["xcodebuild"] + projectArguments(for: app.projectURL) + [
@@ -69,7 +77,14 @@ struct BuildService: Sendable {
             environment: toolchain.environment,
             onLine: onLine
         )
-        guard result.succeeded else { throw BuildError.buildFailed(Diagnostics.explain(result.output)) }
+        guard result.succeeded else {
+            // Xcode 27 says “device”, earlier versions “destination”.
+            if device?.isMac == true,
+               ["Unable to find a device matching", "Unable to find a destination matching"].contains(where: result.output.contains) {
+                throw BuildError.macUnsupported
+            }
+            throw BuildError.buildFailed(Diagnostics.explain(result.output))
+        }
 
         let product = derivedData.appendingPathComponent("Build/Products/Release-iphoneos/\(app.productName)")
         guard FileManager.default.fileExists(atPath: product.path) else {

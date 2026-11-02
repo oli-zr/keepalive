@@ -5647,6 +5647,246 @@
           }
         }
       }
+    },
+    "Quit %@ on this Mac so KeepAlive can renew it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beende „%@“ auf diesem Mac, damit KeepAlive die App erneuern kann."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cierra “%@” en este Mac para que KeepAlive pueda renovar la app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quittez « %@ » sur ce Mac pour que KeepAlive puisse renouveler l’app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveがAppを更新できるように、このMacで「%@」を終了してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在这台 Mac 上退出“%@”，以便 KeepAlive 为 App 续期。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerre “%@” neste Mac para que o KeepAlive possa renovar o app."
+          }
+        }
+      }
+    },
+    "Quit %@ on this Mac so KeepAlive can renew it. It will try again once the app is closed.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beende „%@“ auf diesem Mac, damit KeepAlive die App erneuern kann. KeepAlive versucht es erneut, sobald die App geschlossen ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cierra “%@” en este Mac para que KeepAlive pueda renovar la app. Lo volverá a intentar en cuanto la app esté cerrada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quittez « %@ » sur ce Mac pour que KeepAlive puisse renouveler l’app. Il réessaiera dès que l’app sera fermée."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAliveがAppを更新できるように、このMacで「%@」を終了してください。Appが終了したらもう一度試します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在这台 Mac 上退出“%@”，以便 KeepAlive 为 App 续期。App 关闭后会再试。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerre “%@” neste Mac para que o KeepAlive possa renovar o app. Ele tentará novamente assim que o app for fechado."
+          }
+        }
+      }
+    },
+    "There is already a different app at %@. Rename or remove it, so KeepAlive can install this app on this Mac.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unter %@ liegt bereits eine andere App. Benenne sie um oder entferne sie, damit KeepAlive diese App auf diesem Mac installieren kann."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya hay otra app en %@. Cámbiale el nombre o elimínala para que KeepAlive pueda instalar esta app en este Mac."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une autre app se trouve déjà à l’emplacement %@. Renommez-la ou supprimez-la pour que KeepAlive puisse installer cette app sur ce Mac."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@には別のAppがすでにあります。KeepAliveがこのMacにこのAppをインストールできるように、名前を変更するか削除してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”处已有另一个 App。请将其重命名或移除，以便 KeepAlive 在这台 Mac 上安装此 App。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já existe outro app em %@. Renomeie ou remova esse app para que o KeepAlive possa instalar este app neste Mac."
+          }
+        }
+      }
+    },
+    "This Mac": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Mac"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este Mac"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce Mac"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このMac"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台 Mac"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este Mac"
+          }
+        }
+      }
+    },
+    "This app cannot run on a Mac. In Xcode, add “Mac (Designed for iPad)” under Supported Destinations of the app target.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese App kann nicht auf einem Mac laufen. Füge in Xcode beim App-Target unter „Supported Destinations“ den Eintrag „Mac (Designed for iPad)“ hinzu."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta app no puede ejecutarse en un Mac. En Xcode, añade “Mac (Designed for iPad)” en “Supported Destinations” del target de la app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette app ne peut pas fonctionner sur un Mac. Dans Xcode, ajoutez « Mac (Designed for iPad) » sous « Supported Destinations » de la cible de l’app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このAppはMacで実行できません。XcodeでAppのターゲットの「Supported Destinations」に「Mac (Designed for iPad)」を追加してください。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 App 无法在 Mac 上运行。请在 Xcode 中 App 目标的“Supported Destinations”下添加“Mac (Designed for iPad)”。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este app não pode ser executado em um Mac. No Xcode, adicione “Mac (Designed for iPad)” em “Supported Destinations” do target do app."
+          }
+        }
+      }
+    },
+    "Your apps run on this Mac as iPad apps. KeepAlive installs them in the Applications folder of your home folder, and waits while an app is open.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Apps laufen auf diesem Mac als iPad-Apps. KeepAlive installiert sie im Ordner „Programme“ deines Benutzerordners und wartet, solange eine App geöffnet ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus apps se ejecutan en este Mac como apps de iPad. KeepAlive las instala en la carpeta Aplicaciones de tu carpeta de inicio y espera mientras una app esté abierta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos apps fonctionnent sur ce Mac comme des apps iPad. KeepAlive les installe dans le dossier Applications de votre dossier de départ et attend tant qu’une app est ouverte."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AppはこのMac上でiPad用Appとして動作します。KeepAliveはAppをホームフォルダの“アプリケーション”フォルダにインストールし、Appが開いている間は待機します。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的 App 会以 iPad App 的形式在这台 Mac 上运行。KeepAlive 会将它们安装到个人文件夹中的“应用程序”文件夹，并在 App 打开时等待。"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus apps são executados neste Mac como apps para iPad. O KeepAlive os instala na pasta Aplicativos da sua pasta de início e espera enquanto um app estiver aberto."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

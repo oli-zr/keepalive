@@ -19,6 +19,7 @@ final class Renewer {
     @ObservationIgnored private var forced: Set<ManagedApp.ID> = []
     @ObservationIgnored private var worker: Task<Void, Never>?
     @ObservationIgnored private var wakeObserver: NSObjectProtocol?
+    @ObservationIgnored private var quitObserver: NSObjectProtocol?
     @ObservationIgnored private var networkMonitor: NWPathMonitor?
     @ObservationIgnored private var hasSeenNetwork = false
     @ObservationIgnored private var networkCheck: Task<Void, Never>?
@@ -56,6 +57,15 @@ final class Renewer {
                 try? await Task.sleep(for: .seconds(90))
                 await self?.checkDueApps()
             }
+        }
+
+        // An app that was open on this Mac can be renewed as soon as it is closed.
+        quitObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main
+        ) { [weak self] notification in
+            let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication
+            let bundleIdentifier = app?.bundleIdentifier
+            Task { @MainActor in self?.appQuit(bundleIdentifier) }
         }
 
         // Joining a network, for example at home, is a good moment to look for devices.
@@ -157,6 +167,23 @@ final class Renewer {
         enqueue(due.map(\.id))
     }
 
+    /// Whether the app waits on this Mac until it is closed.
+    func isWaitingToQuit(_ app: ManagedApp) -> Bool {
+        store.targets(for: app).contains { device in
+            let installation = app.installation(on: device.id)
+            return device.isMac && installation.isWaitingForDevice && installation.lastError != nil
+        }
+    }
+
+    private func appQuit(_ bundleIdentifier: String?) {
+        guard store.apps.contains(where: { $0.bundleIdentifier == bundleIdentifier && isWaitingToQuit($0) }) else { return }
+        Task {
+            // Give macOS a moment to let go of the app's files.
+            try? await Task.sleep(for: .seconds(2))
+            await checkDueApps()
+        }
+    }
+
     private func networkChanged(isOnline: Bool) {
         // The monitor reports the current network once when it starts.
         guard hasSeenNetwork else {
@@ -233,7 +260,7 @@ final class Renewer {
                     guard let device = store.liveDevice(target.id)?.named(target.name), device.isReachable else {
                         throw RenewError.deviceUnreachable(target.name)
                     }
-                    try await deviceService.prepare(device)
+                    try await deviceService.prepare(device, for: app)
                     ready.append(device)
                 } catch is CancellationError {
                     throw CancellationError()
@@ -303,7 +330,7 @@ final class Renewer {
     ) async throws {
         store.activity[app.id] = .installing(on: device.name)
         do {
-            try await service.install(appAt: product, on: device) { log.write($0) }
+            try await service.install(app, at: product, on: device) { log.write($0) }
         } catch is CancellationError {
             throw CancellationError()
         } catch {
@@ -346,7 +373,7 @@ final class Renewer {
     /// that is away, locked or not registered name it already.
     private func message(for error: Error, on device: SavedDevice, of app: ManagedApp) -> String {
         let namesDevice = switch error {
-        case RenewError.deviceUnreachable, RenewError.deviceLocked, DeviceError.notRegistered: true
+        case RenewError.deviceUnreachable, RenewError.deviceLocked, RenewError.appRunning, DeviceError.notRegistered: true
         default: false
         }
         guard store.targets(for: app).count > 1, !namesDevice else { return error.localizedDescription }
@@ -373,15 +400,16 @@ final class Renewer {
     }
 
     /// Keeps the names of chosen devices current, and chooses the only paired device when
-    /// none is chosen yet. Returns whether a device was chosen.
+    /// none is chosen yet. This Mac is never chosen on its own. Returns whether a device was chosen.
     @discardableResult
-    private func updateSavedDevices() -> Bool {
+    func updateSavedDevices() -> Bool {
         for index in store.preferences.devices.indices {
             guard let live = store.liveDevice(store.preferences.devices[index].id) else { continue }
             let saved = SavedDevice(live)
             if store.preferences.devices[index] != saved { store.preferences.devices[index] = saved }
         }
-        guard store.preferences.devices.isEmpty, store.devices.count == 1, let only = store.devices.first else { return false }
+        let paired = store.devices.filter { !$0.isMac }
+        guard store.preferences.devices.isEmpty, paired.count == 1, let only = paired.first else { return false }
         store.preferences.devices = [SavedDevice(only)]
         return true
     }
@@ -401,7 +429,9 @@ final class Renewer {
                     title: targets.count > 1
                         ? String(localized: "\(app.name) expires soon on \(device.name)")
                         : String(localized: "\(app.name) expires soon"),
-                    body: String(localized: "Connect \(device.name) to the same Wi‑Fi as this Mac so KeepAlive can renew it."),
+                    body: device.isMac
+                        ? String(localized: "Quit \(app.name) on this Mac so KeepAlive can renew it.")
+                        : String(localized: "Connect \(device.name) to the same Wi‑Fi as this Mac so KeepAlive can renew it."),
                     kind: .expiry,
                     app: app.id
                 )
@@ -412,7 +442,7 @@ final class Renewer {
 
 extension SavedDevice {
     init(_ device: Device) {
-        self.init(id: device.id, name: device.name, model: device.model, isPad: device.isPad)
+        self.init(id: device.id, name: device.name, model: device.model, isPad: device.isPad, isMac: device.isMac)
     }
 }
 
@@ -421,12 +451,14 @@ enum RenewError: LocalizedError {
     case noDeviceForApp
     case deviceUnreachable(String)
     case deviceLocked(String)
+    /// The app is open on this Mac, and replacing it now could make it crash.
+    case appRunning(String)
 
     /// The device is fine but cannot be used right now, so KeepAlive keeps looking for it.
     var isWaitingForDevice: Bool {
         switch self {
         case .noDeviceSelected, .noDeviceForApp: false
-        case .deviceUnreachable, .deviceLocked: true
+        case .deviceUnreachable, .deviceLocked, .appRunning: true
         }
     }
 
@@ -440,6 +472,8 @@ enum RenewError: LocalizedError {
             return String(localized: "\(name) is not reachable. KeepAlive will try again later.")
         case .deviceLocked(let name):
             return String(localized: "Unlock \(name) once so KeepAlive can install apps. It will try again later.")
+        case .appRunning(let name):
+            return String(localized: "Quit \(name) on this Mac so KeepAlive can renew it. It will try again once the app is closed.")
         }
     }
 }

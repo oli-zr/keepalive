@@ -82,7 +82,10 @@ enum DebugPreview {
         let pad = Device(id: "2", udid: "2", name: "iPad", model: "iPad Air", isPad: true, transport: .network, isReachable: true)
         // KEEPALIVE_SAMPLE_DEVICES=1 shows a single iPhone.
         let devices = environment["KEEPALIVE_SAMPLE_DEVICES"] == "1" ? [phone] : [phone, pad]
-        store.devices = devices
+        // This Mac is listed but not chosen, as after an update.
+        let mac = Device(id: "3", udid: "3", name: "MacBook Pro", model: "MacBook Pro", isPad: false,
+                         transport: .local, isReachable: true, isMac: true)
+        store.devices = devices + [mac]
         store.preferences.devices = devices.map(SavedDevice.init)
 
         func sample(_ name: String, installed days: Double?, at hour: Double = 10, excluding excluded: Set<Device.ID> = []) -> ManagedApp {

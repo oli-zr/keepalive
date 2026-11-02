@@ -28,6 +28,7 @@ or a cable.
 
 - Renews after three days by default, leaving four days of buffer
 - Handles several devices, for example an iPhone and an iPad
+- Can also keep your apps on a Mac with Apple silicon, where they run as iPad apps
 - Installs with Apple’s own `xcodebuild` and `devicectl`, keeping the data in your apps
 - Waits for a power adapter, unless an app would expire within a day
 - Works with any Xcode project, Flutter included
@@ -141,6 +142,15 @@ KeepAlive installs the app right away and renews it from then on. If you use mor
 one device, turn on each one under **Devices**. To put an app on only some of them, click
 ⓘ next to the app under **Apps**.
 
+### Use your apps on this Mac too (optional)
+
+A Mac with Apple silicon runs iPhone and iPad apps as well, and there they also stop
+launching after seven days. Turn on **This Mac** under **Devices**, and KeepAlive keeps
+your apps in the Applications folder of your home folder. It uses the same build as for
+your devices, so this usually adds no extra build.
+
+While an app is open, KeepAlive waits and renews it as soon as you quit it.
+
 ## If something doesn’t work
 
 Click the KeepAlive icon to see the state of each app. **Settings… → Activity** lists
@@ -150,6 +160,8 @@ everything KeepAlive did, including the full messages.
 | --- | --- |
 | *iPhone is not reachable* | Connect the device to the same Wi‑Fi as your Mac. KeepAlive tries again on its own. |
 | *Unlock iPhone once…* | Unlock the device. After a restart, this is needed once before apps can be installed. |
+| *Quit … on this Mac…* | Quit the app. KeepAlive renews it right afterwards. |
+| *This app cannot run on a Mac* | In Xcode, add **Mac (Designed for iPad)** under Supported Destinations of the app target, or turn the app off for this Mac. |
 | *No provisioning profile could be created* | Do [step 3 of the setup](#3-prepare-your-project-once-per-app) for this project. |
 | *A free Apple Account can have three of your own apps on a device…* | Remove one of them from the device, or turn the app off for that device in KeepAlive. See [Limits](#limits). |
 | *A free Apple Account can create ten new app IDs per week…* | Wait a few days. KeepAlive tries again on its own. |
@@ -180,7 +192,8 @@ joins a network, KeepAlive checks whether an app is due. For each app that is du
    that is valid for seven days.
 3. Builds the Release configuration with `xcodebuild -allowProvisioningUpdates`.
 4. Installs the app with `devicectl device install app` on every device where it is due.
-   A device that is new to your Personal Team is registered with it first.
+   A device that is new to your Personal Team is registered with it first. On this Mac,
+   it replaces the app in `~/Applications`, unless the app is open.
 5. Deletes the build files. Nothing is added to your project folder.
 
 A device that is away or locked does not hold up the others. It gets the app as soon as
@@ -202,7 +215,7 @@ Settings are stored in `~/Library/Application Support/KeepAlive`, and logs in
    rm -rf ~/Library/Application\ Support/KeepAlive ~/Library/Logs/KeepAlive
    ```
 
-The apps on your devices stay installed until they expire.
+The apps on your devices and in `~/Applications` stay installed until they expire.
 
 </details>
 
